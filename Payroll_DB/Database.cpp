@@ -107,24 +107,26 @@ bool SQLConnect::createUser(String^ user,String^ pass)
 	return true;
 }
 
+MySqlConnection^ SQLConnect::getConnection() {
+	return connection;
+}
 
-
-MySqlDataReader^ SQLConnect::fillEmployee() {
-	MySqlDataReader^ dataset;
+/*MySqlDataReader^ SQLConnect::fillEmployee() {
+	std::auto_ptr<MySqlDataReader^>dataset;
 	try {
 		openConnection();
 		String^ sql;
 		sql = sql->Format("SELECT first_name, last_name, password, address, wages, position FROM employee");
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
-		cmd->ExecuteNonQuery();
-		dataset = cmd->ExecuteReader();
+		//cmd->ExecuteNonQuery();
+		*dataset.get()=cmd->ExecuteReader();
 	}
 	catch(MySqlException^ err){
 		MessageBox::Show(err->ToString());
 	}
 	closeConnection();
 	return dataset;
-}
+}*/
 
 bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage, String^ position)
 {

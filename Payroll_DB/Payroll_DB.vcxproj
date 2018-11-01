@@ -130,15 +130,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="MySql.Data, Version=8.0.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+    <Reference Include="MySql.Data.EntityFramework, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="MySql.Data.EntityFramework, Version=8.0.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+    <Reference Include="MySql.Data.EntityFrameworkCore, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="MySql.Data.EntityFrameworkCore, Version=8.0.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+    <Reference Include="MySql.Data.EntityFrameworkCore.Design, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="MySql.Data.EntityFrameworkCore.Design, Version=8.0.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+    <Reference Include="MySql.Web, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="MySql.Web, Version=8.0.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.Registration" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -156,15 +168,11 @@
     <ClInclude Include="Register.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="User_Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Database.cpp" />
@@ -195,6 +203,9 @@
     <EmbeddedResource Include="User_Login.resx">
       <DependentUpon>User_Login.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Payroll_DB.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

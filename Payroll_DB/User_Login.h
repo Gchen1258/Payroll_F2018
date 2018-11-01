@@ -160,7 +160,7 @@ namespace PayrollDB {
 		}
 #pragma endregion
 private: System::Void LoginButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	SQLConnect^ sql = gcnew SQLConnect();
+	//SQLConnect^ sql = gcnew SQLConnect();
 	//bool check = sql->login(UserField->Text, passField->Text);
 	bool check = true;
 	if (check)

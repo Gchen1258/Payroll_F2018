@@ -13,8 +13,8 @@ ref class SQLConnect
 {
 private:
 	//Change these to match your MySQL configurations
-	String^ user = "admin";
-	String^	pass = "Payroll1245";
+	String^ user = "root";
+	String^	pass = "123456";
 	String^ database = "payroll";
 	String^	server = "localhost";
 	String^ port = "3306";
@@ -25,6 +25,7 @@ private:
 
 	String^ connectionString = "server=" + server +";port=" + port + ";database=" + database + ";uid="+ user +";Pwd=" + pass;
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+	
 
 public:
 	SQLConnect();
@@ -32,7 +33,7 @@ public:
 	bool login(String^ user, String^ pass);
 	bool createUser(String^ user, String^ pass);
 	bool createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage, String^ position);
-	MySqlDataReader^ fillEmployee();
+	MySqlConnection^ getConnection();
 	bool openConnection();
 	bool closeConnection();
 	void backup(String^ path);
