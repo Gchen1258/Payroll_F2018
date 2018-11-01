@@ -161,10 +161,13 @@ namespace PayrollDB {
 #pragma endregion
 private: System::Void LoginButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	SQLConnect^ sql = gcnew SQLConnect();
-	bool check = sql->login(UserField->Text, passField->Text);
+	//bool check = sql->login(UserField->Text, passField->Text);
+	bool check = true;
 	if (check)
 	{
-		MessageBox::Show("Success!");
+		this->Hide();
+		Main^ form = gcnew Main();
+		form->ShowDialog();
 	}
 	}
 private: System::Void RegisterButton_Click(System::Object^  sender, System::EventArgs^  e) {

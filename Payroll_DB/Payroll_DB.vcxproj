@@ -183,6 +183,9 @@
     <EmbeddedResource Include="DbTest.resx">
       <DependentUpon>DbTest.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewUser.resx">
       <DependentUpon>NewUser.h</DependentUpon>
     </EmbeddedResource>

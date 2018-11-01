@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Database.h"
 #include "Register.h"
+#include "Main.h"
 #include "DbTest.h"
 #include "User_Login.h"
 

@@ -18,9 +18,8 @@ namespace PayrollDB {
 		Main(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			SQLConnect^ sql = gcnew SQLConnect();
+			employeeDataGrid->DataSource = sql->fillEmployee();
 		}
 
 	protected:
@@ -34,6 +33,12 @@ namespace PayrollDB {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::DataGridView^  employeeDataGrid;
+	protected:
+
+	protected:
+
+	protected:
 
 	private:
 		/// <summary>
@@ -48,12 +53,31 @@ namespace PayrollDB {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Main";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->employeeDataGrid = (gcnew System::Windows::Forms::DataGridView());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->employeeDataGrid))->BeginInit();
+			this->SuspendLayout();
+			// 
+			// employeeDataGrid
+			// 
+			this->employeeDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->employeeDataGrid->Location = System::Drawing::Point(29, 22);
+			this->employeeDataGrid->Name = L"employeeDataGrid";
+			this->employeeDataGrid->Size = System::Drawing::Size(556, 329);
+			this->employeeDataGrid->TabIndex = 0;
+			// 
+			// Main
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(611, 376);
+			this->Controls->Add(this->employeeDataGrid);
+			this->Name = L"Main";
+			this->Text = L"Main";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->employeeDataGrid))->EndInit();
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
+
 	};
 }
