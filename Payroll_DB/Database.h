@@ -33,6 +33,7 @@ public:
 	bool login(String^ user, String^ pass);
 	bool createUser(String^ user, String^ pass);
 	bool createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage, String^ position);
+
 	MySqlConnection^ getConnection();
 	bool openConnection();
 	bool closeConnection();

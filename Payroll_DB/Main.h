@@ -15,6 +15,8 @@ namespace PayrollDB {
 	public ref class Main : public System::Windows::Forms::Form
 	{
 	public:
+		bool filled = false;
+	public:
 		Main(void)
 		{
 			InitializeComponent();
@@ -41,11 +43,33 @@ namespace PayrollDB {
 	private: System::Windows::Forms::Label^  label6;
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
 	private: System::Windows::Forms::BindingSource^  bindingSource1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  idEmployee;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  first_name;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  last_name;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  address;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  wages;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Position;
+	private: System::Windows::Forms::TextBox^  first_name_textBox;
+	private: System::Windows::Forms::TextBox^  last_name_textBox;
+	private: System::Windows::Forms::TextBox^  address_textBox;
+	private: System::Windows::Forms::TextBox^  wage_textBox;
+	private: System::Windows::Forms::TextBox^  position_textBox;
+
+
+
+
+
+	private: System::Windows::Forms::TextBox^  idEmployee_textBox;
+
+	private: System::Windows::Forms::Label^  label7;
+	private: System::Windows::Forms::Button^  searchBTN;
+	private: System::Windows::Forms::Button^  button1;
+
+
+
+
+
+
 
 	private: System::ComponentModel::IContainer^  components;
 
@@ -78,19 +102,29 @@ namespace PayrollDB {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->bindingSource1 = (gcnew System::Windows::Forms::BindingSource(this->components));
+			this->idEmployee = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->first_name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->last_name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->address = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->wages = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Position = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->bindingSource1 = (gcnew System::Windows::Forms::BindingSource(this->components));
+			this->first_name_textBox = (gcnew System::Windows::Forms::TextBox());
+			this->last_name_textBox = (gcnew System::Windows::Forms::TextBox());
+			this->address_textBox = (gcnew System::Windows::Forms::TextBox());
+			this->wage_textBox = (gcnew System::Windows::Forms::TextBox());
+			this->position_textBox = (gcnew System::Windows::Forms::TextBox());
+			this->idEmployee_textBox = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->searchBTN = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// ModButton
 			// 
-			this->ModButton->Location = System::Drawing::Point(242, 226);
+			this->ModButton->Location = System::Drawing::Point(361, 235);
 			this->ModButton->Name = L"ModButton";
 			this->ModButton->Size = System::Drawing::Size(75, 23);
 			this->ModButton->TabIndex = 0;
@@ -104,7 +138,7 @@ namespace PayrollDB {
 			this->label1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(238, 23);
+			this->label1->Location = System::Drawing::Point(361, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(129, 26);
 			this->label1->TabIndex = 1;
@@ -114,7 +148,7 @@ namespace PayrollDB {
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label2->Location = System::Drawing::Point(57, 60);
+			this->label2->Location = System::Drawing::Point(57, 82);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(62, 15);
 			this->label2->TabIndex = 2;
@@ -124,7 +158,7 @@ namespace PayrollDB {
 			// 
 			this->label3->AutoSize = true;
 			this->label3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label3->Location = System::Drawing::Point(57, 82);
+			this->label3->Location = System::Drawing::Point(57, 109);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(63, 15);
 			this->label3->TabIndex = 3;
@@ -135,7 +169,7 @@ namespace PayrollDB {
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label4->Location = System::Drawing::Point(57, 156);
+			this->label4->Location = System::Drawing::Point(58, 190);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(49, 15);
 			this->label4->TabIndex = 4;
@@ -145,7 +179,7 @@ namespace PayrollDB {
 			// 
 			this->label5->AutoSize = true;
 			this->label5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label5->Location = System::Drawing::Point(57, 106);
+			this->label5->Location = System::Drawing::Point(57, 135);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(50, 15);
 			this->label5->TabIndex = 5;
@@ -155,7 +189,7 @@ namespace PayrollDB {
 			// 
 			this->label6->AutoSize = true;
 			this->label6->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label6->Location = System::Drawing::Point(57, 130);
+			this->label6->Location = System::Drawing::Point(58, 161);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(41, 15);
 			this->label6->TabIndex = 6;
@@ -164,15 +198,20 @@ namespace PayrollDB {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
-				this->first_name,
-					this->last_name, this->address, this->wages, this->Position
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+				this->idEmployee,
+					this->first_name, this->last_name, this->address, this->wages, this->Position
 			});
-			this->dataGridView1->Location = System::Drawing::Point(163, 60);
+			this->dataGridView1->Location = System::Drawing::Point(361, 52);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(535, 150);
+			this->dataGridView1->Size = System::Drawing::Size(644, 150);
 			this->dataGridView1->TabIndex = 7;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Main::dataGridView1_CellContentClick_1);
+			// 
+			// idEmployee
+			// 
+			this->idEmployee->HeaderText = L"ID";
+			this->idEmployee->Name = L"idEmployee";
 			// 
 			// first_name
 			// 
@@ -199,11 +238,98 @@ namespace PayrollDB {
 			this->Position->HeaderText = L"Position";
 			this->Position->Name = L"Position";
 			// 
+			// first_name_textBox
+			// 
+			this->first_name_textBox->Location = System::Drawing::Point(126, 83);
+			this->first_name_textBox->Name = L"first_name_textBox";
+			this->first_name_textBox->Size = System::Drawing::Size(100, 20);
+			this->first_name_textBox->TabIndex = 8;
+			this->first_name_textBox->TextChanged += gcnew System::EventHandler(this, &Main::first_name_textBox_TextChanged);
+			// 
+			// last_name_textBox
+			// 
+			this->last_name_textBox->Location = System::Drawing::Point(126, 109);
+			this->last_name_textBox->Name = L"last_name_textBox";
+			this->last_name_textBox->Size = System::Drawing::Size(100, 20);
+			this->last_name_textBox->TabIndex = 9;
+			this->last_name_textBox->TextChanged += gcnew System::EventHandler(this, &Main::last_name_textBox_TextChanged);
+			// 
+			// address_textBox
+			// 
+			this->address_textBox->Location = System::Drawing::Point(126, 135);
+			this->address_textBox->Name = L"address_textBox";
+			this->address_textBox->Size = System::Drawing::Size(100, 20);
+			this->address_textBox->TabIndex = 10;
+			this->address_textBox->TextChanged += gcnew System::EventHandler(this, &Main::address_textBox_TextChanged);
+			// 
+			// wage_textBox
+			// 
+			this->wage_textBox->Location = System::Drawing::Point(126, 161);
+			this->wage_textBox->Name = L"wage_textBox";
+			this->wage_textBox->Size = System::Drawing::Size(100, 20);
+			this->wage_textBox->TabIndex = 11;
+			this->wage_textBox->TextChanged += gcnew System::EventHandler(this, &Main::wage_textBox_TextChanged);
+			// 
+			// position_textBox
+			// 
+			this->position_textBox->Location = System::Drawing::Point(126, 187);
+			this->position_textBox->Name = L"position_textBox";
+			this->position_textBox->Size = System::Drawing::Size(100, 20);
+			this->position_textBox->TabIndex = 12;
+			this->position_textBox->TextChanged += gcnew System::EventHandler(this, &Main::position_textBox_TextChanged);
+			// 
+			// idEmployee_textBox
+			// 
+			this->idEmployee_textBox->Location = System::Drawing::Point(126, 57);
+			this->idEmployee_textBox->Name = L"idEmployee_textBox";
+			this->idEmployee_textBox->Size = System::Drawing::Size(100, 20);
+			this->idEmployee_textBox->TabIndex = 13;
+			this->idEmployee_textBox->TextChanged += gcnew System::EventHandler(this, &Main::idEmployee_textBox_TextChanged);
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->label7->Location = System::Drawing::Point(57, 57);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(20, 15);
+			this->label7->TabIndex = 14;
+			this->label7->Text = L"ID";
+			// 
+			// searchBTN
+			// 
+			this->searchBTN->Location = System::Drawing::Point(608, 235);
+			this->searchBTN->Name = L"searchBTN";
+			this->searchBTN->Size = System::Drawing::Size(75, 23);
+			this->searchBTN->TabIndex = 15;
+			this->searchBTN->Text = L"Search";
+			this->searchBTN->UseVisualStyleBackColor = true;
+			this->searchBTN->Click += gcnew System::EventHandler(this, &Main::searchBTN_Click);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(773, 234);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 16;
+			this->button1->Text = L"Display";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Main::button1_Click);
+			// 
 			// Main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(752, 376);
+			this->ClientSize = System::Drawing::Size(1017, 454);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->searchBTN);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->idEmployee_textBox);
+			this->Controls->Add(this->position_textBox);
+			this->Controls->Add(this->wage_textBox);
+			this->Controls->Add(this->address_textBox);
+			this->Controls->Add(this->last_name_textBox);
+			this->Controls->Add(this->first_name_textBox);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
@@ -224,14 +350,49 @@ namespace PayrollDB {
 
 	private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
-private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
-}
+/*private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+}*/
 private: System::Void ModButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	SQLConnect^ db = gcnew SQLConnect();
 	try {
 		db->openConnection();
 		String^ sql;
-		sql = sql->Format("SELECT first_name, last_name, address, wages, position FROM employee");
+		sql = sql->Format("UPDATE employee SET first_name='" + first_name_textBox->Text + "',last_name='" + last_name_textBox->Text + "',address='" + address_textBox->Text + "',wages='" + wage_textBox->Text + "',position='" + position_textBox->Text + "'""WHERE idEmployee LIKE '%" + idEmployee_textBox->Text + "'");
+		MySqlCommand^ cmd = gcnew MySqlCommand(sql, db->getConnection());
+		//cmd->ExecuteNonQuery();
+		MySqlDataReader^ dataset = cmd->ExecuteReader();
+		
+		int i = 0;
+		while (dataset->Read()) {
+			dataGridView1->Rows->Add();
+			dataGridView1->Rows[i]->Cells[0]->Value = dataset[0];
+			dataGridView1->Rows[i]->Cells[1]->Value = dataset[1];
+			dataGridView1->Rows[i]->Cells[2]->Value = dataset[2];
+			dataGridView1->Rows[i]->Cells[3]->Value = dataset[3];
+			dataGridView1->Rows[i]->Cells[4]->Value = dataset[4];
+			dataGridView1->Rows[i]->Cells[5]->Value = dataset[5];
+			i++;
+			//dataGridView1->DataSource = dataset;
+		}
+	}
+	catch (MySqlException^ err) {
+		MessageBox::Show(err->ToString());
+	}
+	db->closeConnection();
+	
+	
+}
+private: System::Void dataGridView1_CellContentClick_1(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+	
+}
+private: System::Void bindingSource1_CurrentChanged(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void searchBTN_Click(System::Object^  sender, System::EventArgs^  e) {
+	SQLConnect^ db = gcnew SQLConnect();
+	try {
+		db->openConnection();
+		String^ sql;
+		sql = sql->Format("SELECT idEmployee, first_name, last_name, address, wages, position FROM Employee WHERE idEmployee LIKE '" + idEmployee_textBox->Text + "%'");
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, db->getConnection());
 		//cmd->ExecuteNonQuery();
 		MySqlDataReader^ dataset = cmd->ExecuteReader();
@@ -251,12 +412,93 @@ private: System::Void ModButton_Click(System::Object^  sender, System::EventArgs
 		MessageBox::Show(err->ToString());
 	}
 	db->closeConnection();
-	
-	
+
 }
-private: System::Void dataGridView1_CellContentClick_1(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+private: System::Void idEmployee_textBox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->Text->Length > 0)
+	{
+		filled = true;
+	}
+	else
+	{
+		filled = false;
+	}
 }
-private: System::Void bindingSource1_CurrentChanged(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void first_name_textBox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->Text->Length > 0)
+	{
+		filled = true;
+	}
+	else
+	{
+		filled = false;
+	}
+}
+private: System::Void last_name_textBox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->Text->Length > 0)
+	{
+		filled = true;
+	}
+	else
+	{
+		filled = false;
+	}
+}
+private: System::Void address_textBox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->Text->Length > 0)
+	{
+		filled = true;
+	}
+	else
+	{
+		filled = false;
+	}
+}
+private: System::Void wage_textBox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->Text->Length > 0)
+	{
+		filled = true;
+	}
+	else
+	{
+		filled = false;
+	}
+}
+private: System::Void position_textBox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->Text->Length > 0)
+	{
+		filled = true;
+	}
+	else
+	{
+		filled = false;
+	}
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	SQLConnect^ db = gcnew SQLConnect();
+	try {
+		db->openConnection();
+		String^ sql;
+		sql = sql->Format("SELECT idEmployee, first_name, last_name, address, wages, position FROM Employee");
+		MySqlCommand^ cmd = gcnew MySqlCommand(sql, db->getConnection());
+		//cmd->ExecuteNonQuery();
+		MySqlDataReader^ dataset = cmd->ExecuteReader();
+		int i = 0;
+		while (dataset->Read()) {
+			dataGridView1->Rows->Add();
+			dataGridView1->Rows[i]->Cells[0]->Value = dataset[0];
+			dataGridView1->Rows[i]->Cells[1]->Value = dataset[1];
+			dataGridView1->Rows[i]->Cells[2]->Value = dataset[2];
+			dataGridView1->Rows[i]->Cells[3]->Value = dataset[3];
+			dataGridView1->Rows[i]->Cells[4]->Value = dataset[4];
+			i++;
+			//dataGridView1->DataSource = dataset;
+		}
+	}
+	catch (MySqlException^ err) {
+		MessageBox::Show(err->ToString());
+	}
+	db->closeConnection();
 }
 };
 }

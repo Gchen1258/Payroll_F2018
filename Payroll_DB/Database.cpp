@@ -93,7 +93,6 @@ bool SQLConnect::createUser(String^ user,String^ pass)
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		cmd->ExecuteNonQuery();
 
-
 		String^ msg;
 		msg = msg->Format("New user created!");
 		MessageBox::Show(msg);
