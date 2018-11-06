@@ -157,6 +157,10 @@
     <ClInclude Include="DbTest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Payroll.h" />
+    <ClInclude Include="payroll_form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="SearchForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -181,6 +185,8 @@
     <ClCompile Include="DbTest.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Payroll.cpp" />
+    <ClCompile Include="payroll_form.cpp" />
     <ClCompile Include="SearchForm.cpp" />
     <ClCompile Include="MenuForm.cpp" />
     <ClCompile Include="NewEmployee.cpp" />
@@ -191,9 +197,13 @@
     <ClCompile Include="User_Login.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BenefitsForm.resx">
+      <DependentUpon>BenefitsForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DbTest.resx">
       <DependentUpon>DbTest.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="payroll_form.resx" />
     <EmbeddedResource Include="SearchForm.resx">
       <DependentUpon>SearchForm.h</DependentUpon>
     </EmbeddedResource>

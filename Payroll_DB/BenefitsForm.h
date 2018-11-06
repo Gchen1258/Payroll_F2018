@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Database.h"
 namespace PayrollDB {
 
 	using namespace System;
@@ -18,11 +18,30 @@ namespace PayrollDB {
 		BenefitsForm(void)
 		{
 			InitializeComponent();
+			SQLConnect^ db = gcnew SQLConnect();
+			try {	
+				db->openConnection();
+				String^ sql = "Select idEmployee, first_name, last_name from employee;";
+				MySqlCommand^ cmd = gcnew MySqlCommand(sql, db->getConnection());
+				MySqlDataReader^ reader = cmd->ExecuteReader();
+				while (reader->Read())
+				{
+					String^ field = field->Format("{0}: {1} {2}", reader[0]->ToString(), reader[1]->ToString(), reader[2]->ToString());
+					SelectionMenu->Items->Add(field);
+				}	
+			}
+			catch (MySqlException^ err) {
+				MessageBox::Show(err->ToString());
+			}
+			db->closeConnection();
 		}
 
 		BenefitsForm(String^ ID)
-		{ //Pass employee's ID to query their data from the database. Unsure if String^ or int is correct for a primary key
-			employeeID = ID;
+		{ 
+			
+			InitializeComponent();
+			//Pass employee's ID to query their data from the database. Unsure if String^ or int is correct for a primary key
+			//employeeID = ID;
 			/*Implement this query
 			SELECT firstName, lastName
 			FROM employees
@@ -71,6 +90,11 @@ namespace PayrollDB {
 
 	private: System::Windows::Forms::Label^  New_Cost_Label;
 	private: System::Windows::Forms::Label^  label6;
+	private: System::Windows::Forms::ComboBox^  SelectionMenu;
+
+	private: System::Windows::Forms::GroupBox^  groupBox1;
+	private: System::Windows::Forms::Label^  label7;
+
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
 
@@ -96,12 +120,16 @@ namespace PayrollDB {
 				 this->Net_Income_Label = (gcnew System::Windows::Forms::Label());
 				 this->New_Cost_Label = (gcnew System::Windows::Forms::Label());
 				 this->label6 = (gcnew System::Windows::Forms::Label());
+				 this->SelectionMenu = (gcnew System::Windows::Forms::ComboBox());
+				 this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+				 this->label7 = (gcnew System::Windows::Forms::Label());
+				 this->groupBox1->SuspendLayout();
 				 this->SuspendLayout();
 				 // 
 				 // label1
 				 // 
 				 this->label1->AutoSize = true;
-				 this->label1->Location = System::Drawing::Point(34, 41);
+				 this->label1->Location = System::Drawing::Point(67, 29);
 				 this->label1->Name = L"label1";
 				 this->label1->Size = System::Drawing::Size(87, 13);
 				 this->label1->TabIndex = 0;
@@ -110,7 +138,7 @@ namespace PayrollDB {
 				 // label2
 				 // 
 				 this->label2->AutoSize = true;
-				 this->label2->Location = System::Drawing::Point(34, 64);
+				 this->label2->Location = System::Drawing::Point(67, 52);
 				 this->label2->Name = L"label2";
 				 this->label2->Size = System::Drawing::Size(78, 13);
 				 this->label2->TabIndex = 1;
@@ -119,7 +147,7 @@ namespace PayrollDB {
 				 // label3
 				 // 
 				 this->label3->AutoSize = true;
-				 this->label3->Location = System::Drawing::Point(34, 87);
+				 this->label3->Location = System::Drawing::Point(67, 75);
 				 this->label3->Name = L"label3";
 				 this->label3->Size = System::Drawing::Size(121, 13);
 				 this->label3->TabIndex = 2;
@@ -130,7 +158,7 @@ namespace PayrollDB {
 				 this->comboBox1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 				 this->comboBox1->FormattingEnabled = true;
 				 this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"No Medical Coverage", L"Bronze", L"Silver", L"Gold" });
-				 this->comboBox1->Location = System::Drawing::Point(161, 87);
+				 this->comboBox1->Location = System::Drawing::Point(194, 75);
 				 this->comboBox1->Name = L"comboBox1";
 				 this->comboBox1->RightToLeft = System::Windows::Forms::RightToLeft::No;
 				 this->comboBox1->Size = System::Drawing::Size(138, 21);
@@ -140,7 +168,7 @@ namespace PayrollDB {
 				 // label4
 				 // 
 				 this->label4->AutoSize = true;
-				 this->label4->Location = System::Drawing::Point(34, 136);
+				 this->label4->Location = System::Drawing::Point(67, 124);
 				 this->label4->Name = L"label4";
 				 this->label4->Size = System::Drawing::Size(132, 13);
 				 this->label4->TabIndex = 4;
@@ -149,7 +177,7 @@ namespace PayrollDB {
 				 // label5
 				 // 
 				 this->label5->AutoSize = true;
-				 this->label5->Location = System::Drawing::Point(34, 159);
+				 this->label5->Location = System::Drawing::Point(67, 147);
 				 this->label5->Name = L"label5";
 				 this->label5->Size = System::Drawing::Size(169, 13);
 				 this->label5->TabIndex = 5;
@@ -191,7 +219,7 @@ namespace PayrollDB {
 				 // Name_Label
 				 // 
 				 this->Name_Label->AutoSize = true;
-				 this->Name_Label->Location = System::Drawing::Point(123, 41);
+				 this->Name_Label->Location = System::Drawing::Point(156, 29);
 				 this->Name_Label->Name = L"Name_Label";
 				 this->Name_Label->Size = System::Drawing::Size(35, 13);
 				 this->Name_Label->TabIndex = 9;
@@ -200,7 +228,7 @@ namespace PayrollDB {
 				 // Gross_Income_Label
 				 // 
 				 this->Gross_Income_Label->AutoSize = true;
-				 this->Gross_Income_Label->Location = System::Drawing::Point(108, 64);
+				 this->Gross_Income_Label->Location = System::Drawing::Point(151, 52);
 				 this->Gross_Income_Label->Name = L"Gross_Income_Label";
 				 this->Gross_Income_Label->Size = System::Drawing::Size(34, 13);
 				 this->Gross_Income_Label->TabIndex = 10;
@@ -209,7 +237,7 @@ namespace PayrollDB {
 				 // Medical_Cost_Label
 				 // 
 				 this->Medical_Cost_Label->AutoSize = true;
-				 this->Medical_Cost_Label->Location = System::Drawing::Point(166, 136);
+				 this->Medical_Cost_Label->Location = System::Drawing::Point(199, 124);
 				 this->Medical_Cost_Label->Name = L"Medical_Cost_Label";
 				 this->Medical_Cost_Label->Size = System::Drawing::Size(78, 13);
 				 this->Medical_Cost_Label->TabIndex = 11;
@@ -218,7 +246,7 @@ namespace PayrollDB {
 				 // Net_Income_Label
 				 // 
 				 this->Net_Income_Label->AutoSize = true;
-				 this->Net_Income_Label->Location = System::Drawing::Point(204, 159);
+				 this->Net_Income_Label->Location = System::Drawing::Point(237, 147);
 				 this->Net_Income_Label->Name = L"Net_Income_Label";
 				 this->Net_Income_Label->Size = System::Drawing::Size(62, 13);
 				 this->Net_Income_Label->TabIndex = 12;
@@ -227,7 +255,7 @@ namespace PayrollDB {
 				 // New_Cost_Label
 				 // 
 				 this->New_Cost_Label->AutoSize = true;
-				 this->New_Cost_Label->Location = System::Drawing::Point(158, 111);
+				 this->New_Cost_Label->Location = System::Drawing::Point(191, 99);
 				 this->New_Cost_Label->Name = L"New_Cost_Label";
 				 this->New_Cost_Label->Size = System::Drawing::Size(76, 13);
 				 this->New_Cost_Label->TabIndex = 13;
@@ -236,35 +264,69 @@ namespace PayrollDB {
 				 // label6
 				 // 
 				 this->label6->AutoSize = true;
-				 this->label6->Location = System::Drawing::Point(34, 111);
+				 this->label6->Location = System::Drawing::Point(67, 99);
 				 this->label6->Name = L"label6";
 				 this->label6->Size = System::Drawing::Size(115, 13);
 				 this->label6->TabIndex = 14;
 				 this->label6->Text = L"Cost of New Selection:";
+				 // 
+				 // SelectionMenu
+				 // 
+				 this->SelectionMenu->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+				 this->SelectionMenu->FormattingEnabled = true;
+				 this->SelectionMenu->Location = System::Drawing::Point(316, 22);
+				 this->SelectionMenu->Name = L"SelectionMenu";
+				 this->SelectionMenu->RightToLeft = System::Windows::Forms::RightToLeft::No;
+				 this->SelectionMenu->Size = System::Drawing::Size(138, 21);
+				 this->SelectionMenu->TabIndex = 15;
+				 this->SelectionMenu->SelectedIndexChanged += gcnew System::EventHandler(this, &BenefitsForm::SelectionMenu_SelectedIndexChanged);
+				 // 
+				 // groupBox1
+				 // 
+				 this->groupBox1->Controls->Add(this->label1);
+				 this->groupBox1->Controls->Add(this->label2);
+				 this->groupBox1->Controls->Add(this->label6);
+				 this->groupBox1->Controls->Add(this->label3);
+				 this->groupBox1->Controls->Add(this->New_Cost_Label);
+				 this->groupBox1->Controls->Add(this->comboBox1);
+				 this->groupBox1->Controls->Add(this->Net_Income_Label);
+				 this->groupBox1->Controls->Add(this->label4);
+				 this->groupBox1->Controls->Add(this->Medical_Cost_Label);
+				 this->groupBox1->Controls->Add(this->label5);
+				 this->groupBox1->Controls->Add(this->Gross_Income_Label);
+				 this->groupBox1->Controls->Add(this->Name_Label);
+				 this->groupBox1->Location = System::Drawing::Point(56, 53);
+				 this->groupBox1->Name = L"groupBox1";
+				 this->groupBox1->Size = System::Drawing::Size(369, 185);
+				 this->groupBox1->TabIndex = 16;
+				 this->groupBox1->TabStop = false;
+				 this->groupBox1->Text = L"Info";
+				 // 
+				 // label7
+				 // 
+				 this->label7->AutoSize = true;
+				 this->label7->Location = System::Drawing::Point(257, 25);
+				 this->label7->Name = L"label7";
+				 this->label7->Size = System::Drawing::Size(53, 13);
+				 this->label7->TabIndex = 17;
+				 this->label7->Text = L"Employee";
 				 // 
 				 // BenefitsForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(504, 343);
-				 this->Controls->Add(this->label6);
-				 this->Controls->Add(this->New_Cost_Label);
-				 this->Controls->Add(this->Net_Income_Label);
-				 this->Controls->Add(this->Medical_Cost_Label);
-				 this->Controls->Add(this->Gross_Income_Label);
-				 this->Controls->Add(this->Name_Label);
+				 this->Controls->Add(this->label7);
+				 this->Controls->Add(this->groupBox1);
+				 this->Controls->Add(this->SelectionMenu);
 				 this->Controls->Add(this->Apply_Button);
 				 this->Controls->Add(this->Cancel_Button);
 				 this->Controls->Add(this->OK_Button);
-				 this->Controls->Add(this->label5);
-				 this->Controls->Add(this->label4);
-				 this->Controls->Add(this->comboBox1);
-				 this->Controls->Add(this->label3);
-				 this->Controls->Add(this->label2);
-				 this->Controls->Add(this->label1);
 				 this->Name = L"BenefitsForm";
 				 this->Text = L"Benefits";
 				 this->Load += gcnew System::EventHandler(this, &BenefitsForm::BenefitsForm_Load);
+				 this->groupBox1->ResumeLayout(false);
+				 this->groupBox1->PerformLayout();
 				 this->ResumeLayout(false);
 				 this->PerformLayout();
 
@@ -315,6 +377,32 @@ namespace PayrollDB {
 		this->Medical_Cost_Label->Text = "Med Cost";
 		this->Net_Income_Label->Text = "Net";
 	}
-	};
+	private: System::Void SelectionMenu_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+
+		//Pulls our name from the ComboBox and formats it for our statement
+		String^ name = SelectionMenu->Text;
+		array< String^ >^ names = gcnew array< String^ >(3);
+		names = name->Split(' ');
+		names[0] = names[0]->TrimEnd(':');            //This gives us the employee id
+		name = name->Substring(name->IndexOf(":") + 1);	//Trims the id off the name
+		Name_Label->Text = name;
+		
+		//Query our data from the database
+		SQLConnect^ db = gcnew SQLConnect();
+		try {
+			db->openConnection();
+			String^ query = query->Format("Select wages from employee where idEmployee={0}", names[0]);
+			MySqlCommand^ cmd = gcnew MySqlCommand(query, db->getConnection());
+			MySqlDataReader^ reader = cmd->ExecuteReader();
+			while (reader->Read()) {
+				Gross_Income_Label->Text = reader[0]->ToString();
+			}
+		}
+		catch (MySqlException^ err) {
+			MessageBox::Show(err->ToString());
+		}
+		db->closeConnection();
+	}
+};
 }
 

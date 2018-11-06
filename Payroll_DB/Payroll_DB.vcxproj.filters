@@ -45,6 +45,12 @@
     <ClInclude Include="BenefitsForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Payroll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="payroll_form.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -74,6 +80,12 @@
     <ClCompile Include="BenefitsForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Payroll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="payroll_form.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DbTest.resx">
@@ -92,6 +104,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="payroll_form.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
