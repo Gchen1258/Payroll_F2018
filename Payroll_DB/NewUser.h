@@ -1,4 +1,7 @@
 #pragma once
+#ifndef NEWUSER_H_INCLUDED__
+#define NEWUSER_H_INCLUDED__
+#include "Database.h"
 
 namespace PayrollDB {
 
@@ -317,7 +320,10 @@ namespace PayrollDB {
 			this->Controls->Add(this->userInfoGB);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Name = L"NewUser";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"NewUser";
 			this->userInfoGB->ResumeLayout(false);
 			this->userInfoGB->PerformLayout();
@@ -446,3 +452,4 @@ private: System::Void wageBox_TextChanged(System::Object^  sender, System::Event
 }
 };
 }
+#endif

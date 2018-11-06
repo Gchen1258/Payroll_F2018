@@ -1,5 +1,7 @@
 #pragma once
-
+#ifndef DBTEST_H_INCLUDED
+#define DBTEST_H_INCLUDED
+#include "Database.h"
 namespace PayrollDB {
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -244,3 +246,4 @@ private: System::Void disconnectButton_Click(System::Object^  sender, System::Ev
 }
 };
 }
+#endif

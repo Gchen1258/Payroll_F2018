@@ -1,4 +1,10 @@
 #pragma once
+#ifndef USERLOGIN_H_INCLUDED__
+#define USERLOGIN_H_INCLUDED__
+#include "Database.h"
+#include "DbTest.h"
+#include "MenuForm.h"
+#include "NewUser.h"
 
 namespace PayrollDB {
 
@@ -14,6 +20,8 @@ namespace PayrollDB {
 	/// </summary>
 	public ref class User_Login : public System::Windows::Forms::Form
 	{
+	public: String^ username;
+	public: String^ name;
 	public:
 		User_Login(void)
 		{
@@ -152,27 +160,35 @@ namespace PayrollDB {
 			this->Controls->Add(this->UserField);
 			this->Controls->Add(this->RegisterButton);
 			this->Controls->Add(this->LoginButton);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Name = L"User_Login";
 			this->Text = L"User_Login";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &User_Login::Login_FormClosed);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 private: System::Void LoginButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	//SQLConnect^ sql = gcnew SQLConnect();
-	//bool check = sql->login(UserField->Text, passField->Text);
-	bool check = true;
+	SQLConnect^ sql = gcnew SQLConnect();
+	bool check = sql->login(UserField->Text, passField->Text);
+	name = sql->getName(UserField->Text);
+	username = UserField->Text;
 	if (check)
 	{
 		this->Hide();
-		Main^ form = gcnew Main();
-		form->ShowDialog();
+		MenuForm^ menu = gcnew MenuForm(name, username);
+		menu->ShowDialog();
+	}
+	else
+	{
+		MessageBox::Show("Invalid User or Password!", "Invalid!", MessageBoxButtons::OK);
 	}
 	}
 private: System::Void RegisterButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->Hide();
-	Register^ reg = gcnew Register();
+	NewUser^ reg = gcnew NewUser();
 	reg->ShowDialog();
 	this->Show();
 }
@@ -182,5 +198,17 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	db->ShowDialog();
 	this->Show();
 }
+
+
+
+private: System::Void Login_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+	if (MessageBox::Show("Do you want to exit?", "Payroll System", MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK)
+	{
+		Application::ExitThread();
+	}
+	else
+		e->Cancel = true;
+}
 };
 }
+#endif

@@ -1,5 +1,7 @@
 #pragma once
-
+#ifndef NEWEMPLOYEE_H_INCLUDED__
+#define NEWEMPLOYEE_H_INCLUDED__
+#include "Database.h"
 namespace PayrollDB {
 
 	using namespace System;
@@ -13,7 +15,7 @@ namespace PayrollDB {
 	/// <summary>
 	/// Summary for Register
 	/// </summary>
-	public ref class Register : public System::Windows::Forms::Form
+	public ref class NewEmployee : public System::Windows::Forms::Form
 	{
 	public:
 		String^ position = "";
@@ -30,7 +32,7 @@ namespace PayrollDB {
 
 
 	public:
-		Register(void)
+		NewEmployee(void)
 		{
 			InitializeComponent();
 			//
@@ -42,7 +44,7 @@ namespace PayrollDB {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Register()
+		~NewEmployee()
 		{
 			if (components)
 			{
@@ -140,7 +142,7 @@ namespace PayrollDB {
 			this->FNameField->Name = L"FNameField";
 			this->FNameField->Size = System::Drawing::Size(137, 20);
 			this->FNameField->TabIndex = 0;
-			this->FNameField->TextChanged += gcnew System::EventHandler(this, &Register::FNameField_TextChanged);
+			this->FNameField->TextChanged += gcnew System::EventHandler(this, &NewEmployee::FNameField_TextChanged);
 			// 
 			// AddrField
 			// 
@@ -148,7 +150,7 @@ namespace PayrollDB {
 			this->AddrField->Name = L"AddrField";
 			this->AddrField->Size = System::Drawing::Size(188, 20);
 			this->AddrField->TabIndex = 1;
-			this->AddrField->TextChanged += gcnew System::EventHandler(this, &Register::AddrField_TextChanged);
+			this->AddrField->TextChanged += gcnew System::EventHandler(this, &NewEmployee::AddrField_TextChanged);
 			// 
 			// LNameField
 			// 
@@ -156,7 +158,7 @@ namespace PayrollDB {
 			this->LNameField->Name = L"LNameField";
 			this->LNameField->Size = System::Drawing::Size(137, 20);
 			this->LNameField->TabIndex = 2;
-			this->LNameField->TextChanged += gcnew System::EventHandler(this, &Register::LNameField_TextChanged);
+			this->LNameField->TextChanged += gcnew System::EventHandler(this, &NewEmployee::LNameField_TextChanged);
 			// 
 			// label1
 			// 
@@ -205,7 +207,7 @@ namespace PayrollDB {
 			this->TeamLeadRadio->TabIndex = 4;
 			this->TeamLeadRadio->Text = L"Team Lead";
 			this->TeamLeadRadio->UseVisualStyleBackColor = true;
-			this->TeamLeadRadio->CheckedChanged += gcnew System::EventHandler(this, &Register::TeamLeadRadio_CheckedChanged);
+			this->TeamLeadRadio->CheckedChanged += gcnew System::EventHandler(this, &NewEmployee::TeamLeadRadio_CheckedChanged);
 			// 
 			// WorkerRadio
 			// 
@@ -216,7 +218,7 @@ namespace PayrollDB {
 			this->WorkerRadio->TabIndex = 2;
 			this->WorkerRadio->Text = L"Worker";
 			this->WorkerRadio->UseVisualStyleBackColor = true;
-			this->WorkerRadio->CheckedChanged += gcnew System::EventHandler(this, &Register::WorkerRadio_CheckedChanged);
+			this->WorkerRadio->CheckedChanged += gcnew System::EventHandler(this, &NewEmployee::WorkerRadio_CheckedChanged);
 			// 
 			// SubmitButton
 			// 
@@ -226,7 +228,7 @@ namespace PayrollDB {
 			this->SubmitButton->TabIndex = 13;
 			this->SubmitButton->Text = L"Submit";
 			this->SubmitButton->UseVisualStyleBackColor = true;
-			this->SubmitButton->Click += gcnew System::EventHandler(this, &Register::SubmitButton_Click);
+			this->SubmitButton->Click += gcnew System::EventHandler(this, &NewEmployee::SubmitButton_Click);
 			// 
 			// button2
 			// 
@@ -236,7 +238,7 @@ namespace PayrollDB {
 			this->button2->TabIndex = 14;
 			this->button2->Text = L"Cancel";
 			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &Register::button2_Click);
+			this->button2->Click += gcnew System::EventHandler(this, &NewEmployee::button2_Click);
 			// 
 			// ZipLabel
 			// 
@@ -253,7 +255,7 @@ namespace PayrollDB {
 			this->ZipField->Name = L"ZipField";
 			this->ZipField->Size = System::Drawing::Size(135, 20);
 			this->ZipField->TabIndex = 7;
-			this->ZipField->TextChanged += gcnew System::EventHandler(this, &Register::ZipField_TextChanged);
+			this->ZipField->TextChanged += gcnew System::EventHandler(this, &NewEmployee::ZipField_TextChanged);
 			// 
 			// StateCBox
 			// 
@@ -272,7 +274,7 @@ namespace PayrollDB {
 			this->StateCBox->Name = L"StateCBox";
 			this->StateCBox->Size = System::Drawing::Size(135, 21);
 			this->StateCBox->TabIndex = 15;
-			this->StateCBox->SelectedIndexChanged += gcnew System::EventHandler(this, &Register::StateCBox_SelectedIndexChanged);
+			this->StateCBox->SelectedIndexChanged += gcnew System::EventHandler(this, &NewEmployee::StateCBox_SelectedIndexChanged);
 			// 
 			// StateLabel
 			// 
@@ -298,7 +300,7 @@ namespace PayrollDB {
 			this->CityField->Name = L"CityField";
 			this->CityField->Size = System::Drawing::Size(135, 20);
 			this->CityField->TabIndex = 17;
-			this->CityField->TextChanged += gcnew System::EventHandler(this, &Register::CityField_TextChanged);
+			this->CityField->TextChanged += gcnew System::EventHandler(this, &NewEmployee::CityField_TextChanged);
 			// 
 			// userInfoGB
 			// 
@@ -342,13 +344,16 @@ namespace PayrollDB {
 			this->label3->TabIndex = 20;
 			this->label3->Text = L"Wage";
 			// 
-			// Register
+			// NewEmployee
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(619, 351);
 			this->Controls->Add(this->userInfoGB);
-			this->Name = L"Register";
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
+			this->Name = L"NewEmployee";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Register";
 			this->PositionGB->ResumeLayout(false);
 			this->PositionGB->PerformLayout();
@@ -502,3 +507,4 @@ private: System::Void textBox1_TextChanged(System::Object^  sender, System::Even
 }
 };
 }
+#endif

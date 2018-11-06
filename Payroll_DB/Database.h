@@ -1,4 +1,6 @@
 #pragma once
+#ifndef DATABaSE_H_INCLUDED
+#define DATABASE_H_INCLUDED
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -13,7 +15,7 @@ ref class SQLConnect
 {
 private:
 	//Change these to match your MySQL configurations
-	String^ user = "root";
+	String^ user = "admin";
 	String^	pass = "123456";
 	String^ database = "payroll";
 	String^	server = "localhost";
@@ -33,7 +35,7 @@ public:
 	bool login(String^ user, String^ pass);
 	bool createUser(String^ user, String^ pass);
 	bool createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage, String^ position);
-
+	String^ getName(String^ user);
 	MySqlConnection^ getConnection();
 	bool openConnection();
 	bool closeConnection();
@@ -42,3 +44,4 @@ public:
 
 };
 
+#endif

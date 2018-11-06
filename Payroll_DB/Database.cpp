@@ -88,8 +88,8 @@ bool SQLConnect::createUser(String^ user,String^ pass)
 	try {
 		openConnection();
 		String^ sql;
-		sql = sql->Format("Insert into users(username, pass_hash) values('{1}', AES_ENCRYPT('{2}','{3}'))",
-			pass, secret, user);
+		sql = sql->Format("Insert into users(username, pass_hash, idEmployee) values('{0}', AES_ENCRYPT('{1}','{2}'), LAST_INSERT_ID())",
+			user, pass, secret);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		cmd->ExecuteNonQuery();
 
@@ -132,57 +132,81 @@ bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ a
 	try {
 		openConnection();
 		String^ sql;
-		sql = sql->Format("Insert into employee(first_name, last_name, password, address, wages, position) values('{0}','{1}','{3}','{4}','{5}')",
+		sql = sql->Format("Insert into employee(first_name, last_name, address, wages, position) values('{0}','{1}','{2}','{3}','{4}')",
 			first_name, last_name, address, wage, position);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		//MessageBox::Show(sql);
 		cmd->ExecuteNonQuery();
-
-
 		String^ msg;
 		msg = msg->Format("{0} {1} has been added!", first_name, last_name);
 		MessageBox::Show(msg);
-
+		closeConnection();
+		return true;
 	}
 	catch (MySqlException^ err) {
 		MessageBox::Show(err->ToString());
+		closeConnection();
 		return false;
 	}
+}
+
+String^ SQLConnect::getName(String^ user) {
+	String^ name;
+	try {
+		openConnection();	
+		String^ sql = sql->Format("SELECT first_name, last_name FROM employee INNER JOIN users ON employee.idEmployee=users.idEmployee WHERE users.username='{0}';", user);
+		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
+		MySqlDataReader^ reader = cmd->ExecuteReader();
+		while (reader->Read())
+		{
+			String^ first = reader[0]->ToString();
+			String^ last = reader[1]->ToString();
+			name = name->Format("{0} {1}", first,last);
+		}
+	}
+	catch (MySqlException^ err)
+	{
+		MessageBox::Show(err->ToString());
+	}
 	closeConnection();
-	return true;
+	return name;
+	
 }
 
 bool SQLConnect::login(String^ user, String^ pass)
 {
+	String^ userCheck;
+	String^ passCheck;
 	try
 	{
 		openConnection();
 		String^ sql;
-		sql = sql->Format("Select username, CAST(AES_DECRYPT(password, '{0}') AS CHAR(50)) from employee where username='{1}'", secret, user);
+		sql = sql->Format("Select username, CAST(AES_DECRYPT(pass_hash, '{0}') AS CHAR) from users where username='{1}'", secret, user);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		MySqlDataReader^ reader = cmd->ExecuteReader();
 		//MessageBox::Show(sql);
 
 		while (reader->Read())
 		{
-			String^ userCheck = reader[0]->ToString();
-			String^ passCheck = reader[1]->ToString();
-			//MessageBox::Show(userCheck);
-			//MessageBox::Show(passCheck);
-			if (user == userCheck && pass == passCheck)
-			{
-				return true;
-			}
+			userCheck = reader[0]->ToString();
+			passCheck = reader[1]->ToString();
+			
 		}
-		
 	}
 	catch (MySqlException^ err)
 	{
 		MessageBox::Show(err->ToString());
+		closeConnection();
 		return false;
 	}
 	closeConnection();
-	return false;
+	if (user == userCheck && pass == passCheck)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 void SQLConnect::restore(String^ path)

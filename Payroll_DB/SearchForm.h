@@ -1,5 +1,7 @@
 #pragma once
-
+#ifndef MAIN_H_INCLUDED__
+#define MAIN_H_INCLUDED__
+#include "Database.h"
 namespace PayrollDB {
 
 	using namespace System;
@@ -10,14 +12,14 @@ namespace PayrollDB {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Summary for Main
+	/// Summary for SearchForm
 	/// </summary>
-	public ref class Main : public System::Windows::Forms::Form
+	public ref class SearchForm : public System::Windows::Forms::Form
 	{
 	public:
 		bool filled = false;
 	public:
-		Main(void)
+		SearchForm(void)
 		{
 			InitializeComponent();
 		}
@@ -26,7 +28,7 @@ namespace PayrollDB {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Main()
+		~SearchForm()
 		{
 			if (components)
 			{
@@ -124,13 +126,13 @@ namespace PayrollDB {
 			// 
 			// ModButton
 			// 
-			this->ModButton->Location = System::Drawing::Point(361, 235);
+			this->ModButton->Location = System::Drawing::Point(152, 249);
 			this->ModButton->Name = L"ModButton";
 			this->ModButton->Size = System::Drawing::Size(75, 23);
 			this->ModButton->TabIndex = 0;
 			this->ModButton->Text = L"Modify";
 			this->ModButton->UseVisualStyleBackColor = true;
-			this->ModButton->Click += gcnew System::EventHandler(this, &Main::ModButton_Click);
+			this->ModButton->Click += gcnew System::EventHandler(this, &SearchForm::ModButton_Click);
 			// 
 			// label1
 			// 
@@ -138,7 +140,7 @@ namespace PayrollDB {
 			this->label1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(361, 9);
+			this->label1->Location = System::Drawing::Point(274, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(129, 26);
 			this->label1->TabIndex = 1;
@@ -148,7 +150,7 @@ namespace PayrollDB {
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label2->Location = System::Drawing::Point(57, 82);
+			this->label2->Location = System::Drawing::Point(48, 77);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(62, 15);
 			this->label2->TabIndex = 2;
@@ -158,18 +160,18 @@ namespace PayrollDB {
 			// 
 			this->label3->AutoSize = true;
 			this->label3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label3->Location = System::Drawing::Point(57, 109);
+			this->label3->Location = System::Drawing::Point(48, 104);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(63, 15);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Last Name:";
-			this->label3->Click += gcnew System::EventHandler(this, &Main::label3_Click);
+			this->label3->Click += gcnew System::EventHandler(this, &SearchForm::label3_Click);
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label4->Location = System::Drawing::Point(58, 190);
+			this->label4->Location = System::Drawing::Point(49, 185);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(49, 15);
 			this->label4->TabIndex = 4;
@@ -179,7 +181,7 @@ namespace PayrollDB {
 			// 
 			this->label5->AutoSize = true;
 			this->label5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label5->Location = System::Drawing::Point(57, 135);
+			this->label5->Location = System::Drawing::Point(48, 130);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(50, 15);
 			this->label5->TabIndex = 5;
@@ -189,7 +191,7 @@ namespace PayrollDB {
 			// 
 			this->label6->AutoSize = true;
 			this->label6->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label6->Location = System::Drawing::Point(58, 161);
+			this->label6->Location = System::Drawing::Point(49, 156);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(41, 15);
 			this->label6->TabIndex = 6;
@@ -202,11 +204,11 @@ namespace PayrollDB {
 				this->idEmployee,
 					this->first_name, this->last_name, this->address, this->wages, this->Position
 			});
-			this->dataGridView1->Location = System::Drawing::Point(361, 52);
+			this->dataGridView1->Location = System::Drawing::Point(251, 52);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(644, 150);
+			this->dataGridView1->Size = System::Drawing::Size(667, 390);
 			this->dataGridView1->TabIndex = 7;
-			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Main::dataGridView1_CellContentClick_1);
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &SearchForm::dataGridView1_CellContentClick_1);
 			// 
 			// idEmployee
 			// 
@@ -240,57 +242,57 @@ namespace PayrollDB {
 			// 
 			// first_name_textBox
 			// 
-			this->first_name_textBox->Location = System::Drawing::Point(126, 83);
+			this->first_name_textBox->Location = System::Drawing::Point(117, 78);
 			this->first_name_textBox->Name = L"first_name_textBox";
 			this->first_name_textBox->Size = System::Drawing::Size(100, 20);
 			this->first_name_textBox->TabIndex = 8;
-			this->first_name_textBox->TextChanged += gcnew System::EventHandler(this, &Main::first_name_textBox_TextChanged);
+			this->first_name_textBox->TextChanged += gcnew System::EventHandler(this, &SearchForm::first_name_textBox_TextChanged);
 			// 
 			// last_name_textBox
 			// 
-			this->last_name_textBox->Location = System::Drawing::Point(126, 109);
+			this->last_name_textBox->Location = System::Drawing::Point(117, 104);
 			this->last_name_textBox->Name = L"last_name_textBox";
 			this->last_name_textBox->Size = System::Drawing::Size(100, 20);
 			this->last_name_textBox->TabIndex = 9;
-			this->last_name_textBox->TextChanged += gcnew System::EventHandler(this, &Main::last_name_textBox_TextChanged);
+			this->last_name_textBox->TextChanged += gcnew System::EventHandler(this, &SearchForm::last_name_textBox_TextChanged);
 			// 
 			// address_textBox
 			// 
-			this->address_textBox->Location = System::Drawing::Point(126, 135);
+			this->address_textBox->Location = System::Drawing::Point(117, 130);
 			this->address_textBox->Name = L"address_textBox";
 			this->address_textBox->Size = System::Drawing::Size(100, 20);
 			this->address_textBox->TabIndex = 10;
-			this->address_textBox->TextChanged += gcnew System::EventHandler(this, &Main::address_textBox_TextChanged);
+			this->address_textBox->TextChanged += gcnew System::EventHandler(this, &SearchForm::address_textBox_TextChanged);
 			// 
 			// wage_textBox
 			// 
-			this->wage_textBox->Location = System::Drawing::Point(126, 161);
+			this->wage_textBox->Location = System::Drawing::Point(117, 156);
 			this->wage_textBox->Name = L"wage_textBox";
 			this->wage_textBox->Size = System::Drawing::Size(100, 20);
 			this->wage_textBox->TabIndex = 11;
-			this->wage_textBox->TextChanged += gcnew System::EventHandler(this, &Main::wage_textBox_TextChanged);
+			this->wage_textBox->TextChanged += gcnew System::EventHandler(this, &SearchForm::wage_textBox_TextChanged);
 			// 
 			// position_textBox
 			// 
-			this->position_textBox->Location = System::Drawing::Point(126, 187);
+			this->position_textBox->Location = System::Drawing::Point(117, 182);
 			this->position_textBox->Name = L"position_textBox";
 			this->position_textBox->Size = System::Drawing::Size(100, 20);
 			this->position_textBox->TabIndex = 12;
-			this->position_textBox->TextChanged += gcnew System::EventHandler(this, &Main::position_textBox_TextChanged);
+			this->position_textBox->TextChanged += gcnew System::EventHandler(this, &SearchForm::position_textBox_TextChanged);
 			// 
 			// idEmployee_textBox
 			// 
-			this->idEmployee_textBox->Location = System::Drawing::Point(126, 57);
+			this->idEmployee_textBox->Location = System::Drawing::Point(117, 52);
 			this->idEmployee_textBox->Name = L"idEmployee_textBox";
 			this->idEmployee_textBox->Size = System::Drawing::Size(100, 20);
 			this->idEmployee_textBox->TabIndex = 13;
-			this->idEmployee_textBox->TextChanged += gcnew System::EventHandler(this, &Main::idEmployee_textBox_TextChanged);
+			this->idEmployee_textBox->TextChanged += gcnew System::EventHandler(this, &SearchForm::idEmployee_textBox_TextChanged);
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
 			this->label7->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label7->Location = System::Drawing::Point(57, 57);
+			this->label7->Location = System::Drawing::Point(48, 52);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(20, 15);
 			this->label7->TabIndex = 14;
@@ -298,29 +300,29 @@ namespace PayrollDB {
 			// 
 			// searchBTN
 			// 
-			this->searchBTN->Location = System::Drawing::Point(608, 235);
+			this->searchBTN->Location = System::Drawing::Point(152, 291);
 			this->searchBTN->Name = L"searchBTN";
 			this->searchBTN->Size = System::Drawing::Size(75, 23);
 			this->searchBTN->TabIndex = 15;
 			this->searchBTN->Text = L"Search";
 			this->searchBTN->UseVisualStyleBackColor = true;
-			this->searchBTN->Click += gcnew System::EventHandler(this, &Main::searchBTN_Click);
+			this->searchBTN->Click += gcnew System::EventHandler(this, &SearchForm::searchBTN_Click);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(773, 234);
+			this->button1->Location = System::Drawing::Point(152, 331);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 16;
 			this->button1->Text = L"Display";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &Main::button1_Click);
+			this->button1->Click += gcnew System::EventHandler(this, &SearchForm::button1_Click);
 			// 
-			// Main
+			// SearchForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1017, 454);
+			this->ClientSize = System::Drawing::Size(950, 454);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->searchBTN);
 			this->Controls->Add(this->label7);
@@ -338,7 +340,8 @@ namespace PayrollDB {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->ModButton);
-			this->Name = L"Main";
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Name = L"SearchForm";
 			this->Text = L"Main";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->EndInit();
@@ -358,8 +361,8 @@ private: System::Void ModButton_Click(System::Object^  sender, System::EventArgs
 		db->openConnection();
 		String^ sql;
 		sql = sql->Format("UPDATE employee SET first_name='" + first_name_textBox->Text + "',last_name='" + last_name_textBox->Text + "',address='" + address_textBox->Text + "',wages='" + wage_textBox->Text + "',position='" + position_textBox->Text + "'""WHERE idEmployee LIKE '%" + idEmployee_textBox->Text + "'");
+		MessageBox::Show(sql);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, db->getConnection());
-		//cmd->ExecuteNonQuery();
 		MySqlDataReader^ dataset = cmd->ExecuteReader();
 		
 		int i = 0;
@@ -372,7 +375,6 @@ private: System::Void ModButton_Click(System::Object^  sender, System::EventArgs
 			dataGridView1->Rows[i]->Cells[4]->Value = dataset[4];
 			dataGridView1->Rows[i]->Cells[5]->Value = dataset[5];
 			i++;
-			//dataGridView1->DataSource = dataset;
 		}
 	}
 	catch (MySqlException^ err) {
@@ -502,3 +504,4 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 }
 };
 }
+#endif
