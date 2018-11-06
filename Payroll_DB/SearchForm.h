@@ -320,13 +320,12 @@ namespace PayrollDB {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &SearchForm::button1_Click);
 			// 
-<<<<<<< HEAD:Payroll_DB/SearchForm.h
 			// SearchForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(950, 454);
-=======
+
 			// BenefitsButton
 			// 
 			this->BenefitsButton->Location = System::Drawing::Point(361, 362);
@@ -342,7 +341,6 @@ namespace PayrollDB {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1017, 454);
 			this->Controls->Add(this->BenefitsButton);
->>>>>>> Benefits:Payroll_DB/Main.h
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->searchBTN);
 			this->Controls->Add(this->label7);

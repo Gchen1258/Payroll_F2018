@@ -2,6 +2,7 @@
 #ifndef MENUFORM_H_INCLUDED__
 #define MENUFORM_H_INCLUDED__
 #include "NewEmployee.h"
+#include "BenefitsForm.h"
 #include "SearchForm.h"
 
 namespace PayrollDB {
@@ -25,7 +26,8 @@ namespace PayrollDB {
 
 
 	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::Button^  BenefitsButton;
+
 			 String^ username = "";
 	public:
 		MenuForm(void)
@@ -84,7 +86,7 @@ namespace PayrollDB {
 			this->NewEmpButton = (gcnew System::Windows::Forms::Button());
 			this->SearchButton = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->BenefitsButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -149,14 +151,15 @@ namespace PayrollDB {
 			this->button3->Text = L"button3";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
-			// button4
+			// BenefitsButton
 			// 
-			this->button4->Location = System::Drawing::Point(201, 201);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(125, 42);
-			this->button4->TabIndex = 5;
-			this->button4->Text = L"button4";
-			this->button4->UseVisualStyleBackColor = true;
+			this->BenefitsButton->Location = System::Drawing::Point(201, 201);
+			this->BenefitsButton->Name = L"BenefitsButton";
+			this->BenefitsButton->Size = System::Drawing::Size(125, 42);
+			this->BenefitsButton->TabIndex = 5;
+			this->BenefitsButton->Text = L"Benefits";
+			this->BenefitsButton->UseVisualStyleBackColor = true;
+			this->BenefitsButton->Click += gcnew System::EventHandler(this, &MenuForm::BenefitsButton_Click);
 			// 
 			// MenuForm
 			// 
@@ -164,7 +167,7 @@ namespace PayrollDB {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(539, 372);
 			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button4);
+			this->Controls->Add(this->BenefitsButton);
 			this->Controls->Add(this->SearchButton);
 			this->Controls->Add(this->NewEmpButton);
 			this->Controls->Add(this->DateLabel);
@@ -193,6 +196,10 @@ namespace PayrollDB {
 private: System::Void SearchButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	SearchForm^ sf = gcnew SearchForm();
 	sf->ShowDialog();
+}
+private: System::Void BenefitsButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	BenefitsForm^ bf = gcnew BenefitsForm();
+	bf->ShowDialog();
 }
 };
 }

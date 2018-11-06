@@ -88,6 +88,7 @@ bool SQLConnect::createUser(String^ user,String^ pass)
 	try {
 		openConnection();
 		String^ sql;
+
 		sql = sql->Format("Insert into users(username, pass_hash, idEmployee) values('{0}', AES_ENCRYPT('{1}','{2}'), LAST_INSERT_ID())",
 			user, pass, secret);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
