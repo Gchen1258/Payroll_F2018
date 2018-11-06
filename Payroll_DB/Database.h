@@ -14,7 +14,7 @@ ref class SQLConnect
 private:
 	//Change these to match your MySQL configurations
 	String^ user = "root";
-	String^	pass = "123456";
+	String^	pass = "strongbad";
 	String^ database = "payroll";
 	String^	server = "localhost";
 	String^ port = "3306";

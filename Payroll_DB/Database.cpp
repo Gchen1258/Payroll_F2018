@@ -88,7 +88,7 @@ bool SQLConnect::createUser(String^ user,String^ pass)
 	try {
 		openConnection();
 		String^ sql;
-		sql = sql->Format("Insert into users(username, pass_hash) values('{1}', AES_ENCRYPT('{2}','{3}'))",
+		sql = sql->Format("Insert into users(username, pass_hash) values('{0}', AES_ENCRYPT('{1}','{2}'))",
 			pass, secret, user);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		cmd->ExecuteNonQuery();
@@ -132,7 +132,7 @@ bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ a
 	try {
 		openConnection();
 		String^ sql;
-		sql = sql->Format("Insert into employee(first_name, last_name, password, address, wages, position) values('{0}','{1}','{3}','{4}','{5}')",
+		sql = sql->Format("Insert into employee(first_name, last_name, password, address, wages, position) values('{0}','{1}','{2}','{3}','{4}')",
 			first_name, last_name, address, wage, position);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		//MessageBox::Show(sql);

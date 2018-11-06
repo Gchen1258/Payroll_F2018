@@ -45,6 +45,7 @@ namespace PayrollDB {
 	private: System::Windows::Forms::Label^  UserLabel;
 	private: System::Windows::Forms::Label^  PassLabel;
 	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  BenefitsButton;
 
 	protected:
 
@@ -68,6 +69,7 @@ namespace PayrollDB {
 			this->UserLabel = (gcnew System::Windows::Forms::Label());
 			this->PassLabel = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->BenefitsButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// LoginButton
@@ -140,11 +142,22 @@ namespace PayrollDB {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &User_Login::button1_Click);
 			// 
+			// BenefitsButton
+			// 
+			this->BenefitsButton->Location = System::Drawing::Point(185, 226);
+			this->BenefitsButton->Name = L"BenefitsButton";
+			this->BenefitsButton->Size = System::Drawing::Size(105, 23);
+			this->BenefitsButton->TabIndex = 7;
+			this->BenefitsButton->Text = L"BenefitsButton";
+			this->BenefitsButton->UseVisualStyleBackColor = true;
+			this->BenefitsButton->Click += gcnew System::EventHandler(this, &User_Login::BenefitsButton_Click);
+			// 
 			// User_Login
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(469, 261);
+			this->Controls->Add(this->BenefitsButton);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->PassLabel);
 			this->Controls->Add(this->UserLabel);
@@ -180,6 +193,12 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	this->Hide();
 	DbTest^ db = gcnew DbTest();
 	db->ShowDialog();
+	this->Show();
+}
+private: System::Void BenefitsButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->Hide();
+	BenefitsForm^ benefit = gcnew BenefitsForm();
+	benefit->ShowDialog();
 	this->Show();
 }
 };

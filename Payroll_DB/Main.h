@@ -64,6 +64,7 @@ namespace PayrollDB {
 	private: System::Windows::Forms::Label^  label7;
 	private: System::Windows::Forms::Button^  searchBTN;
 	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  BenefitsButton;
 
 
 
@@ -118,6 +119,7 @@ namespace PayrollDB {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->searchBTN = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->BenefitsButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->BeginInit();
 			this->SuspendLayout();
@@ -316,11 +318,21 @@ namespace PayrollDB {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Main::button1_Click);
 			// 
+			// BenefitsButton
+			// 
+			this->BenefitsButton->Location = System::Drawing::Point(361, 362);
+			this->BenefitsButton->Name = L"BenefitsButton";
+			this->BenefitsButton->Size = System::Drawing::Size(75, 23);
+			this->BenefitsButton->TabIndex = 17;
+			this->BenefitsButton->Text = L"Benefits";
+			this->BenefitsButton->UseVisualStyleBackColor = true;
+			// 
 			// Main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1017, 454);
+			this->Controls->Add(this->BenefitsButton);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->searchBTN);
 			this->Controls->Add(this->label7);
@@ -500,5 +512,6 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	}
 	db->closeConnection();
 }
+
 };
 }
