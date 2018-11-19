@@ -16,7 +16,10 @@ namespace PayrollDB {
 	/// </summary>
 	public ref class payroll_form : public System::Windows::Forms::Form
 	{
-	private: bool check = false;
+	private: 
+		bool check = false;
+		bool mouseDown = false;
+		Point lastLocation;
 	public:
 		payroll_form(void)
 		{
@@ -86,6 +89,8 @@ namespace PayrollDB {
 	private: System::Windows::Forms::Label^  label15;
 	private: System::Windows::Forms::Label^  label16;
 	private: System::Windows::Forms::ComboBox^  SelectionMenu;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::PictureBox^  closePage;
 	protected:
 
 	private:
@@ -101,6 +106,7 @@ namespace PayrollDB {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(payroll_form::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -131,9 +137,13 @@ namespace PayrollDB {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label16 = (gcnew System::Windows::Forms::Label());
 			this->SelectionMenu = (gcnew System::Windows::Forms::ComboBox());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->closePage = (gcnew System::Windows::Forms::PictureBox());
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
+			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -174,7 +184,7 @@ namespace PayrollDB {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(257, 260);
+			this->button1->Location = System::Drawing::Point(225, 266);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 4;
@@ -247,7 +257,7 @@ namespace PayrollDB {
 			this->groupBox1->Controls->Add(this->label5);
 			this->groupBox1->Controls->Add(this->label2);
 			this->groupBox1->Controls->Add(this->textBox2);
-			this->groupBox1->Location = System::Drawing::Point(44, 8);
+			this->groupBox1->Location = System::Drawing::Point(12, 14);
 			this->groupBox1->Margin = System::Windows::Forms::Padding(2);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Padding = System::Windows::Forms::Padding(2);
@@ -341,7 +351,7 @@ namespace PayrollDB {
 			this->groupBox2->Controls->Add(this->textBox4);
 			this->groupBox2->Controls->Add(this->textBox3);
 			this->groupBox2->Controls->Add(this->label3);
-			this->groupBox2->Location = System::Drawing::Point(357, 183);
+			this->groupBox2->Location = System::Drawing::Point(325, 189);
 			this->groupBox2->Margin = System::Windows::Forms::Padding(2);
 			this->groupBox2->Name = L"groupBox2";
 			this->groupBox2->Padding = System::Windows::Forms::Padding(2);
@@ -358,7 +368,7 @@ namespace PayrollDB {
 			this->groupBox3->Controls->Add(this->label8);
 			this->groupBox3->Controls->Add(this->Name_Label);
 			this->groupBox3->Controls->Add(this->label6);
-			this->groupBox3->Location = System::Drawing::Point(357, 56);
+			this->groupBox3->Location = System::Drawing::Point(325, 62);
 			this->groupBox3->Margin = System::Windows::Forms::Padding(2);
 			this->groupBox3->Name = L"groupBox3";
 			this->groupBox3->Padding = System::Windows::Forms::Padding(2);
@@ -432,7 +442,7 @@ namespace PayrollDB {
 			// label16
 			// 
 			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(391, 24);
+			this->label16->Location = System::Drawing::Point(359, 30);
 			this->label16->Name = L"label16";
 			this->label16->Size = System::Drawing::Size(53, 13);
 			this->label16->TabIndex = 19;
@@ -443,24 +453,53 @@ namespace PayrollDB {
 			// 
 			this->SelectionMenu->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->SelectionMenu->FormattingEnabled = true;
-			this->SelectionMenu->Location = System::Drawing::Point(450, 21);
+			this->SelectionMenu->Location = System::Drawing::Point(418, 27);
 			this->SelectionMenu->Name = L"SelectionMenu";
 			this->SelectionMenu->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->SelectionMenu->Size = System::Drawing::Size(138, 21);
 			this->SelectionMenu->TabIndex = 18;
 			this->SelectionMenu->SelectedIndexChanged += gcnew System::EventHandler(this, &payroll_form::SelectionMenu_SelectedIndexChanged);
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->panel1->Controls->Add(this->groupBox1);
+			this->panel1->Controls->Add(this->label16);
+			this->panel1->Controls->Add(this->button1);
+			this->panel1->Controls->Add(this->SelectionMenu);
+			this->panel1->Controls->Add(this->groupBox2);
+			this->panel1->Controls->Add(this->groupBox3);
+			this->panel1->Location = System::Drawing::Point(0, 27);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(655, 312);
+			this->panel1->TabIndex = 20;
+			// 
+			// closePage
+			// 
+			this->closePage->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"closePage.BackgroundImage")));
+			this->closePage->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->closePage->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->closePage->Location = System::Drawing::Point(625, 0);
+			this->closePage->Name = L"closePage";
+			this->closePage->Size = System::Drawing::Size(30, 26);
+			this->closePage->TabIndex = 21;
+			this->closePage->TabStop = false;
+			this->closePage->Click += gcnew System::EventHandler(this, &payroll_form::closePage_Click);
+			this->closePage->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &payroll_form::closePage_MouseDown);
+			this->closePage->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &payroll_form::closePage_MouseMove);
+			this->closePage->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &payroll_form::closePage_MouseUp);
+			// 
 			// payroll_form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(656, 301);
-			this->Controls->Add(this->label16);
-			this->Controls->Add(this->SelectionMenu);
-			this->Controls->Add(this->groupBox3);
-			this->Controls->Add(this->groupBox2);
-			this->Controls->Add(this->groupBox1);
-			this->Controls->Add(this->button1);
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
+				static_cast<System::Int32>(static_cast<System::Byte>(38)));
+			this->ClientSize = System::Drawing::Size(656, 340);
+			this->Controls->Add(this->closePage);
+			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"payroll_form";
 			this->Text = L"payroll_form";
 			this->Load += gcnew System::EventHandler(this, &payroll_form::payroll_form_Load);
@@ -470,8 +509,10 @@ namespace PayrollDB {
 			this->groupBox2->PerformLayout();
 			this->groupBox3->ResumeLayout(false);
 			this->groupBox3->PerformLayout();
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -628,6 +669,22 @@ private: System::Void SelectionMenu_SelectedIndexChanged(System::Object^  sender
 	db->closeConnection();
 }
 private: System::Void label16_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void closePage_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = true;
+	lastLocation = e->Location;
+}
+private: System::Void closePage_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (mouseDown) {
+		this->Location = Point((this->Location.X - lastLocation.X) + e->X, (this->Location.Y - lastLocation.Y) + e->Y);
+		this->Update();
+	}
+}
+private: System::Void closePage_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = false;
+}
+private: System::Void closePage_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->Close();
 }
 };
 }

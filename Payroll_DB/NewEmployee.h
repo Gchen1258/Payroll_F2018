@@ -20,9 +20,12 @@ namespace PayrollDB {
 	public:
 		String^ position = "";
 		double wage = 0;
+	private: bool mouseDown;
+	private: Point lastLocation;
 	private: System::Windows::Forms::TextBox^  wageBox;
 	public:
 	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Panel^  panel1;
 
 	public:
 
@@ -132,8 +135,10 @@ namespace PayrollDB {
 			this->userInfoGB = (gcnew System::Windows::Forms::GroupBox());
 			this->wageBox = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->PositionGB->SuspendLayout();
 			this->userInfoGB->SuspendLayout();
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// FNameField
@@ -321,7 +326,7 @@ namespace PayrollDB {
 			this->userInfoGB->Controls->Add(this->ZipLabel);
 			this->userInfoGB->Controls->Add(this->LNameLabel);
 			this->userInfoGB->Controls->Add(this->StateCBox);
-			this->userInfoGB->Location = System::Drawing::Point(25, 37);
+			this->userInfoGB->Location = System::Drawing::Point(18, 17);
 			this->userInfoGB->Name = L"userInfoGB";
 			this->userInfoGB->Size = System::Drawing::Size(573, 269);
 			this->userInfoGB->TabIndex = 20;
@@ -344,21 +349,37 @@ namespace PayrollDB {
 			this->label3->TabIndex = 20;
 			this->label3->Text = L"Wage";
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->panel1->Controls->Add(this->userInfoGB);
+			this->panel1->Location = System::Drawing::Point(0, 27);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(619, 325);
+			this->panel1->TabIndex = 21;
+			// 
 			// NewEmployee
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
+				static_cast<System::Int32>(static_cast<System::Byte>(38)));
 			this->ClientSize = System::Drawing::Size(619, 351);
-			this->Controls->Add(this->userInfoGB);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->MaximizeBox = false;
 			this->Name = L"NewEmployee";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Register";
+			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &NewEmployee::NewEmployee_MouseDown);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &NewEmployee::NewEmployee_MouseMove);
+			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &NewEmployee::NewEmployee_MouseUp);
 			this->PositionGB->ResumeLayout(false);
 			this->PositionGB->PerformLayout();
 			this->userInfoGB->ResumeLayout(false);
 			this->userInfoGB->PerformLayout();
+			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -504,6 +525,20 @@ private: System::Void textBox1_TextChanged(System::Object^  sender, System::Even
 	{
 		filled = false;
 	}
+}
+private: System::Void NewEmployee_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = true;
+	lastLocation = e->Location;
+}
+
+private: System::Void NewEmployee_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (mouseDown) {
+		this->Location = Point((this->Location.X - lastLocation.X) + e->X, (this->Location.Y - lastLocation.Y) + e->Y);
+		this->Update();
+	}
+}
+private: System::Void NewEmployee_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = false;
 }
 };
 }

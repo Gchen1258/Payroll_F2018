@@ -16,8 +16,10 @@ namespace PayrollDB {
 	/// </summary>
 	public ref class SearchForm : public System::Windows::Forms::Form
 	{
-	public:
+	private:
 		bool filled = false;
+		bool mouseDown = false;
+		Point lastLocation;
 	public:
 		SearchForm(void)
 		{
@@ -66,6 +68,8 @@ namespace PayrollDB {
 	private: System::Windows::Forms::Label^  label7;
 	private: System::Windows::Forms::Button^  searchBTN;
 	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::PictureBox^  closePage;
 
 
 
@@ -97,6 +101,7 @@ namespace PayrollDB {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(SearchForm::typeid));
 			this->ModButton = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -121,13 +126,17 @@ namespace PayrollDB {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->searchBTN = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->closePage = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->BeginInit();
+			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// ModButton
 			// 
-			this->ModButton->Location = System::Drawing::Point(152, 249);
+			this->ModButton->Location = System::Drawing::Point(122, 248);
 			this->ModButton->Name = L"ModButton";
 			this->ModButton->Size = System::Drawing::Size(75, 23);
 			this->ModButton->TabIndex = 0;
@@ -141,7 +150,7 @@ namespace PayrollDB {
 			this->label1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(274, 9);
+			this->label1->Location = System::Drawing::Point(244, 8);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(129, 26);
 			this->label1->TabIndex = 1;
@@ -151,7 +160,7 @@ namespace PayrollDB {
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label2->Location = System::Drawing::Point(48, 77);
+			this->label2->Location = System::Drawing::Point(18, 76);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(62, 15);
 			this->label2->TabIndex = 2;
@@ -161,7 +170,7 @@ namespace PayrollDB {
 			// 
 			this->label3->AutoSize = true;
 			this->label3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label3->Location = System::Drawing::Point(48, 104);
+			this->label3->Location = System::Drawing::Point(18, 103);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(63, 15);
 			this->label3->TabIndex = 3;
@@ -172,7 +181,7 @@ namespace PayrollDB {
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label4->Location = System::Drawing::Point(49, 185);
+			this->label4->Location = System::Drawing::Point(19, 184);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(49, 15);
 			this->label4->TabIndex = 4;
@@ -182,7 +191,7 @@ namespace PayrollDB {
 			// 
 			this->label5->AutoSize = true;
 			this->label5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label5->Location = System::Drawing::Point(48, 130);
+			this->label5->Location = System::Drawing::Point(18, 129);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(50, 15);
 			this->label5->TabIndex = 5;
@@ -192,7 +201,7 @@ namespace PayrollDB {
 			// 
 			this->label6->AutoSize = true;
 			this->label6->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label6->Location = System::Drawing::Point(49, 156);
+			this->label6->Location = System::Drawing::Point(19, 155);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(41, 15);
 			this->label6->TabIndex = 6;
@@ -205,7 +214,7 @@ namespace PayrollDB {
 				this->idEmployee,
 					this->first_name, this->last_name, this->address, this->wages, this->Position
 			});
-			this->dataGridView1->Location = System::Drawing::Point(251, 52);
+			this->dataGridView1->Location = System::Drawing::Point(221, 51);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(667, 390);
 			this->dataGridView1->TabIndex = 7;
@@ -243,7 +252,7 @@ namespace PayrollDB {
 			// 
 			// first_name_textBox
 			// 
-			this->first_name_textBox->Location = System::Drawing::Point(117, 78);
+			this->first_name_textBox->Location = System::Drawing::Point(87, 77);
 			this->first_name_textBox->Name = L"first_name_textBox";
 			this->first_name_textBox->Size = System::Drawing::Size(100, 20);
 			this->first_name_textBox->TabIndex = 8;
@@ -251,7 +260,7 @@ namespace PayrollDB {
 			// 
 			// last_name_textBox
 			// 
-			this->last_name_textBox->Location = System::Drawing::Point(117, 104);
+			this->last_name_textBox->Location = System::Drawing::Point(87, 103);
 			this->last_name_textBox->Name = L"last_name_textBox";
 			this->last_name_textBox->Size = System::Drawing::Size(100, 20);
 			this->last_name_textBox->TabIndex = 9;
@@ -259,7 +268,7 @@ namespace PayrollDB {
 			// 
 			// address_textBox
 			// 
-			this->address_textBox->Location = System::Drawing::Point(117, 130);
+			this->address_textBox->Location = System::Drawing::Point(87, 129);
 			this->address_textBox->Name = L"address_textBox";
 			this->address_textBox->Size = System::Drawing::Size(100, 20);
 			this->address_textBox->TabIndex = 10;
@@ -267,7 +276,7 @@ namespace PayrollDB {
 			// 
 			// wage_textBox
 			// 
-			this->wage_textBox->Location = System::Drawing::Point(117, 156);
+			this->wage_textBox->Location = System::Drawing::Point(87, 155);
 			this->wage_textBox->Name = L"wage_textBox";
 			this->wage_textBox->Size = System::Drawing::Size(100, 20);
 			this->wage_textBox->TabIndex = 11;
@@ -275,7 +284,7 @@ namespace PayrollDB {
 			// 
 			// position_textBox
 			// 
-			this->position_textBox->Location = System::Drawing::Point(117, 182);
+			this->position_textBox->Location = System::Drawing::Point(87, 181);
 			this->position_textBox->Name = L"position_textBox";
 			this->position_textBox->Size = System::Drawing::Size(100, 20);
 			this->position_textBox->TabIndex = 12;
@@ -283,7 +292,7 @@ namespace PayrollDB {
 			// 
 			// idEmployee_textBox
 			// 
-			this->idEmployee_textBox->Location = System::Drawing::Point(117, 52);
+			this->idEmployee_textBox->Location = System::Drawing::Point(87, 51);
 			this->idEmployee_textBox->Name = L"idEmployee_textBox";
 			this->idEmployee_textBox->Size = System::Drawing::Size(100, 20);
 			this->idEmployee_textBox->TabIndex = 13;
@@ -293,7 +302,7 @@ namespace PayrollDB {
 			// 
 			this->label7->AutoSize = true;
 			this->label7->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label7->Location = System::Drawing::Point(48, 52);
+			this->label7->Location = System::Drawing::Point(18, 51);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(20, 15);
 			this->label7->TabIndex = 14;
@@ -301,7 +310,7 @@ namespace PayrollDB {
 			// 
 			// searchBTN
 			// 
-			this->searchBTN->Location = System::Drawing::Point(152, 291);
+			this->searchBTN->Location = System::Drawing::Point(122, 290);
 			this->searchBTN->Name = L"searchBTN";
 			this->searchBTN->Size = System::Drawing::Size(75, 23);
 			this->searchBTN->TabIndex = 15;
@@ -311,7 +320,7 @@ namespace PayrollDB {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(152, 331);
+			this->button1->Location = System::Drawing::Point(122, 330);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 16;
@@ -319,35 +328,65 @@ namespace PayrollDB {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &SearchForm::button1_Click);
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->panel1->Controls->Add(this->label7);
+			this->panel1->Controls->Add(this->button1);
+			this->panel1->Controls->Add(this->ModButton);
+			this->panel1->Controls->Add(this->searchBTN);
+			this->panel1->Controls->Add(this->label1);
+			this->panel1->Controls->Add(this->label2);
+			this->panel1->Controls->Add(this->idEmployee_textBox);
+			this->panel1->Controls->Add(this->label3);
+			this->panel1->Controls->Add(this->position_textBox);
+			this->panel1->Controls->Add(this->label4);
+			this->panel1->Controls->Add(this->wage_textBox);
+			this->panel1->Controls->Add(this->label5);
+			this->panel1->Controls->Add(this->address_textBox);
+			this->panel1->Controls->Add(this->label6);
+			this->panel1->Controls->Add(this->last_name_textBox);
+			this->panel1->Controls->Add(this->dataGridView1);
+			this->panel1->Controls->Add(this->first_name_textBox);
+			this->panel1->Location = System::Drawing::Point(0, 27);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(1017, 468);
+			this->panel1->TabIndex = 17;
+			// 
+			// closePage
+			// 
+			this->closePage->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"closePage.BackgroundImage")));
+			this->closePage->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->closePage->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->closePage->Location = System::Drawing::Point(985, 0);
+			this->closePage->Name = L"closePage";
+			this->closePage->Size = System::Drawing::Size(30, 26);
+			this->closePage->TabIndex = 17;
+			this->closePage->TabStop = false;
+			this->closePage->Click += gcnew System::EventHandler(this, &SearchForm::closePage_Click);
+			// 
 			// SearchForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1017, 454);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->searchBTN);
-			this->Controls->Add(this->label7);
-			this->Controls->Add(this->idEmployee_textBox);
-			this->Controls->Add(this->position_textBox);
-			this->Controls->Add(this->wage_textBox);
-			this->Controls->Add(this->address_textBox);
-			this->Controls->Add(this->last_name_textBox);
-			this->Controls->Add(this->first_name_textBox);
-			this->Controls->Add(this->dataGridView1);
-			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->ModButton);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
+				static_cast<System::Int32>(static_cast<System::Byte>(38)));
+			this->ClientSize = System::Drawing::Size(1017, 495);
+			this->Controls->Add(this->closePage);
+			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"SearchForm";
 			this->Text = L"Main";
+			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &SearchForm::SearchForm_MouseDown);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &SearchForm::SearchForm_MouseMove);
+			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &SearchForm::SearchForm_MouseUp);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->EndInit();
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -504,6 +543,22 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	db->closeConnection();
 }
 
+private: System::Void closePage_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->Close();
+}
+private: System::Void SearchForm_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = true;
+	lastLocation = e->Location;
+}
+private: System::Void SearchForm_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (mouseDown) {
+		this->Location = Point((this->Location.X - lastLocation.X) + e->X, (this->Location.Y - lastLocation.Y) + e->Y);
+		this->Update();
+	}
+}
+private: System::Void SearchForm_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = false;
+}
 };
 }
 #endif

@@ -78,7 +78,7 @@ void SQLConnect::backup(String^ path)
 	}
 	catch (IOException^ ex)
 	{
-		MessageBox::Show("Error , unable to backup!");
+		MessageBox::Show("Error , unable to backup!\n" + ex->ToString());
 
 	}
 }
@@ -236,6 +236,6 @@ void SQLConnect::restore(String^ path)
 	}
 	catch (IOException^ ex)
 	{
-		MessageBox::Show("Error , unable to Restore!");
+		MessageBox::Show("Error , unable to Restore!\n" + ex->ToString());
 	}
 }

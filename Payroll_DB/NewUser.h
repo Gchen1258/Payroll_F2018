@@ -17,6 +17,30 @@ namespace PayrollDB {
 	/// </summary>
 	public ref class NewUser : public System::Windows::Forms::Form
 	{
+	private: bool mouseDown;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::TextBox^  AddrField;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  AddressLabel;
+	private: System::Windows::Forms::TextBox^  CityField;
+	private: System::Windows::Forms::TextBox^  FNameField;
+	private: System::Windows::Forms::TextBox^  userField;
+	private: System::Windows::Forms::Label^  userLabel;
+	private: System::Windows::Forms::TextBox^  ZipField;
+	private: System::Windows::Forms::Label^  PassLabel;
+	private: System::Windows::Forms::TextBox^  LNameField;
+	private: System::Windows::Forms::TextBox^  PassField;
+	private: System::Windows::Forms::Label^  StateLabel;
+	private: System::Windows::Forms::TextBox^  ConfirmField;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  ConfirmPassLabel;
+	private: System::Windows::Forms::Label^  ZipLabel;
+	private: System::Windows::Forms::Label^  LNameLabel;
+	private: System::Windows::Forms::ComboBox^  StateCBox;
+	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  button1;
+
+	private: Point lastLocation;
 	public:
 		NewUser(void)
 		{
@@ -37,36 +61,8 @@ namespace PayrollDB {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^  userField;
+
 	protected:
-	private: System::Windows::Forms::Label^  userLabel;
-	private: System::Windows::Forms::Label^  PassLabel;
-	private: System::Windows::Forms::TextBox^  PassField;
-	private: System::Windows::Forms::TextBox^  ConfirmField;
-	private: System::Windows::Forms::Label^  ConfirmPassLabel;
-
-
-
-	private: System::Windows::Forms::GroupBox^  userInfoGB;
-	private: System::Windows::Forms::TextBox^  AddrField;
-	private: System::Windows::Forms::Label^  label2;
-
-
-
-
-
-	private: System::Windows::Forms::Label^  AddressLabel;
-	private: System::Windows::Forms::TextBox^  CityField;
-	private: System::Windows::Forms::TextBox^  FNameField;
-	private: System::Windows::Forms::TextBox^  ZipField;
-	private: System::Windows::Forms::TextBox^  LNameField;
-	private: System::Windows::Forms::Label^  StateLabel;
-	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::Label^  ZipLabel;
-	private: System::Windows::Forms::Label^  LNameLabel;
-	private: System::Windows::Forms::ComboBox^  StateCBox;
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Button^  button1;
 
 	private:
 		/// <summary>
@@ -81,206 +77,238 @@ namespace PayrollDB {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->userField = (gcnew System::Windows::Forms::TextBox());
-			this->userLabel = (gcnew System::Windows::Forms::Label());
-			this->PassLabel = (gcnew System::Windows::Forms::Label());
-			this->PassField = (gcnew System::Windows::Forms::TextBox());
-			this->ConfirmField = (gcnew System::Windows::Forms::TextBox());
-			this->ConfirmPassLabel = (gcnew System::Windows::Forms::Label());
-			this->userInfoGB = (gcnew System::Windows::Forms::GroupBox());
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(NewUser::typeid));
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->AddrField = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->AddressLabel = (gcnew System::Windows::Forms::Label());
 			this->CityField = (gcnew System::Windows::Forms::TextBox());
 			this->FNameField = (gcnew System::Windows::Forms::TextBox());
+			this->userField = (gcnew System::Windows::Forms::TextBox());
+			this->userLabel = (gcnew System::Windows::Forms::Label());
 			this->ZipField = (gcnew System::Windows::Forms::TextBox());
+			this->PassLabel = (gcnew System::Windows::Forms::Label());
 			this->LNameField = (gcnew System::Windows::Forms::TextBox());
+			this->PassField = (gcnew System::Windows::Forms::TextBox());
 			this->StateLabel = (gcnew System::Windows::Forms::Label());
+			this->ConfirmField = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->ConfirmPassLabel = (gcnew System::Windows::Forms::Label());
 			this->ZipLabel = (gcnew System::Windows::Forms::Label());
 			this->LNameLabel = (gcnew System::Windows::Forms::Label());
 			this->StateCBox = (gcnew System::Windows::Forms::ComboBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->userInfoGB->SuspendLayout();
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// userField
+			// panel1
 			// 
-			this->userField->Location = System::Drawing::Point(116, 83);
-			this->userField->Name = L"userField";
-			this->userField->Size = System::Drawing::Size(137, 20);
-			this->userField->TabIndex = 25;
-			this->userField->TextChanged += gcnew System::EventHandler(this, &NewUser::userField_TextChanged);
-			// 
-			// userLabel
-			// 
-			this->userLabel->AutoSize = true;
-			this->userLabel->Location = System::Drawing::Point(52, 90);
-			this->userLabel->Name = L"userLabel";
-			this->userLabel->Size = System::Drawing::Size(55, 13);
-			this->userLabel->TabIndex = 26;
-			this->userLabel->Text = L"Username";
-			// 
-			// PassLabel
-			// 
-			this->PassLabel->AutoSize = true;
-			this->PassLabel->Location = System::Drawing::Point(52, 115);
-			this->PassLabel->Name = L"PassLabel";
-			this->PassLabel->Size = System::Drawing::Size(53, 13);
-			this->PassLabel->TabIndex = 23;
-			this->PassLabel->Text = L"Password";
-			// 
-			// PassField
-			// 
-			this->PassField->Location = System::Drawing::Point(116, 109);
-			this->PassField->Name = L"PassField";
-			this->PassField->PasswordChar = '*';
-			this->PassField->Size = System::Drawing::Size(137, 20);
-			this->PassField->TabIndex = 21;
-			this->PassField->TextChanged += gcnew System::EventHandler(this, &NewUser::PassField_TextChanged);
-			// 
-			// ConfirmField
-			// 
-			this->ConfirmField->Location = System::Drawing::Point(116, 135);
-			this->ConfirmField->Name = L"ConfirmField";
-			this->ConfirmField->PasswordChar = '*';
-			this->ConfirmField->Size = System::Drawing::Size(137, 20);
-			this->ConfirmField->TabIndex = 22;
-			this->ConfirmField->TextChanged += gcnew System::EventHandler(this, &NewUser::ConfirmField_TextChanged);
-			// 
-			// ConfirmPassLabel
-			// 
-			this->ConfirmPassLabel->AutoSize = true;
-			this->ConfirmPassLabel->Location = System::Drawing::Point(20, 138);
-			this->ConfirmPassLabel->Name = L"ConfirmPassLabel";
-			this->ConfirmPassLabel->Size = System::Drawing::Size(97, 13);
-			this->ConfirmPassLabel->TabIndex = 24;
-			this->ConfirmPassLabel->Text = L"Re-Type Password";
-			// 
-			// userInfoGB
-			// 
-			this->userInfoGB->Controls->Add(this->AddrField);
-			this->userInfoGB->Controls->Add(this->label2);
-			this->userInfoGB->Controls->Add(this->AddressLabel);
-			this->userInfoGB->Controls->Add(this->CityField);
-			this->userInfoGB->Controls->Add(this->FNameField);
-			this->userInfoGB->Controls->Add(this->userField);
-			this->userInfoGB->Controls->Add(this->userLabel);
-			this->userInfoGB->Controls->Add(this->ZipField);
-			this->userInfoGB->Controls->Add(this->PassLabel);
-			this->userInfoGB->Controls->Add(this->LNameField);
-			this->userInfoGB->Controls->Add(this->PassField);
-			this->userInfoGB->Controls->Add(this->StateLabel);
-			this->userInfoGB->Controls->Add(this->ConfirmField);
-			this->userInfoGB->Controls->Add(this->label3);
-			this->userInfoGB->Controls->Add(this->ConfirmPassLabel);
-			this->userInfoGB->Controls->Add(this->ZipLabel);
-			this->userInfoGB->Controls->Add(this->LNameLabel);
-			this->userInfoGB->Controls->Add(this->StateCBox);
-			this->userInfoGB->Location = System::Drawing::Point(69, 38);
-			this->userInfoGB->Name = L"userInfoGB";
-			this->userInfoGB->Size = System::Drawing::Size(579, 189);
-			this->userInfoGB->TabIndex = 30;
-			this->userInfoGB->TabStop = false;
-			this->userInfoGB->Text = L"User Info";
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
+			this->panel1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->panel1->Controls->Add(this->AddrField);
+			this->panel1->Controls->Add(this->label2);
+			this->panel1->Controls->Add(this->AddressLabel);
+			this->panel1->Controls->Add(this->CityField);
+			this->panel1->Controls->Add(this->FNameField);
+			this->panel1->Controls->Add(this->userField);
+			this->panel1->Controls->Add(this->userLabel);
+			this->panel1->Controls->Add(this->ZipField);
+			this->panel1->Controls->Add(this->PassLabel);
+			this->panel1->Controls->Add(this->LNameField);
+			this->panel1->Controls->Add(this->PassField);
+			this->panel1->Controls->Add(this->StateLabel);
+			this->panel1->Controls->Add(this->ConfirmField);
+			this->panel1->Controls->Add(this->label3);
+			this->panel1->Controls->Add(this->ConfirmPassLabel);
+			this->panel1->Controls->Add(this->ZipLabel);
+			this->panel1->Controls->Add(this->LNameLabel);
+			this->panel1->Controls->Add(this->StateCBox);
+			this->panel1->Controls->Add(this->button2);
+			this->panel1->Controls->Add(this->button1);
+			this->panel1->Location = System::Drawing::Point(0, 27);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(671, 309);
+			this->panel1->TabIndex = 45;
 			// 
 			// AddrField
 			// 
-			this->AddrField->Location = System::Drawing::Point(359, 32);
+			this->AddrField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->AddrField->Location = System::Drawing::Point(126, 90);
 			this->AddrField->Name = L"AddrField";
-			this->AddrField->Size = System::Drawing::Size(188, 20);
-			this->AddrField->TabIndex = 1;
+			this->AddrField->Size = System::Drawing::Size(197, 29);
+			this->AddrField->TabIndex = 48;
 			this->AddrField->TextChanged += gcnew System::EventHandler(this, &NewUser::AddrField_TextChanged);
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(318, 65);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->label2->Location = System::Drawing::Point(89, 134);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(24, 13);
-			this->label2->TabIndex = 18;
+			this->label2->Size = System::Drawing::Size(34, 20);
+			this->label2->TabIndex = 58;
 			this->label2->Text = L"City";
 			// 
 			// AddressLabel
 			// 
 			this->AddressLabel->AutoSize = true;
-			this->AddressLabel->Location = System::Drawing::Point(307, 39);
+			this->AddressLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->AddressLabel->Location = System::Drawing::Point(79, 94);
 			this->AddressLabel->Name = L"AddressLabel";
-			this->AddressLabel->Size = System::Drawing::Size(35, 13);
-			this->AddressLabel->TabIndex = 5;
+			this->AddressLabel->Size = System::Drawing::Size(48, 20);
+			this->AddressLabel->TabIndex = 52;
 			this->AddressLabel->Text = L"Street";
 			// 
 			// CityField
 			// 
-			this->CityField->Location = System::Drawing::Point(359, 58);
+			this->CityField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->CityField->Location = System::Drawing::Point(126, 125);
 			this->CityField->Name = L"CityField";
-			this->CityField->Size = System::Drawing::Size(135, 20);
-			this->CityField->TabIndex = 17;
+			this->CityField->Size = System::Drawing::Size(159, 29);
+			this->CityField->TabIndex = 57;
 			this->CityField->TextChanged += gcnew System::EventHandler(this, &NewUser::CityField_TextChanged);
 			// 
 			// FNameField
 			// 
-			this->FNameField->Location = System::Drawing::Point(116, 32);
+			this->FNameField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->FNameField->Location = System::Drawing::Point(126, 19);
 			this->FNameField->Name = L"FNameField";
-			this->FNameField->Size = System::Drawing::Size(137, 20);
-			this->FNameField->TabIndex = 0;
+			this->FNameField->Size = System::Drawing::Size(159, 29);
+			this->FNameField->TabIndex = 47;
 			this->FNameField->TextChanged += gcnew System::EventHandler(this, &NewUser::FNameField_TextChanged);
+			// 
+			// userField
+			// 
+			this->userField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->userField->Location = System::Drawing::Point(476, 19);
+			this->userField->Name = L"userField";
+			this->userField->Size = System::Drawing::Size(161, 29);
+			this->userField->TabIndex = 63;
+			this->userField->TextChanged += gcnew System::EventHandler(this, &NewUser::userField_TextChanged);
+			// 
+			// userLabel
+			// 
+			this->userLabel->AutoSize = true;
+			this->userLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->userLabel->Location = System::Drawing::Point(391, 23);
+			this->userLabel->Name = L"userLabel";
+			this->userLabel->Size = System::Drawing::Size(75, 20);
+			this->userLabel->TabIndex = 64;
+			this->userLabel->Text = L"Username";
 			// 
 			// ZipField
 			// 
-			this->ZipField->Location = System::Drawing::Point(359, 111);
+			this->ZipField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->ZipField->Location = System::Drawing::Point(126, 195);
 			this->ZipField->Name = L"ZipField";
-			this->ZipField->Size = System::Drawing::Size(135, 20);
-			this->ZipField->TabIndex = 7;
+			this->ZipField->Size = System::Drawing::Size(159, 29);
+			this->ZipField->TabIndex = 53;
 			this->ZipField->TextChanged += gcnew System::EventHandler(this, &NewUser::ZipField_TextChanged);
+			// 
+			// PassLabel
+			// 
+			this->PassLabel->AutoSize = true;
+			this->PassLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->PassLabel->Location = System::Drawing::Point(391, 63);
+			this->PassLabel->Name = L"PassLabel";
+			this->PassLabel->Size = System::Drawing::Size(70, 20);
+			this->PassLabel->TabIndex = 61;
+			this->PassLabel->Text = L"Password";
 			// 
 			// LNameField
 			// 
-			this->LNameField->Location = System::Drawing::Point(116, 58);
+			this->LNameField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->LNameField->Location = System::Drawing::Point(126, 54);
 			this->LNameField->Name = L"LNameField";
-			this->LNameField->Size = System::Drawing::Size(137, 20);
-			this->LNameField->TabIndex = 2;
+			this->LNameField->Size = System::Drawing::Size(159, 29);
+			this->LNameField->TabIndex = 49;
 			this->LNameField->TextChanged += gcnew System::EventHandler(this, &NewUser::LNameField_TextChanged);
+			// 
+			// PassField
+			// 
+			this->PassField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->PassField->Location = System::Drawing::Point(476, 54);
+			this->PassField->Name = L"PassField";
+			this->PassField->PasswordChar = '*';
+			this->PassField->Size = System::Drawing::Size(161, 29);
+			this->PassField->TabIndex = 59;
+			this->PassField->TextChanged += gcnew System::EventHandler(this, &NewUser::PassField_TextChanged);
 			// 
 			// StateLabel
 			// 
 			this->StateLabel->AutoSize = true;
-			this->StateLabel->Location = System::Drawing::Point(312, 90);
+			this->StateLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->StateLabel->Location = System::Drawing::Point(79, 167);
 			this->StateLabel->Name = L"StateLabel";
-			this->StateLabel->Size = System::Drawing::Size(32, 13);
-			this->StateLabel->TabIndex = 16;
+			this->StateLabel->Size = System::Drawing::Size(43, 20);
+			this->StateLabel->TabIndex = 56;
 			this->StateLabel->Text = L"State";
+			// 
+			// ConfirmField
+			// 
+			this->ConfirmField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->ConfirmField->Location = System::Drawing::Point(476, 89);
+			this->ConfirmField->Name = L"ConfirmField";
+			this->ConfirmField->PasswordChar = '*';
+			this->ConfirmField->Size = System::Drawing::Size(161, 29);
+			this->ConfirmField->TabIndex = 60;
+			this->ConfirmField->TextChanged += gcnew System::EventHandler(this, &NewUser::ConfirmField_TextChanged);
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(53, 31);
+			this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->label3->Location = System::Drawing::Point(46, 25);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(57, 13);
-			this->label3->TabIndex = 3;
+			this->label3->Size = System::Drawing::Size(80, 20);
+			this->label3->TabIndex = 50;
 			this->label3->Text = L"First Name";
+			// 
+			// ConfirmPassLabel
+			// 
+			this->ConfirmPassLabel->AutoSize = true;
+			this->ConfirmPassLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->ConfirmPassLabel->Location = System::Drawing::Point(333, 94);
+			this->ConfirmPassLabel->Name = L"ConfirmPassLabel";
+			this->ConfirmPassLabel->Size = System::Drawing::Size(128, 20);
+			this->ConfirmPassLabel->TabIndex = 62;
+			this->ConfirmPassLabel->Text = L"Re-Type Password";
 			// 
 			// ZipLabel
 			// 
 			this->ZipLabel->AutoSize = true;
-			this->ZipLabel->Location = System::Drawing::Point(303, 114);
+			this->ZipLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->ZipLabel->Location = System::Drawing::Point(51, 200);
 			this->ZipLabel->Name = L"ZipLabel";
-			this->ZipLabel->Size = System::Drawing::Size(50, 13);
-			this->ZipLabel->TabIndex = 11;
+			this->ZipLabel->Size = System::Drawing::Size(70, 20);
+			this->ZipLabel->TabIndex = 54;
 			this->ZipLabel->Text = L"Zip Code";
 			// 
 			// LNameLabel
 			// 
 			this->LNameLabel->AutoSize = true;
-			this->LNameLabel->Location = System::Drawing::Point(52, 58);
+			this->LNameLabel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->LNameLabel->Location = System::Drawing::Point(48, 58);
 			this->LNameLabel->Name = L"LNameLabel";
-			this->LNameLabel->Size = System::Drawing::Size(58, 13);
-			this->LNameLabel->TabIndex = 4;
+			this->LNameLabel->Size = System::Drawing::Size(79, 20);
+			this->LNameLabel->TabIndex = 51;
 			this->LNameLabel->Text = L"Last Name";
 			// 
 			// StateCBox
 			// 
+			this->StateCBox->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->StateCBox->FormattingEnabled = true;
 			this->StateCBox->Items->AddRange(gcnew cli::array< System::Object^  >(24) {
 				L"Florida - FL", L"Georgia - GA", L"Hawaii - HI",
@@ -288,68 +316,62 @@ namespace PayrollDB {
 					L"Maryland - MD", L"Massachusetts - MA", L"Michigan - MI", L"Minnesota - MN", L"Mississippi - MS", L"Missouri - MO", L"Montana - MT",
 					L"Nebraska - NE", L"Nevada - NV", L"New Hampshire - NH", L"New Jersey - NJ", L"New Mexico - NM", L"New York - NY"
 			});
-			this->StateCBox->Location = System::Drawing::Point(359, 84);
+			this->StateCBox->Location = System::Drawing::Point(126, 160);
 			this->StateCBox->Name = L"StateCBox";
-			this->StateCBox->Size = System::Drawing::Size(135, 21);
-			this->StateCBox->TabIndex = 15;
+			this->StateCBox->Size = System::Drawing::Size(159, 29);
+			this->StateCBox->TabIndex = 55;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(364, 258);
+			this->button2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(179)),
+				static_cast<System::Int32>(static_cast<System::Byte>(89)));
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12));
+			this->button2->Location = System::Drawing::Point(515, 199);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 14;
+			this->button2->Size = System::Drawing::Size(73, 33);
+			this->button2->TabIndex = 46;
 			this->button2->Text = L"Cancel";
-			this->button2->UseVisualStyleBackColor = true;
+			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &NewUser::button2_Click);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(238, 258);
+			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(179)),
+				static_cast<System::Int32>(static_cast<System::Byte>(89)));
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(515, 160);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 13;
+			this->button1->Size = System::Drawing::Size(73, 33);
+			this->button1->TabIndex = 45;
 			this->button1->Text = L"Submit";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &NewUser::button1_Click);
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &NewUser::button1_Click_1);
 			// 
 			// NewUser
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(721, 315);
-			this->Controls->Add(this->userInfoGB);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
+				static_cast<System::Int32>(static_cast<System::Byte>(38)));
+			this->ClientSize = System::Drawing::Size(671, 330);
+			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->MaximizeBox = false;
 			this->Name = L"NewUser";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"NewUser";
-			this->userInfoGB->ResumeLayout(false);
-			this->userInfoGB->PerformLayout();
+			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &NewUser::NewUser_MouseDown);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &NewUser::NewUser_MouseMove);
+			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &NewUser::NewUser_MouseUp);
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-
-
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-	System::String ^ state = StateCBox->Text;
-	state = state->Substring(state->Length - 3);
-	String^ address = AddrField->Text + ", " + CityField->Text + ", " + state + ", " + ZipField->Text;
-	if (check)
-	{
-		SQLConnect^ sql = gcnew SQLConnect();
-		sql->createEmployee(FNameField->Text, LNameField->Text, address, wage.ToString(), "management");
-		sql->createUser(userField->Text, PassField->Text);
-		this->Close();
-	}
-	else
-	{
-		MessageBox::Show("Please properly fill in all fields!");
-	}
-}
-
 private: System::Void FNameField_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (this->Text->Length > 0)
 	{
@@ -450,6 +472,40 @@ private: System::Void wageBox_TextChanged(System::Object^  sender, System::Event
 		check = false;
 	}
 }
+private: System::Void NewUser_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = true;
+	lastLocation = e->Location;
+}
+private: System::Void NewUser_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (mouseDown) {
+		this->Location = Point((this->Location.X - lastLocation.X) + e->X, (this->Location.Y - lastLocation.Y) + e->Y);
+		this->Update();
+
+	}
+}
+private: System::Void NewUser_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = false;
+}
+private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+	System::String ^ state = StateCBox->Text;
+	state = state->Substring(state->Length - 3);
+	String^ address = AddrField->Text + ", " + CityField->Text + ", " + state + ", " + ZipField->Text;
+	if (check)
+	{
+		SQLConnect^ sql = gcnew SQLConnect();
+		sql->createEmployee(FNameField->Text, LNameField->Text, address, wage.ToString(), "management");
+		sql->createUser(userField->Text, PassField->Text);
+		this->Close();
+	}
+	else
+	{
+		MessageBox::Show("Please properly fill in all fields!");
+	}
+}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->Close();
+}
+
 };
 }
 #endif

@@ -94,6 +94,8 @@ namespace PayrollDB {
 
 	private: System::Windows::Forms::GroupBox^  groupBox1;
 	private: System::Windows::Forms::Label^  label7;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::PictureBox^  closePage;
 
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
@@ -105,6 +107,7 @@ namespace PayrollDB {
 			 /// </summary>
 			 void InitializeComponent(void)
 			 {
+				 System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(BenefitsForm::typeid));
 				 this->label1 = (gcnew System::Windows::Forms::Label());
 				 this->label2 = (gcnew System::Windows::Forms::Label());
 				 this->label3 = (gcnew System::Windows::Forms::Label());
@@ -123,7 +126,11 @@ namespace PayrollDB {
 				 this->SelectionMenu = (gcnew System::Windows::Forms::ComboBox());
 				 this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 				 this->label7 = (gcnew System::Windows::Forms::Label());
+				 this->panel1 = (gcnew System::Windows::Forms::Panel());
+				 this->closePage = (gcnew System::Windows::Forms::PictureBox());
 				 this->groupBox1->SuspendLayout();
+				 this->panel1->SuspendLayout();
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
 				 this->SuspendLayout();
 				 // 
 				 // label1
@@ -186,7 +193,7 @@ namespace PayrollDB {
 				 // OK_Button
 				 // 
 				 this->OK_Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-				 this->OK_Button->Location = System::Drawing::Point(45, 284);
+				 this->OK_Button->Location = System::Drawing::Point(27, 275);
 				 this->OK_Button->Name = L"OK_Button";
 				 this->OK_Button->Size = System::Drawing::Size(75, 23);
 				 this->OK_Button->TabIndex = 6;
@@ -197,7 +204,7 @@ namespace PayrollDB {
 				 // Cancel_Button
 				 // 
 				 this->Cancel_Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-				 this->Cancel_Button->Location = System::Drawing::Point(126, 284);
+				 this->Cancel_Button->Location = System::Drawing::Point(108, 275);
 				 this->Cancel_Button->Name = L"Cancel_Button";
 				 this->Cancel_Button->Size = System::Drawing::Size(75, 23);
 				 this->Cancel_Button->TabIndex = 7;
@@ -208,7 +215,7 @@ namespace PayrollDB {
 				 // Apply_Button
 				 // 
 				 this->Apply_Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-				 this->Apply_Button->Location = System::Drawing::Point(207, 284);
+				 this->Apply_Button->Location = System::Drawing::Point(189, 275);
 				 this->Apply_Button->Name = L"Apply_Button";
 				 this->Apply_Button->Size = System::Drawing::Size(75, 23);
 				 this->Apply_Button->TabIndex = 8;
@@ -274,7 +281,7 @@ namespace PayrollDB {
 				 // 
 				 this->SelectionMenu->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 				 this->SelectionMenu->FormattingEnabled = true;
-				 this->SelectionMenu->Location = System::Drawing::Point(316, 22);
+				 this->SelectionMenu->Location = System::Drawing::Point(298, 13);
 				 this->SelectionMenu->Name = L"SelectionMenu";
 				 this->SelectionMenu->RightToLeft = System::Windows::Forms::RightToLeft::No;
 				 this->SelectionMenu->Size = System::Drawing::Size(138, 21);
@@ -295,7 +302,7 @@ namespace PayrollDB {
 				 this->groupBox1->Controls->Add(this->label5);
 				 this->groupBox1->Controls->Add(this->Gross_Income_Label);
 				 this->groupBox1->Controls->Add(this->Name_Label);
-				 this->groupBox1->Location = System::Drawing::Point(56, 53);
+				 this->groupBox1->Location = System::Drawing::Point(38, 44);
 				 this->groupBox1->Name = L"groupBox1";
 				 this->groupBox1->Size = System::Drawing::Size(369, 185);
 				 this->groupBox1->TabIndex = 16;
@@ -305,30 +312,58 @@ namespace PayrollDB {
 				 // label7
 				 // 
 				 this->label7->AutoSize = true;
-				 this->label7->Location = System::Drawing::Point(257, 25);
+				 this->label7->Location = System::Drawing::Point(239, 16);
 				 this->label7->Name = L"label7";
 				 this->label7->Size = System::Drawing::Size(53, 13);
 				 this->label7->TabIndex = 17;
 				 this->label7->Text = L"Employee";
 				 // 
+				 // panel1
+				 // 
+				 this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+					 static_cast<System::Int32>(static_cast<System::Byte>(64)));
+				 this->panel1->Controls->Add(this->groupBox1);
+				 this->panel1->Controls->Add(this->label7);
+				 this->panel1->Controls->Add(this->OK_Button);
+				 this->panel1->Controls->Add(this->Cancel_Button);
+				 this->panel1->Controls->Add(this->SelectionMenu);
+				 this->panel1->Controls->Add(this->Apply_Button);
+				 this->panel1->Location = System::Drawing::Point(0, 27);
+				 this->panel1->Name = L"panel1";
+				 this->panel1->Size = System::Drawing::Size(505, 317);
+				 this->panel1->TabIndex = 18;
+				 // 
+				 // closePage
+				 // 
+				 this->closePage->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"closePage.BackgroundImage")));
+				 this->closePage->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+				 this->closePage->Cursor = System::Windows::Forms::Cursors::Hand;
+				 this->closePage->Location = System::Drawing::Point(473, 0);
+				 this->closePage->Name = L"closePage";
+				 this->closePage->Size = System::Drawing::Size(30, 26);
+				 this->closePage->TabIndex = 19;
+				 this->closePage->TabStop = false;
+				 this->closePage->Click += gcnew System::EventHandler(this, &BenefitsForm::closePage_Click);
+				 // 
 				 // BenefitsForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+				 this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
+					 static_cast<System::Int32>(static_cast<System::Byte>(38)));
 				 this->ClientSize = System::Drawing::Size(504, 343);
-				 this->Controls->Add(this->label7);
-				 this->Controls->Add(this->groupBox1);
-				 this->Controls->Add(this->SelectionMenu);
-				 this->Controls->Add(this->Apply_Button);
-				 this->Controls->Add(this->Cancel_Button);
-				 this->Controls->Add(this->OK_Button);
+				 this->Controls->Add(this->closePage);
+				 this->Controls->Add(this->panel1);
+				 this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 				 this->Name = L"BenefitsForm";
 				 this->Text = L"Benefits";
 				 this->Load += gcnew System::EventHandler(this, &BenefitsForm::BenefitsForm_Load);
 				 this->groupBox1->ResumeLayout(false);
 				 this->groupBox1->PerformLayout();
+				 this->panel1->ResumeLayout(false);
+				 this->panel1->PerformLayout();
+				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->EndInit();
 				 this->ResumeLayout(false);
-				 this->PerformLayout();
 
 			 }
 #pragma endregion
@@ -403,6 +438,9 @@ namespace PayrollDB {
 		}
 		db->closeConnection();
 	}
+private: System::Void closePage_Click(System::Object^  sender, System::EventArgs^  e) {
+	this->Close();
+}
 };
 }
 

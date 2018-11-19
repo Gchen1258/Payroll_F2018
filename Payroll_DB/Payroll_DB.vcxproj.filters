@@ -109,6 +109,9 @@
     <EmbeddedResource Include="payroll_form.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="BenefitsForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Payroll_DB.rc">

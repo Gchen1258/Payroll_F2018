@@ -22,6 +22,8 @@ namespace PayrollDB {
 	{
 	private:
 		String^ name = "";
+		bool mouseDown = false;
+		Point lastLocation;
 	private: System::Windows::Forms::Button^  NewEmpButton;
 	private: System::Windows::Forms::Button^  SearchButton;
 	private: System::Windows::Forms::Button^  PayrollButton;
@@ -29,6 +31,8 @@ namespace PayrollDB {
 
 
 	private: System::Windows::Forms::Button^  BenefitsButton;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::PictureBox^  closePage;
 
 			 String^ username = "";
 	public:
@@ -82,6 +86,7 @@ namespace PayrollDB {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MenuForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->NameLabel = (gcnew System::Windows::Forms::Label());
 			this->DateLabel = (gcnew System::Windows::Forms::Label());
@@ -89,6 +94,10 @@ namespace PayrollDB {
 			this->SearchButton = (gcnew System::Windows::Forms::Button());
 			this->PayrollButton = (gcnew System::Windows::Forms::Button());
 			this->BenefitsButton = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->closePage = (gcnew System::Windows::Forms::PictureBox());
+			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -96,7 +105,7 @@ namespace PayrollDB {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(8, 9);
+			this->label1->Location = System::Drawing::Point(13, 11);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(105, 30);
 			this->label1->TabIndex = 0;
@@ -107,7 +116,7 @@ namespace PayrollDB {
 			this->NameLabel->AutoSize = true;
 			this->NameLabel->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->NameLabel->Location = System::Drawing::Point(105, 9);
+			this->NameLabel->Location = System::Drawing::Point(110, 11);
 			this->NameLabel->Name = L"NameLabel";
 			this->NameLabel->Size = System::Drawing::Size(71, 30);
 			this->NameLabel->TabIndex = 1;
@@ -118,7 +127,7 @@ namespace PayrollDB {
 			this->DateLabel->AutoSize = true;
 			this->DateLabel->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->DateLabel->Location = System::Drawing::Point(8, 39);
+			this->DateLabel->Location = System::Drawing::Point(13, 41);
 			this->DateLabel->Name = L"DateLabel";
 			this->DateLabel->Size = System::Drawing::Size(62, 30);
 			this->DateLabel->TabIndex = 2;
@@ -126,7 +135,7 @@ namespace PayrollDB {
 			// 
 			// NewEmpButton
 			// 
-			this->NewEmpButton->Location = System::Drawing::Point(201, 105);
+			this->NewEmpButton->Location = System::Drawing::Point(206, 107);
 			this->NewEmpButton->Name = L"NewEmpButton";
 			this->NewEmpButton->Size = System::Drawing::Size(125, 42);
 			this->NewEmpButton->TabIndex = 3;
@@ -136,7 +145,7 @@ namespace PayrollDB {
 			// 
 			// SearchButton
 			// 
-			this->SearchButton->Location = System::Drawing::Point(201, 153);
+			this->SearchButton->Location = System::Drawing::Point(206, 155);
 			this->SearchButton->Name = L"SearchButton";
 			this->SearchButton->Size = System::Drawing::Size(125, 42);
 			this->SearchButton->TabIndex = 4;
@@ -146,7 +155,7 @@ namespace PayrollDB {
 			// 
 			// PayrollButton
 			// 
-			this->PayrollButton->Location = System::Drawing::Point(201, 249);
+			this->PayrollButton->Location = System::Drawing::Point(206, 251);
 			this->PayrollButton->Name = L"PayrollButton";
 			this->PayrollButton->Size = System::Drawing::Size(125, 42);
 			this->PayrollButton->TabIndex = 6;
@@ -156,7 +165,7 @@ namespace PayrollDB {
 			// 
 			// BenefitsButton
 			// 
-			this->BenefitsButton->Location = System::Drawing::Point(201, 201);
+			this->BenefitsButton->Location = System::Drawing::Point(206, 203);
 			this->BenefitsButton->Name = L"BenefitsButton";
 			this->BenefitsButton->Size = System::Drawing::Size(125, 42);
 			this->BenefitsButton->TabIndex = 5;
@@ -164,23 +173,54 @@ namespace PayrollDB {
 			this->BenefitsButton->UseVisualStyleBackColor = true;
 			this->BenefitsButton->Click += gcnew System::EventHandler(this, &MenuForm::BenefitsButton_Click);
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->panel1->Controls->Add(this->label1);
+			this->panel1->Controls->Add(this->PayrollButton);
+			this->panel1->Controls->Add(this->NameLabel);
+			this->panel1->Controls->Add(this->BenefitsButton);
+			this->panel1->Controls->Add(this->DateLabel);
+			this->panel1->Controls->Add(this->SearchButton);
+			this->panel1->Controls->Add(this->NewEmpButton);
+			this->panel1->Location = System::Drawing::Point(0, 27);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(541, 346);
+			this->panel1->TabIndex = 7;
+			// 
+			// closePage
+			// 
+			this->closePage->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"closePage.BackgroundImage")));
+			this->closePage->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->closePage->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->closePage->Location = System::Drawing::Point(508, 0);
+			this->closePage->Name = L"closePage";
+			this->closePage->Size = System::Drawing::Size(30, 26);
+			this->closePage->TabIndex = 18;
+			this->closePage->TabStop = false;
+			this->closePage->Click += gcnew System::EventHandler(this, &MenuForm::closePage_Click);
+			// 
 			// MenuForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
+				static_cast<System::Int32>(static_cast<System::Byte>(38)));
 			this->ClientSize = System::Drawing::Size(539, 372);
-			this->Controls->Add(this->PayrollButton);
-			this->Controls->Add(this->BenefitsButton);
-			this->Controls->Add(this->SearchButton);
-			this->Controls->Add(this->NewEmpButton);
-			this->Controls->Add(this->DateLabel);
-			this->Controls->Add(this->NameLabel);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->closePage);
+			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MenuForm";
 			this->Text = L"MenuForm";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MenuForm::MenuForm_FormClosing);
+			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MenuForm::MenuForm_MouseDown);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MenuForm::MenuForm_MouseMove);
+			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MenuForm::MenuForm_MouseUp);
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -207,6 +247,25 @@ private: System::Void BenefitsButton_Click(System::Object^  sender, System::Even
 private: System::Void PayrollButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	payroll_form^ pf = gcnew payroll_form();
 	pf->ShowDialog();
+}
+private: System::Void closePage_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (MessageBox::Show("Do you want to exit?", "Payroll System", MessageBoxButtons::OKCancel, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::OK)
+	{
+		Application::ExitThread();
+	}
+}
+private: System::Void MenuForm_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = true;
+	lastLocation = e->Location;
+}
+private: System::Void MenuForm_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (mouseDown) {
+		this->Location = Point((this->Location.X - lastLocation.X) + e->X, (this->Location.Y - lastLocation.Y) + e->Y);
+		this->Update();
+	}
+}
+private: System::Void MenuForm_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = false;
 }
 };
 }
