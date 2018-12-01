@@ -334,7 +334,7 @@ private: System::Void LoginButton_Click(System::Object^  sender, System::EventAr
 		}
 		else {
 			this->Hide();
-			EmployeeMenu^ emenu = gcnew EmployeeMenu();
+			EmployeeMenu^ emenu = gcnew EmployeeMenu(name, username);
 			emenu->ShowDialog();
 		}
 	}

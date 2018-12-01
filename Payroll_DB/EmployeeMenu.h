@@ -15,6 +15,8 @@ namespace PayrollDB {
 	public ref class EmployeeMenu : public System::Windows::Forms::Form
 	{
 	private:
+		String^ name = "";
+		String^ username = "";
 		bool mouseDown = false;
 		Point lastLocation;
 	public:
@@ -24,6 +26,15 @@ namespace PayrollDB {
 			//
 			//TODO: Add the constructor code here
 			//
+		}
+
+		EmployeeMenu(String^ name, String^ user)
+		{
+			InitializeComponent();
+			DateLabel->Text = System::DateTime::Now.ToString();
+			this->name = name;
+			this->username = user;
+			NameLabel->Text = this->name;
 		}
 
 	protected:
@@ -45,7 +56,7 @@ namespace PayrollDB {
 	private: System::Windows::Forms::Button^  BenefitsButton;
 	private: System::Windows::Forms::Label^  DateLabel;
 	private: System::Windows::Forms::Button^  SearchButton;
-	private: System::Windows::Forms::Button^  NewEmpButton;
+
 	private: System::Windows::Forms::PictureBox^  closePage;
 
 	private:
@@ -69,7 +80,6 @@ namespace PayrollDB {
 			this->BenefitsButton = (gcnew System::Windows::Forms::Button());
 			this->DateLabel = (gcnew System::Windows::Forms::Label());
 			this->SearchButton = (gcnew System::Windows::Forms::Button());
-			this->NewEmpButton = (gcnew System::Windows::Forms::Button());
 			this->closePage = (gcnew System::Windows::Forms::PictureBox());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
@@ -85,7 +95,6 @@ namespace PayrollDB {
 			this->panel1->Controls->Add(this->BenefitsButton);
 			this->panel1->Controls->Add(this->DateLabel);
 			this->panel1->Controls->Add(this->SearchButton);
-			this->panel1->Controls->Add(this->NewEmpButton);
 			this->panel1->Location = System::Drawing::Point(0, 27);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(624, 389);
@@ -104,7 +113,7 @@ namespace PayrollDB {
 			// 
 			// PayrollButton
 			// 
-			this->PayrollButton->Location = System::Drawing::Point(206, 251);
+			this->PayrollButton->Location = System::Drawing::Point(36, 227);
 			this->PayrollButton->Name = L"PayrollButton";
 			this->PayrollButton->Size = System::Drawing::Size(125, 42);
 			this->PayrollButton->TabIndex = 6;
@@ -124,11 +133,11 @@ namespace PayrollDB {
 			// 
 			// BenefitsButton
 			// 
-			this->BenefitsButton->Location = System::Drawing::Point(206, 203);
+			this->BenefitsButton->Location = System::Drawing::Point(36, 179);
 			this->BenefitsButton->Name = L"BenefitsButton";
 			this->BenefitsButton->Size = System::Drawing::Size(125, 42);
 			this->BenefitsButton->TabIndex = 5;
-			this->BenefitsButton->Text = L"Benefits";
+			this->BenefitsButton->Text = L"User Settings";
 			this->BenefitsButton->UseVisualStyleBackColor = true;
 			// 
 			// DateLabel
@@ -144,21 +153,12 @@ namespace PayrollDB {
 			// 
 			// SearchButton
 			// 
-			this->SearchButton->Location = System::Drawing::Point(206, 155);
+			this->SearchButton->Location = System::Drawing::Point(36, 131);
 			this->SearchButton->Name = L"SearchButton";
 			this->SearchButton->Size = System::Drawing::Size(125, 42);
 			this->SearchButton->TabIndex = 4;
-			this->SearchButton->Text = L"Search Employee";
+			this->SearchButton->Text = L"Current Pay Period";
 			this->SearchButton->UseVisualStyleBackColor = true;
-			// 
-			// NewEmpButton
-			// 
-			this->NewEmpButton->Location = System::Drawing::Point(206, 107);
-			this->NewEmpButton->Name = L"NewEmpButton";
-			this->NewEmpButton->Size = System::Drawing::Size(125, 42);
-			this->NewEmpButton->TabIndex = 3;
-			this->NewEmpButton->Text = L"New Employee";
-			this->NewEmpButton->UseVisualStyleBackColor = true;
 			// 
 			// closePage
 			// 

@@ -150,6 +150,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddUser.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="BenefitsForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -184,6 +187,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddUser.cpp" />
     <ClCompile Include="BenefitsForm.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DbTest.cpp">
@@ -202,6 +206,9 @@
     <ClCompile Include="User_Login.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddUser.resx">
+      <DependentUpon>AddUser.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BenefitsForm.resx">
       <DependentUpon>BenefitsForm.h</DependentUpon>
     </EmbeddedResource>

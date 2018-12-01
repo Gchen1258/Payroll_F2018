@@ -143,11 +143,11 @@ namespace PayrollDB {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
-			this->label1->Location = System::Drawing::Point(412, 134);
+			this->label1->Location = System::Drawing::Point(356, 129);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(49, 20);
+			this->label1->Size = System::Drawing::Size(110, 20);
 			this->label1->TabIndex = 66;
-			this->label1->Text = L"Salary";
+			this->label1->Text = L"Salary Per Hour";
 			// 
 			// wageField
 			// 
@@ -155,7 +155,6 @@ namespace PayrollDB {
 				static_cast<System::Byte>(0)));
 			this->wageField->Location = System::Drawing::Point(476, 125);
 			this->wageField->Name = L"wageField";
-			this->wageField->PasswordChar = '*';
 			this->wageField->Size = System::Drawing::Size(161, 29);
 			this->wageField->TabIndex = 65;
 			// 
@@ -515,6 +514,7 @@ private: System::Void NewUser_MouseUp(System::Object^  sender, System::Windows::
 private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 	System::String ^ state = StateCBox->Text;
 	state = state->Substring(state->Length - 3);
+	MessageBox::Show(state);
 	String^ address = AddrField->Text + ", " + CityField->Text + ", " + state + ", " + ZipField->Text;
 	if (check)
 	{

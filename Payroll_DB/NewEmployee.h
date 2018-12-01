@@ -2,6 +2,7 @@
 #ifndef NEWEMPLOYEE_H_INCLUDED__
 #define NEWEMPLOYEE_H_INCLUDED__
 #include "Database.h"
+#include "AddUser.h"
 namespace PayrollDB {
 
 	using namespace System;
@@ -392,6 +393,8 @@ namespace PayrollDB {
 		{
 			SQLConnect^ sql = gcnew SQLConnect();
 			sql->createEmployee(FNameField->Text, LNameField->Text, address, wageBox->Text);
+			AddUser^ add = gcnew AddUser(position);
+			add->ShowDialog();
 			this->Close();
 		}
 		else
