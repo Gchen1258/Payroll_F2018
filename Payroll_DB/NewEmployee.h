@@ -391,7 +391,7 @@ namespace PayrollDB {
 		if (filled)
 		{
 			SQLConnect^ sql = gcnew SQLConnect();
-			sql->createEmployee(FNameField->Text, LNameField->Text, address, wage.ToString(), position);
+			sql->createEmployee(FNameField->Text, LNameField->Text, address, wageBox->Text);
 			this->Close();
 		}
 		else
@@ -412,8 +412,7 @@ private: System::Void WorkerRadio_CheckedChanged(System::Object^  sender, System
 			if (button->Name != "WorkerRadio")
 				button->Checked = false;
 		}
-		position = "worker";
-		wage = 55000.00;
+		position = "1";
 	}
 
 }
@@ -426,8 +425,7 @@ private: System::Void TeamLeadRadio_CheckedChanged(System::Object^  sender, Syst
 			if (button->Name != "TeamLeadRadio")
 				button->Checked = false;
 		}
-		position = "lead";
-		wage = 65000.00;
+		position = "0";
 	}
 
 }

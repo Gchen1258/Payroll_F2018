@@ -5,6 +5,7 @@
 #include "DbTest.h"
 #include "MenuForm.h"
 #include "NewUser.h"
+#include "EmployeeMenu.h"
 
 namespace PayrollDB {
 
@@ -321,22 +322,27 @@ private: System::Void User_Login_MouseUp(System::Object^  sender, System::Window
 
 private: System::Void LoginButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	SQLConnect^ sql = gcnew SQLConnect();
-	bool check = sql->login(UserField->Text, passField->Text);
+	int check = sql->login(UserField->Text, passField->Text);
 	name = sql->getName(UserField->Text);
 	username = UserField->Text;
-	if (check)
+	if (check != -1)
 	{
-		this->Hide();
-		MenuForm^ menu = gcnew MenuForm(name, username);
-		menu->ShowDialog();
+		if (check == 0) {
+			this->Hide();
+			MenuForm^ menu = gcnew MenuForm(name, username);
+			menu->ShowDialog();
+		}
+		else {
+			this->Hide();
+			EmployeeMenu^ emenu = gcnew EmployeeMenu();
+			emenu->ShowDialog();
+		}
 	}
 	else
 	{
 		MessageBox::Show("Invalid User or Password!", "Invalid!", MessageBoxButtons::OK);
 	}
 }
-
-
 };
 }
 #endif
