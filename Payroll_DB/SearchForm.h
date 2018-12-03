@@ -19,7 +19,8 @@ namespace PayrollDB {
 	private:
 		bool filled = false;
 		bool mouseDown = false;
-		Point lastLocation;
+	private: System::Windows::Forms::Button^  button2;
+			 Point lastLocation;
 	public:
 		SearchForm(void)
 		{
@@ -127,6 +128,7 @@ namespace PayrollDB {
 			this->searchBTN = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->closePage = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->BeginInit();
@@ -330,8 +332,8 @@ namespace PayrollDB {
 			// 
 			// panel1
 			// 
-			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
-				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->panel1->BackColor = System::Drawing::Color::SeaShell;
+			this->panel1->Controls->Add(this->button2);
 			this->panel1->Controls->Add(this->label7);
 			this->panel1->Controls->Add(this->button1);
 			this->panel1->Controls->Add(this->ModButton);
@@ -354,6 +356,16 @@ namespace PayrollDB {
 			this->panel1->Size = System::Drawing::Size(1017, 468);
 			this->panel1->TabIndex = 17;
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(122, 369);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 17;
+			this->button2->Text = L"Delete";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &SearchForm::button2_Click);
+			// 
 			// closePage
 			// 
 			this->closePage->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"closePage.BackgroundImage")));
@@ -370,8 +382,7 @@ namespace PayrollDB {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
-				static_cast<System::Int32>(static_cast<System::Byte>(38)));
+			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(1017, 495);
 			this->Controls->Add(this->closePage);
 			this->Controls->Add(this->panel1);
@@ -516,7 +527,7 @@ private: System::Void position_textBox_TextChanged(System::Object^  sender, Syst
 		filled = false;
 	}
 }
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {//display button
 	SQLConnect^ db = gcnew SQLConnect();
 	try {
 		db->openConnection();
@@ -558,6 +569,33 @@ private: System::Void SearchForm_MouseMove(System::Object^  sender, System::Wind
 }
 private: System::Void SearchForm_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	mouseDown = false;
+}
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	SQLConnect^ db = gcnew SQLConnect();
+	try {
+		db->openConnection();
+		String^ sql;
+		sql = sql->Format("DELETE FROM Employee WHERE idEmployee LIKE '" + idEmployee_textBox->Text + "%'");
+		MySqlCommand^ cmd = gcnew MySqlCommand(sql, db->getConnection());
+		//cmd->ExecuteNonQuery();
+		MySqlDataReader^ dataset = cmd->ExecuteReader();
+		int i = 0;
+		while (dataset->Read()) {
+			dataGridView1->Rows->Add();
+			dataGridView1->Rows[i]->Cells[0]->Value = dataset[0];
+			dataGridView1->Rows[i]->Cells[1]->Value = dataset[1];
+			dataGridView1->Rows[i]->Cells[2]->Value = dataset[2];
+			dataGridView1->Rows[i]->Cells[3]->Value = dataset[3];
+			dataGridView1->Rows[i]->Cells[4]->Value = dataset[4];
+			i++;
+			//dataGridView1->DataSource = dataset;
+		}
+	}
+	catch (MySqlException^ err) {
+		MessageBox::Show(err->ToString());
+	}
+	db->closeConnection();
+
 }
 };
 }
