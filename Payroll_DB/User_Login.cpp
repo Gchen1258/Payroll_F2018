@@ -4,5 +4,5 @@
 [System::STAThread]
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)
 {
-	System::Windows::Forms::Application::Run(%PayrollDB::payroll_form());
+	System::Windows::Forms::Application::Run(%PayrollDB::User_Login());
 }
