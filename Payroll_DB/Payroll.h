@@ -16,11 +16,11 @@ private:
 
 public:
 	Payroll() {};
-	float GetSalary(float Salary) { return Salary; };
-	float GetIncome(float Income) { return Income; };
-	bool checkName(String^ fname, String^ lname);
-	bool checkID(int ID);
+	float getTaxes(int);
+	int getID(String^ fname, String^ lname);
 	float newSalary(int, float, int);
-	float newIncome(float, float, float, int);
+	float newIncome(float, int);
+
+
 
 };

@@ -133,8 +133,8 @@ bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ a
 	try {
 		openConnection();
 		String^ sql;
-		sql = sql->Format("Insert into employee(first_name, last_name, address, wages, position) values('{0}','{1}','{2}','{3}','{4}')",
-			first_name, last_name, address, wage, position);
+		sql = sql->Format("Insert into employee(first_name, last_name, address, wages) values('{0}','{1}','{2}','{3}')",
+			first_name, last_name, address, wage);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		//MessageBox::Show(sql);
 		cmd->ExecuteNonQuery();
