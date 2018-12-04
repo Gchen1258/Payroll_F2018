@@ -188,6 +188,7 @@ namespace PayrollDB {
 			if (passField->Text == confirmField->Text) {
 				SQLConnect^ db = gcnew SQLConnect();
 				db->createUser(userField->Text, passField->Text, position);
+				this->Close();
 			}
 		}
 	}

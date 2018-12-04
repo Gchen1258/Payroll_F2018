@@ -394,8 +394,9 @@ namespace PayrollDB {
 			SQLConnect^ sql = gcnew SQLConnect();
 			sql->createEmployee(FNameField->Text, LNameField->Text, address, wageBox->Text);
 			AddUser^ add = gcnew AddUser(position);
-			add->ShowDialog();
 			this->Close();
+			add->ShowDialog();
+			
 		}
 		else
 		{
