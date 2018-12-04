@@ -5,6 +5,7 @@
 #include "DbTest.h"
 #include "MenuForm.h"
 #include "NewUser.h"
+#include "EmployeeMenu.h"
 
 namespace PayrollDB {
 
@@ -116,10 +117,9 @@ namespace PayrollDB {
 			this->RegisterButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->RegisterButton->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12));
 			this->RegisterButton->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->RegisterButton->Location = System::Drawing::Point(184, 325);
-			this->RegisterButton->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->RegisterButton->Location = System::Drawing::Point(123, 211);
 			this->RegisterButton->Name = L"RegisterButton";
-			this->RegisterButton->Size = System::Drawing::Size(170, 62);
+			this->RegisterButton->Size = System::Drawing::Size(113, 40);
 			this->RegisterButton->TabIndex = 1;
 			this->RegisterButton->Text = L"New User";
 			this->RegisterButton->UseVisualStyleBackColor = false;
@@ -130,24 +130,21 @@ namespace PayrollDB {
 			this->UserField->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->UserField->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->UserField->Location = System::Drawing::Point(124, 186);
-			this->UserField->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->UserField->Location = System::Drawing::Point(83, 121);
 			this->UserField->Name = L"UserField";
-			this->UserField->Size = System::Drawing::Size(269, 47);
+			this->UserField->Size = System::Drawing::Size(180, 34);
 			this->UserField->TabIndex = 2;
 			this->UserField->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->UserField->TextChanged += gcnew System::EventHandler(this, &User_Login::UserField_TextChanged);
 			// 
 			// passField
 			// 
 			this->passField->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->passField->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->passField->Location = System::Drawing::Point(124, 240);
-			this->passField->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->passField->Location = System::Drawing::Point(83, 156);
 			this->passField->Name = L"passField";
 			this->passField->PasswordChar = '*';
-			this->passField->Size = System::Drawing::Size(269, 47);
+			this->passField->Size = System::Drawing::Size(180, 34);
 			this->passField->TabIndex = 3;
 			this->passField->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->passField->UseSystemPasswordChar = true;
@@ -158,10 +155,9 @@ namespace PayrollDB {
 				static_cast<System::Int32>(static_cast<System::Byte>(89)));
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12));
-			this->button1->Location = System::Drawing::Point(170, 395);
-			this->button1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->button1->Location = System::Drawing::Point(113, 257);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(214, 62);
+			this->button1->Size = System::Drawing::Size(143, 40);
 			this->button1->TabIndex = 6;
 			this->button1->Text = L"Test Connection";
 			this->button1->UseVisualStyleBackColor = false;
@@ -174,10 +170,9 @@ namespace PayrollDB {
 			this->pictureBox2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.BackgroundImage")));
 			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->pictureBox2->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->pictureBox2->Location = System::Drawing::Point(786, 0);
-			this->pictureBox2->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->pictureBox2->Location = System::Drawing::Point(524, 0);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(72, 68);
+			this->pictureBox2->Size = System::Drawing::Size(48, 44);
 			this->pictureBox2->TabIndex = 9;
 			this->pictureBox2->TabStop = false;
 			this->pictureBox2->Click += gcnew System::EventHandler(this, &User_Login::pictureBox2_Click);
@@ -187,10 +182,9 @@ namespace PayrollDB {
 			this->pictureBox3->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox3->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.BackgroundImage")));
 			this->pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->pictureBox3->Location = System::Drawing::Point(75, 183);
-			this->pictureBox3->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->pictureBox3->Location = System::Drawing::Point(50, 119);
 			this->pictureBox3->Name = L"pictureBox3";
-			this->pictureBox3->Size = System::Drawing::Size(54, 55);
+			this->pictureBox3->Size = System::Drawing::Size(36, 36);
 			this->pictureBox3->TabIndex = 10;
 			this->pictureBox3->TabStop = false;
 			// 
@@ -199,10 +193,9 @@ namespace PayrollDB {
 			this->pictureBox4->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.BackgroundImage")));
 			this->pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->pictureBox4->Location = System::Drawing::Point(75, 235);
-			this->pictureBox4->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->pictureBox4->Location = System::Drawing::Point(50, 153);
 			this->pictureBox4->Name = L"pictureBox4";
-			this->pictureBox4->Size = System::Drawing::Size(54, 55);
+			this->pictureBox4->Size = System::Drawing::Size(36, 36);
 			this->pictureBox4->TabIndex = 11;
 			this->pictureBox4->TabStop = false;
 			// 
@@ -211,10 +204,9 @@ namespace PayrollDB {
 			this->Logo->BackColor = System::Drawing::Color::Transparent;
 			this->Logo->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Logo.BackgroundImage")));
 			this->Logo->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->Logo->Location = System::Drawing::Point(562, 0);
-			this->Logo->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Logo->Location = System::Drawing::Point(375, 0);
 			this->Logo->Name = L"Logo";
-			this->Logo->Size = System::Drawing::Size(294, 402);
+			this->Logo->Size = System::Drawing::Size(196, 261);
 			this->Logo->TabIndex = 8;
 			this->Logo->TabStop = false;
 			// 
@@ -223,10 +215,9 @@ namespace PayrollDB {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Corbel", 26.25F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(51, 52);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(34, 34);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(477, 64);
+			this->label1->Size = System::Drawing::Size(317, 42);
 			this->label1->TabIndex = 12;
 			this->label1->Text = L"Tracker Management";
 			// 
@@ -234,10 +225,9 @@ namespace PayrollDB {
 			// 
 			this->LoginButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"LoginButton.BackgroundImage")));
 			this->LoginButton->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->LoginButton->Location = System::Drawing::Point(404, 195);
-			this->LoginButton->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->LoginButton->Location = System::Drawing::Point(269, 127);
 			this->LoginButton->Name = L"LoginButton";
-			this->LoginButton->Size = System::Drawing::Size(75, 77);
+			this->LoginButton->Size = System::Drawing::Size(50, 50);
 			this->LoginButton->TabIndex = 13;
 			this->LoginButton->TabStop = false;
 			this->LoginButton->Click += gcnew System::EventHandler(this, &User_Login::LoginButton_Click);
@@ -255,24 +245,22 @@ namespace PayrollDB {
 			this->panel1->Controls->Add(this->Logo);
 			this->panel1->Controls->Add(this->UserField);
 			this->panel1->Controls->Add(this->pictureBox4);
-			this->panel1->Location = System::Drawing::Point(0, 68);
-			this->panel1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->panel1->Location = System::Drawing::Point(0, 44);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(861, 562);
+			this->panel1->Size = System::Drawing::Size(574, 365);
 			this->panel1->TabIndex = 14;
 			// 
 			// User_Login
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
 				static_cast<System::Int32>(static_cast<System::Byte>(38)));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->ClientSize = System::Drawing::Size(856, 629);
+			this->ClientSize = System::Drawing::Size(571, 409);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->pictureBox2);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->MaximizeBox = false;
 			this->Name = L"User_Login";
 			this->Text = L"User_Login";
@@ -334,23 +322,26 @@ private: System::Void User_Login_MouseUp(System::Object^  sender, System::Window
 
 private: System::Void LoginButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	SQLConnect^ sql = gcnew SQLConnect();
-	bool check = sql->login(UserField->Text, passField->Text);
+	int check = sql->login(UserField->Text, passField->Text);
 	name = sql->getName(UserField->Text);
 	username = UserField->Text;
-	if (check)
+	if (check != -1)
 	{
-		this->Hide();
-		MenuForm^ menu = gcnew MenuForm(name, username);
-		menu->ShowDialog();
+		if (check == 0) {
+			this->Hide();
+			MenuForm^ menu = gcnew MenuForm(name, username);
+			menu->ShowDialog();
+		}
+		else {
+			this->Hide();
+			EmployeeMenu^ emenu = gcnew EmployeeMenu(name, username);
+			emenu->ShowDialog();
+		}
 	}
 	else
 	{
 		MessageBox::Show("Invalid User or Password!", "Invalid!", MessageBoxButtons::OK);
 	}
-}
-
-
-private: System::Void UserField_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }
