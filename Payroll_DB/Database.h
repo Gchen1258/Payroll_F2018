@@ -17,7 +17,7 @@ private:
 	//Change these to match your MySQL configurations
 
 	String^ user = "root";
-	String^	pass = "123456";
+	String^	pass = "Crossway318#S?";
 	String^ database = "payroll";
 	String^	server = "localhost";
 	String^ port = "3306";

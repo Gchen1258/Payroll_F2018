@@ -168,6 +168,9 @@
     <ClInclude Include="payroll_form.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="payroll_manage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="SearchForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -196,6 +199,7 @@
     <ClCompile Include="EmployeeMenu.cpp" />
     <ClCompile Include="Payroll.cpp" />
     <ClCompile Include="payroll_form.cpp" />
+    <ClCompile Include="payroll_manage.cpp" />
     <ClCompile Include="SearchForm.cpp" />
     <ClCompile Include="MenuForm.cpp" />
     <ClCompile Include="NewEmployee.cpp" />
@@ -217,6 +221,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeMenu.resx" />
     <EmbeddedResource Include="payroll_form.resx" />
+    <EmbeddedResource Include="payroll_manage.resx" />
     <EmbeddedResource Include="SearchForm.resx">
       <DependentUpon>SearchForm.h</DependentUpon>
     </EmbeddedResource>

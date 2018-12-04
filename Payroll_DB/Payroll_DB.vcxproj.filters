@@ -48,9 +48,6 @@
     <ClInclude Include="Payroll.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="payroll_form.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EmployeeMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -58,6 +55,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AddUser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="payroll_manage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="payroll_form.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,13 +95,16 @@
     <ClCompile Include="Payroll.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="payroll_form.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EmployeeMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AddUser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="payroll_manage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="payroll_form.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,6 +134,12 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeMenu.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddUser.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="payroll_manage.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

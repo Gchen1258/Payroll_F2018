@@ -2,7 +2,7 @@
 #ifndef MENUFORM_H_INCLUDED__
 #define MENUFORM_H_INCLUDED__
 #include "NewEmployee.h"
-#include "payroll_form.h"
+#include "payroll_manage.h"
 #include "BenefitsForm.h"
 #include "SearchForm.h"
 
@@ -243,7 +243,7 @@ private: System::Void BenefitsButton_Click(System::Object^  sender, System::Even
 	bf->ShowDialog();
 }
 private: System::Void PayrollButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	payroll_form^ pf = gcnew payroll_form();
+	payroll_manage^ pf = gcnew payroll_manage();
 	pf->ShowDialog();
 }
 private: System::Void closePage_Click(System::Object^  sender, System::EventArgs^  e) {
