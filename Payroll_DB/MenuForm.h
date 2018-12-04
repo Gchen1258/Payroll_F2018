@@ -24,29 +24,27 @@ namespace PayrollDB {
 		String^ name = "";
 		bool mouseDown = false;
 		Point lastLocation;
+		String^ username = "";
 	private: System::Windows::Forms::Button^  NewEmpButton;
 	private: System::Windows::Forms::Button^  SearchButton;
 	private: System::Windows::Forms::Button^  PayrollButton;
-
-
-
 	private: System::Windows::Forms::Button^  BenefitsButton;
 	private: System::Windows::Forms::Panel^  panel1;
 	private: System::Windows::Forms::PictureBox^  closePage;
 
-			 String^ username = "";
+			 
 	public:
 		MenuForm(void)
 		{
 			InitializeComponent();
-			DateLabel->Text = System::DateTime::Now.Date.ToString();
+			DateLabel->Text = System::DateTime::Now.ToString();
 			
 		}
 
 		MenuForm(String^ name, String^ user)
 		{
 			InitializeComponent();
-			DateLabel->Text = System::DateTime::Now.Date.ToString();
+			DateLabel->Text = System::DateTime::Now.ToString();
 			this->name = name;
 			this->username = user;
 			NameLabel->Text = this->name;

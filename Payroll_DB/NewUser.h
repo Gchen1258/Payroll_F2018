@@ -39,6 +39,9 @@ namespace PayrollDB {
 	private: System::Windows::Forms::ComboBox^  StateCBox;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::TextBox^  wageField;
+
 
 	private: Point lastLocation;
 	public:
@@ -49,7 +52,6 @@ namespace PayrollDB {
 
 	private:
 		bool check = false;
-		float wage = 120000.0;
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -79,6 +81,8 @@ namespace PayrollDB {
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(NewUser::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->wageField = (gcnew System::Windows::Forms::TextBox());
 			this->AddrField = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->AddressLabel = (gcnew System::Windows::Forms::Label());
@@ -108,6 +112,8 @@ namespace PayrollDB {
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
 			this->panel1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->panel1->Controls->Add(this->label1);
+			this->panel1->Controls->Add(this->wageField);
 			this->panel1->Controls->Add(this->AddrField);
 			this->panel1->Controls->Add(this->label2);
 			this->panel1->Controls->Add(this->AddressLabel);
@@ -132,6 +138,25 @@ namespace PayrollDB {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(671, 309);
 			this->panel1->TabIndex = 45;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11));
+			this->label1->Location = System::Drawing::Point(356, 129);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(110, 20);
+			this->label1->TabIndex = 66;
+			this->label1->Text = L"Salary Per Hour";
+			// 
+			// wageField
+			// 
+			this->wageField->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->wageField->Location = System::Drawing::Point(476, 125);
+			this->wageField->Name = L"wageField";
+			this->wageField->Size = System::Drawing::Size(161, 29);
+			this->wageField->TabIndex = 65;
 			// 
 			// AddrField
 			// 
@@ -489,12 +514,13 @@ private: System::Void NewUser_MouseUp(System::Object^  sender, System::Windows::
 private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 	System::String ^ state = StateCBox->Text;
 	state = state->Substring(state->Length - 3);
+	MessageBox::Show(state);
 	String^ address = AddrField->Text + ", " + CityField->Text + ", " + state + ", " + ZipField->Text;
 	if (check)
 	{
 		SQLConnect^ sql = gcnew SQLConnect();
-		sql->createEmployee(FNameField->Text, LNameField->Text, address, wage.ToString(), "management");
-		sql->createUser(userField->Text, PassField->Text);
+		sql->createEmployee(FNameField->Text, LNameField->Text, address, wageField->Text);
+		sql->createUser(userField->Text, PassField->Text, "0");
 		this->Close();
 	}
 	else
