@@ -195,9 +195,11 @@ namespace PayrollDB {
 			this->groupBox3->Controls->Add(this->label10);
 			this->groupBox3->Controls->Add(this->Name_Label);
 			this->groupBox3->Controls->Add(this->label6);
-			this->groupBox3->Location = System::Drawing::Point(92, 232);
+			this->groupBox3->Location = System::Drawing::Point(61, 151);
+			this->groupBox3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(454, 203);
+			this->groupBox3->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->groupBox3->Size = System::Drawing::Size(303, 132);
 			this->groupBox3->TabIndex = 13;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Paycheck";
@@ -205,9 +207,10 @@ namespace PayrollDB {
 			// date_Label
 			// 
 			this->date_Label->AutoSize = true;
-			this->date_Label->Location = System::Drawing::Point(317, 29);
+			this->date_Label->Location = System::Drawing::Point(211, 19);
+			this->date_Label->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->date_Label->Name = L"date_Label";
-			this->date_Label->Size = System::Drawing::Size(41, 20);
+			this->date_Label->Size = System::Drawing::Size(28, 13);
 			this->date_Label->TabIndex = 19;
 			this->date_Label->Text = L"date";
 			this->date_Label->Click += gcnew System::EventHandler(this, &payroll_form::date_Label_Click_1);
@@ -215,36 +218,40 @@ namespace PayrollDB {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(235, 29);
+			this->label5->Location = System::Drawing::Point(157, 19);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(75, 20);
+			this->label5->Size = System::Drawing::Size(52, 13);
 			this->label5->TabIndex = 18;
 			this->label5->Text = L"Pay date:";
 			// 
 			// address_Label
 			// 
 			this->address_Label->AutoSize = true;
-			this->address_Label->Location = System::Drawing::Point(118, 29);
+			this->address_Label->Location = System::Drawing::Point(79, 19);
+			this->address_Label->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->address_Label->Name = L"address_Label";
-			this->address_Label->Size = System::Drawing::Size(66, 20);
+			this->address_Label->Size = System::Drawing::Size(44, 13);
 			this->address_Label->TabIndex = 17;
 			this->address_Label->Text = L"address";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(40, 29);
+			this->label7->Location = System::Drawing::Point(27, 19);
+			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(72, 20);
+			this->label7->Size = System::Drawing::Size(48, 13);
 			this->label7->TabIndex = 16;
 			this->label7->Text = L"Address:";
 			// 
 			// Salary_Label
 			// 
 			this->Salary_Label->AutoSize = true;
-			this->Salary_Label->Location = System::Drawing::Point(140, 128);
+			this->Salary_Label->Location = System::Drawing::Point(93, 83);
+			this->Salary_Label->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->Salary_Label->Name = L"Salary_Label";
-			this->Salary_Label->Size = System::Drawing::Size(39, 20);
+			this->Salary_Label->Size = System::Drawing::Size(27, 13);
 			this->Salary_Label->TabIndex = 14;
 			this->Salary_Label->Text = L"paid";
 			this->Salary_Label->Click += gcnew System::EventHandler(this, &payroll_form::label11_Click);
@@ -252,9 +259,10 @@ namespace PayrollDB {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(55, 128);
+			this->label10->Location = System::Drawing::Point(37, 83);
+			this->label10->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(57, 20);
+			this->label10->Size = System::Drawing::Size(39, 13);
 			this->label10->TabIndex = 14;
 			this->label10->Text = L"Salary:";
 			this->label10->Click += gcnew System::EventHandler(this, &payroll_form::label10_Click);
@@ -262,9 +270,10 @@ namespace PayrollDB {
 			// Name_Label
 			// 
 			this->Name_Label->AutoSize = true;
-			this->Name_Label->Location = System::Drawing::Point(140, 88);
+			this->Name_Label->Location = System::Drawing::Point(93, 57);
+			this->Name_Label->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->Name_Label->Name = L"Name_Label";
-			this->Name_Label->Size = System::Drawing::Size(51, 20);
+			this->Name_Label->Size = System::Drawing::Size(35, 13);
 			this->Name_Label->TabIndex = 14;
 			this->Name_Label->Text = L"Name";
 			this->Name_Label->Click += gcnew System::EventHandler(this, &payroll_form::Name_Label_Click);
@@ -272,18 +281,20 @@ namespace PayrollDB {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(51, 88);
+			this->label6->Location = System::Drawing::Point(34, 57);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(83, 20);
+			this->label6->Size = System::Drawing::Size(56, 13);
 			this->label6->TabIndex = 0;
 			this->label6->Text = L"Employee:";
 			// 
 			// income_Label
 			// 
 			this->income_Label->AutoSize = true;
-			this->income_Label->Location = System::Drawing::Point(298, 102);
+			this->income_Label->Location = System::Drawing::Point(199, 66);
+			this->income_Label->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->income_Label->Name = L"income_Label";
-			this->income_Label->Size = System::Drawing::Size(60, 20);
+			this->income_Label->Size = System::Drawing::Size(41, 13);
 			this->income_Label->TabIndex = 14;
 			this->income_Label->Text = L"income";
 			this->income_Label->Click += gcnew System::EventHandler(this, &payroll_form::Id_Label_Click);
@@ -291,9 +302,10 @@ namespace PayrollDB {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(226, 102);
+			this->label8->Location = System::Drawing::Point(151, 66);
+			this->label8->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(66, 20);
+			this->label8->Size = System::Drawing::Size(45, 13);
 			this->label8->TabIndex = 15;
 			this->label8->Text = L"Income:";
 			this->label8->Click += gcnew System::EventHandler(this, &payroll_form::label8_Click);
@@ -304,10 +316,9 @@ namespace PayrollDB {
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->panel1->Controls->Add(this->groupBox4);
 			this->panel1->Controls->Add(this->groupBox3);
-			this->panel1->Location = System::Drawing::Point(0, 42);
-			this->panel1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->panel1->Location = System::Drawing::Point(0, 27);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(638, 480);
+			this->panel1->Size = System::Drawing::Size(425, 312);
 			this->panel1->TabIndex = 20;
 			// 
 			// groupBox4
@@ -322,9 +333,11 @@ namespace PayrollDB {
 			this->groupBox4->Controls->Add(this->label12);
 			this->groupBox4->Controls->Add(this->label8);
 			this->groupBox4->Controls->Add(this->income_Label);
-			this->groupBox4->Location = System::Drawing::Point(92, 31);
+			this->groupBox4->Location = System::Drawing::Point(61, 20);
+			this->groupBox4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->groupBox4->Name = L"groupBox4";
-			this->groupBox4->Size = System::Drawing::Size(454, 164);
+			this->groupBox4->Padding = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->groupBox4->Size = System::Drawing::Size(303, 107);
 			this->groupBox4->TabIndex = 21;
 			this->groupBox4->TabStop = false;
 			this->groupBox4->Text = L"Earings";
@@ -332,54 +345,60 @@ namespace PayrollDB {
 			// rate_Label
 			// 
 			this->rate_Label->AutoSize = true;
-			this->rate_Label->Location = System::Drawing::Point(136, 28);
+			this->rate_Label->Location = System::Drawing::Point(91, 18);
+			this->rate_Label->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->rate_Label->Name = L"rate_Label";
-			this->rate_Label->Size = System::Drawing::Size(37, 20);
+			this->rate_Label->Size = System::Drawing::Size(25, 13);
 			this->rate_Label->TabIndex = 23;
 			this->rate_Label->Text = L"rate";
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(40, 28);
+			this->label9->Location = System::Drawing::Point(27, 18);
+			this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(71, 20);
+			this->label9->Size = System::Drawing::Size(49, 13);
 			this->label9->TabIndex = 22;
 			this->label9->Text = L"Pay rate:";
 			// 
 			// hours_label
 			// 
 			this->hours_label->AutoSize = true;
-			this->hours_label->Location = System::Drawing::Point(136, 62);
+			this->hours_label->Location = System::Drawing::Point(91, 40);
+			this->hours_label->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->hours_label->Name = L"hours_label";
-			this->hours_label->Size = System::Drawing::Size(49, 20);
+			this->hours_label->Size = System::Drawing::Size(33, 13);
 			this->hours_label->TabIndex = 21;
 			this->hours_label->Text = L"hours";
 			// 
 			// label17
 			// 
 			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(37, 62);
+			this->label17->Location = System::Drawing::Point(25, 40);
+			this->label17->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label17->Name = L"label17";
-			this->label17->Size = System::Drawing::Size(97, 20);
+			this->label17->Size = System::Drawing::Size(67, 13);
 			this->label17->TabIndex = 20;
 			this->label17->Text = L"Work Hours:";
 			// 
 			// taxes_Label
 			// 
 			this->taxes_Label->AutoSize = true;
-			this->taxes_Label->Location = System::Drawing::Point(136, 102);
+			this->taxes_Label->Location = System::Drawing::Point(91, 66);
+			this->taxes_Label->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->taxes_Label->Name = L"taxes_Label";
-			this->taxes_Label->Size = System::Drawing::Size(47, 20);
+			this->taxes_Label->Size = System::Drawing::Size(32, 13);
 			this->taxes_Label->TabIndex = 19;
 			this->taxes_Label->Text = L"taxes";
 			// 
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(40, 102);
+			this->label14->Location = System::Drawing::Point(27, 66);
+			this->label14->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(55, 20);
+			this->label14->Size = System::Drawing::Size(39, 13);
 			this->label14->TabIndex = 18;
 			this->label14->Text = L"Taxes:";
 			this->label14->Click += gcnew System::EventHandler(this, &payroll_form::label14_Click_1);
@@ -387,18 +406,20 @@ namespace PayrollDB {
 			// salary_label2
 			// 
 			this->salary_label2->AutoSize = true;
-			this->salary_label2->Location = System::Drawing::Point(298, 69);
+			this->salary_label2->Location = System::Drawing::Point(199, 45);
+			this->salary_label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->salary_label2->Name = L"salary_label2";
-			this->salary_label2->Size = System::Drawing::Size(50, 20);
+			this->salary_label2->Size = System::Drawing::Size(34, 13);
 			this->salary_label2->TabIndex = 17;
 			this->salary_label2->Text = L"salary";
 			// 
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(226, 69);
+			this->label12->Location = System::Drawing::Point(151, 45);
+			this->label12->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(57, 20);
+			this->label12->Size = System::Drawing::Size(39, 13);
 			this->label12->TabIndex = 16;
 			this->label12->Text = L"Salary:";
 			// 
@@ -408,25 +429,23 @@ namespace PayrollDB {
 			this->closePage->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"closePage.BackgroundImage")));
 			this->closePage->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->closePage->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->closePage->Location = System::Drawing::Point(593, 0);
-			this->closePage->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->closePage->Location = System::Drawing::Point(395, 0);
 			this->closePage->Name = L"closePage";
-			this->closePage->Size = System::Drawing::Size(45, 40);
+			this->closePage->Size = System::Drawing::Size(30, 26);
 			this->closePage->TabIndex = 21;
 			this->closePage->TabStop = false;
 			this->closePage->Click += gcnew System::EventHandler(this, &payroll_form::closePage_Click);
 			// 
 			// payroll_form
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
 				static_cast<System::Int32>(static_cast<System::Byte>(38)));
-			this->ClientSize = System::Drawing::Size(639, 523);
+			this->ClientSize = System::Drawing::Size(426, 340);
 			this->Controls->Add(this->closePage);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"payroll_form";
 			this->Text = L"payroll_form";
 			this->Load += gcnew System::EventHandler(this, &payroll_form::payroll_form_Load);

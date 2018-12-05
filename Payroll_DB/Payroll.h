@@ -18,8 +18,9 @@ public:
 	Payroll() {};
 	float getTaxes(int);
 	int getID(String^ fname, String^ lname);
-	float newSalary(int, float, int);
-	float newIncome(float, int);
+	void newPaycheck(int, float, int);
+	float updateSalary(int, float, int);
+	float updateIncome(float, int);
 
 
 

@@ -651,8 +651,8 @@ private: System::Void button2_Click_1(System::Object^  sender, System::EventArgs
 				int Id = (int)(Convert::ToDouble(id));
 
 				//Payroll functions that will calculate and store the salary and income values in the database.
-				float Salary = payroll_obj.newSalary(hours, paid, Id);
-				float Income = payroll_obj.newIncome(Salary, Id);
+				float Salary = payroll_obj.updateSalary(hours, paid, Id);
+				float Income = payroll_obj.updateIncome(Salary, Id);
 				float taxes = payroll_obj.getTaxes(Id);
 
 				//Setting the new Paycheck values to the payroll form.
