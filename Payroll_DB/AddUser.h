@@ -83,54 +83,56 @@ namespace PayrollDB {
 			// userLabel
 			// 
 			this->userLabel->AutoSize = true;
-			this->userLabel->Location = System::Drawing::Point(110, 65);
+			this->userLabel->Location = System::Drawing::Point(98, 52);
 			this->userLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->userLabel->Name = L"userLabel";
-			this->userLabel->Size = System::Drawing::Size(87, 20);
+			this->userLabel->Size = System::Drawing::Size(77, 17);
 			this->userLabel->TabIndex = 0;
 			this->userLabel->Text = L"Username:";
 			// 
 			// userField
 			// 
-			this->userField->Location = System::Drawing::Point(206, 60);
-			this->userField->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->userField->Location = System::Drawing::Point(183, 48);
+			this->userField->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->userField->Name = L"userField";
-			this->userField->Size = System::Drawing::Size(148, 26);
+			this->userField->Size = System::Drawing::Size(132, 22);
 			this->userField->TabIndex = 1;
 			// 
 			// passField
 			// 
-			this->passField->Location = System::Drawing::Point(206, 125);
-			this->passField->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->passField->Location = System::Drawing::Point(183, 100);
+			this->passField->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->passField->Name = L"passField";
-			this->passField->Size = System::Drawing::Size(148, 26);
+			this->passField->PasswordChar = '*';
+			this->passField->Size = System::Drawing::Size(132, 22);
 			this->passField->TabIndex = 2;
 			// 
 			// confirmField
 			// 
-			this->confirmField->Location = System::Drawing::Point(206, 182);
-			this->confirmField->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->confirmField->Location = System::Drawing::Point(183, 146);
+			this->confirmField->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->confirmField->Name = L"confirmField";
-			this->confirmField->Size = System::Drawing::Size(148, 26);
+			this->confirmField->PasswordChar = '*';
+			this->confirmField->Size = System::Drawing::Size(132, 22);
 			this->confirmField->TabIndex = 3;
 			// 
 			// passLabel
 			// 
 			this->passLabel->AutoSize = true;
-			this->passLabel->Location = System::Drawing::Point(112, 129);
+			this->passLabel->Location = System::Drawing::Point(100, 103);
 			this->passLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->passLabel->Name = L"passLabel";
-			this->passLabel->Size = System::Drawing::Size(82, 20);
+			this->passLabel->Size = System::Drawing::Size(73, 17);
 			this->passLabel->TabIndex = 4;
 			this->passLabel->Text = L"Password:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(56, 186);
+			this->label3->Location = System::Drawing::Point(50, 149);
 			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(141, 20);
+			this->label3->Size = System::Drawing::Size(125, 17);
 			this->label3->TabIndex = 5;
 			this->label3->Text = L"Confirm Password:";
 			// 
@@ -145,18 +147,18 @@ namespace PayrollDB {
 			this->panel1->Controls->Add(this->passLabel);
 			this->panel1->Controls->Add(this->passField);
 			this->panel1->Controls->Add(this->confirmField);
-			this->panel1->Location = System::Drawing::Point(0, 42);
-			this->panel1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->panel1->Location = System::Drawing::Point(0, 34);
+			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(536, 365);
+			this->panel1->Size = System::Drawing::Size(476, 292);
 			this->panel1->TabIndex = 6;
 			// 
 			// submitButton
 			// 
-			this->submitButton->Location = System::Drawing::Point(206, 252);
-			this->submitButton->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->submitButton->Location = System::Drawing::Point(183, 202);
+			this->submitButton->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->submitButton->Name = L"submitButton";
-			this->submitButton->Size = System::Drawing::Size(112, 35);
+			this->submitButton->Size = System::Drawing::Size(100, 28);
 			this->submitButton->TabIndex = 6;
 			this->submitButton->Text = L"Submit";
 			this->submitButton->UseVisualStyleBackColor = true;
@@ -164,14 +166,14 @@ namespace PayrollDB {
 			// 
 			// AddUser
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
 				static_cast<System::Int32>(static_cast<System::Byte>(38)));
-			this->ClientSize = System::Drawing::Size(537, 402);
+			this->ClientSize = System::Drawing::Size(477, 322);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"AddUser";
 			this->Text = L"AddUser";
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &AddUser::AddUser_MouseDown);
@@ -188,6 +190,8 @@ namespace PayrollDB {
 			if (passField->Text == confirmField->Text) {
 				SQLConnect^ db = gcnew SQLConnect();
 				db->createUser(userField->Text, passField->Text, position);
+				String^ id = db->getLastID();
+				db->initializeDeductibles(id);
 				this->Close();
 			}
 		}

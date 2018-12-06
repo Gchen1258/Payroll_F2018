@@ -1,26 +1,23 @@
 #pragma once
-
 using namespace System;
 using namespace System::Windows::Forms;
 
 ref class Payroll
 {
 private:
-	float Income = 0;
-	float Salary = 0;
-	float Paid_Perhour = 0;
-	int NumHours = 0;
+	float new_income = 0;
+	float new_salary = 0;
 	float taxes = 0;
+	bool marry;
 	
 	//float benefits;
 
 public:
 	Payroll() {};
-	float getTaxes(int);
+	bool getMarriage();
+	float get_taxes(bool marry, float pay);
 	int getID(String^ fname, String^ lname);
-	float newSalary(int, float, int);
-	float newIncome(float, int);
-
-
-
+	void newPaycheck(int, float, int);
+	float updateSalary(int hours, float phsalary, int id);
+	float updateIncome(float, int);
 };

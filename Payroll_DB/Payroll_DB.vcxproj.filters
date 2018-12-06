@@ -51,9 +51,6 @@
     <ClInclude Include="EmployeeMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\Downloads - HDD\Deductibles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AddUser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -61,6 +58,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="payroll_form.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModifyEmployee.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="User_Access.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -107,6 +110,12 @@
     <ClCompile Include="payroll_form.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ModifyEmployee.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User_Access.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DbTest.resx">
@@ -140,6 +149,12 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="payroll_manage.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyEmployee.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Access.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

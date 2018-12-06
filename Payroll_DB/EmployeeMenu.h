@@ -1,5 +1,6 @@
 #pragma once
 #include "payroll_form.h"
+#include "User_Access.h"
 
 namespace PayrollDB {
 
@@ -19,7 +20,9 @@ namespace PayrollDB {
 		String^ name = "";
 		String^ username = "";
 		bool mouseDown = false;
-		Point lastLocation;
+	private: System::Windows::Forms::Button^  button1;
+			 Point lastLocation;
+			 String^ isclocked;
 	public:
 		EmployeeMenu(void)
 		{
@@ -36,6 +39,28 @@ namespace PayrollDB {
 			this->name = name;
 			this->username = user;
 			NameLabel->Text = this->name;
+
+			SQLConnect^ sql = gcnew SQLConnect();
+			//Insert time if clocked in
+			String^ id = sql->getID(username);
+			sql->openConnection();
+			String^ q1 = q1->Format("SELECT clockedin FROM employee WHERE idemployee='{0}'", id);
+			MySqlConnection^ conn = sql->getConnection();
+			MySqlCommand^ cmd = gcnew MySqlCommand(q1, conn);
+			MySqlDataReader^ reader = cmd->ExecuteReader();
+			while (reader->Read())
+			{
+				isclocked = reader[0]->ToString();
+			}
+			if (isclocked == "0")
+			{
+				button1->Text = "Clock In";
+			}
+			else if (isclocked == "1")
+			{
+				button1->Text = "Clock Out";
+			}
+			sql->closeConnection();
 		}
 
 	protected:
@@ -81,6 +106,7 @@ namespace PayrollDB {
 			this->DateLabel = (gcnew System::Windows::Forms::Label());
 			this->SearchButton = (gcnew System::Windows::Forms::Button());
 			this->closePage = (gcnew System::Windows::Forms::PictureBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
 			this->SuspendLayout();
@@ -89,15 +115,16 @@ namespace PayrollDB {
 			// 
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->panel1->Controls->Add(this->button1);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Controls->Add(this->NameLabel);
 			this->panel1->Controls->Add(this->BenefitsButton);
 			this->panel1->Controls->Add(this->DateLabel);
 			this->panel1->Controls->Add(this->SearchButton);
-			this->panel1->Location = System::Drawing::Point(0, 42);
-			this->panel1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->panel1->Location = System::Drawing::Point(0, 34);
+			this->panel1->Margin = System::Windows::Forms::Padding(4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(488, 598);
+			this->panel1->Size = System::Drawing::Size(434, 478);
 			this->panel1->TabIndex = 8;
 			// 
 			// label1
@@ -105,10 +132,10 @@ namespace PayrollDB {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(20, 17);
+			this->label1->Location = System::Drawing::Point(18, 14);
 			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(157, 45);
+			this->label1->Size = System::Drawing::Size(132, 38);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Welcome";
 			// 
@@ -117,41 +144,42 @@ namespace PayrollDB {
 			this->NameLabel->AutoSize = true;
 			this->NameLabel->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->NameLabel->Location = System::Drawing::Point(165, 17);
+			this->NameLabel->Location = System::Drawing::Point(147, 14);
 			this->NameLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->NameLabel->Name = L"NameLabel";
-			this->NameLabel->Size = System::Drawing::Size(105, 45);
+			this->NameLabel->Size = System::Drawing::Size(89, 38);
 			this->NameLabel->TabIndex = 1;
 			this->NameLabel->Text = L"Name";
 			// 
 			// BenefitsButton
 			// 
-			this->BenefitsButton->Location = System::Drawing::Point(138, 275);
-			this->BenefitsButton->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->BenefitsButton->Location = System::Drawing::Point(123, 220);
+			this->BenefitsButton->Margin = System::Windows::Forms::Padding(4);
 			this->BenefitsButton->Name = L"BenefitsButton";
-			this->BenefitsButton->Size = System::Drawing::Size(188, 65);
+			this->BenefitsButton->Size = System::Drawing::Size(167, 52);
 			this->BenefitsButton->TabIndex = 5;
 			this->BenefitsButton->Text = L"User Settings";
 			this->BenefitsButton->UseVisualStyleBackColor = true;
+			this->BenefitsButton->Click += gcnew System::EventHandler(this, &EmployeeMenu::BenefitsButton_Click);
 			// 
 			// DateLabel
 			// 
 			this->DateLabel->AutoSize = true;
 			this->DateLabel->Font = (gcnew System::Drawing::Font(L"Comic Sans MS", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->DateLabel->Location = System::Drawing::Point(20, 63);
+			this->DateLabel->Location = System::Drawing::Point(18, 50);
 			this->DateLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->DateLabel->Name = L"DateLabel";
-			this->DateLabel->Size = System::Drawing::Size(92, 45);
+			this->DateLabel->Size = System::Drawing::Size(78, 38);
 			this->DateLabel->TabIndex = 2;
 			this->DateLabel->Text = L"Date";
 			// 
 			// SearchButton
 			// 
-			this->SearchButton->Location = System::Drawing::Point(138, 200);
-			this->SearchButton->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->SearchButton->Location = System::Drawing::Point(123, 160);
+			this->SearchButton->Margin = System::Windows::Forms::Padding(4);
 			this->SearchButton->Name = L"SearchButton";
-			this->SearchButton->Size = System::Drawing::Size(188, 65);
+			this->SearchButton->Size = System::Drawing::Size(167, 52);
 			this->SearchButton->TabIndex = 4;
 			this->SearchButton->Text = L"Current Pay Period";
 			this->SearchButton->UseVisualStyleBackColor = true;
@@ -163,10 +191,10 @@ namespace PayrollDB {
 			this->closePage->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"closePage.BackgroundImage")));
 			this->closePage->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->closePage->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->closePage->Location = System::Drawing::Point(432, 0);
-			this->closePage->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->closePage->Location = System::Drawing::Point(384, 0);
+			this->closePage->Margin = System::Windows::Forms::Padding(4);
 			this->closePage->Name = L"closePage";
-			this->closePage->Size = System::Drawing::Size(45, 40);
+			this->closePage->Size = System::Drawing::Size(40, 32);
 			this->closePage->TabIndex = 19;
 			this->closePage->TabStop = false;
 			this->closePage->Click += gcnew System::EventHandler(this, &EmployeeMenu::closePage_Click);
@@ -174,19 +202,33 @@ namespace PayrollDB {
 			this->closePage->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &EmployeeMenu::closePage_MouseMove);
 			this->closePage->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &EmployeeMenu::closePage_MouseUp);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(123, 280);
+			this->button1->Margin = System::Windows::Forms::Padding(4);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(167, 52);
+			this->button1->TabIndex = 6;
+			this->button1->Text = L"User Settings";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &EmployeeMenu::button1_Click);
+			// 
 			// EmployeeMenu
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)),
 				static_cast<System::Int32>(static_cast<System::Byte>(38)));
-			this->ClientSize = System::Drawing::Size(483, 637);
+			this->ClientSize = System::Drawing::Size(429, 510);
 			this->Controls->Add(this->closePage);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"EmployeeMenu";
 			this->Text = L"EmployeeMenu";
+			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &EmployeeMenu::EmployeeMenu_MouseDown);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &EmployeeMenu::EmployeeMenu_MouseMove);
+			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &EmployeeMenu::EmployeeMenu_MouseUp);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->EndInit();
@@ -216,6 +258,78 @@ private: System::Void closePage_MouseUp(System::Object^  sender, System::Windows
 private: System::Void SearchButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	payroll_form^ pf = gcnew payroll_form(name);
 	pf->ShowDialog();
+}
+private: System::Void BenefitsButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	User_Access^ ua = gcnew User_Access(username);
+	ua->ShowDialog();
+}
+private: System::Void EmployeeMenu_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = true;
+	lastLocation = e->Location;
+}
+private: System::Void EmployeeMenu_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (mouseDown) {
+		this->Location = Point((this->Location.X - lastLocation.X) + e->X, (this->Location.Y - lastLocation.Y) + e->Y);
+		this->Update();
+	}
+}
+
+private: System::Void EmployeeMenu_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = false;
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	SQLConnect^ sql = gcnew SQLConnect();
+	String^ id = sql->getID(username);
+	//Insert time if clocked in
+	MySqlConnection^ conn = sql->getConnection();
+
+	if (isclocked == "0") {
+		button1->Text = "Clock Out";
+		try {	
+			sql->openConnection();
+			String^ query = query->Format("UPDATE employee SET time=NOW(), clockedin='1' WHERE idemployee='{0}'", id);
+			MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
+			cmd->ExecuteNonQuery();
+			MessageBox::Show("Clocked In!");
+			sql->closeConnection();
+			isclocked = "1";
+		}
+		catch (MySqlException^ e)
+		{
+			MessageBox::Show(e->ToString());
+		}
+	}
+	else if (isclocked == "1") {
+		button1->Text = "Clock In";
+		String^ time;
+		//Get hours elapsed and insert into employee time
+		try {
+			sql->openConnection();
+			String^ q2 = q2->Format("UPDATE paycheck SET hours=(Select timestampdiff(Hour, NOW(), time) FROM employee WHERE idemployee = '{0}') where idemployee='{0}'");
+			MySqlCommand^ cmd = gcnew MySqlCommand(q2, conn);
+			cmd->ExecuteNonQuery();
+			sql->closeConnection();
+		}
+		catch (MySqlException^ e)
+		{
+			MessageBox::Show(e->ToString());
+		}
+		
+		try {
+			sql->openConnection();
+			String^ query = query->Format("UPDATE employee SET time=NOW(), clockedin='0' WHERE idemployee='{0}'", id);
+			MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
+			cmd->ExecuteNonQuery();
+			MessageBox::Show("Clocked Out!");
+			sql->closeConnection();
+			isclocked = "0";
+		}
+		catch (MySqlException^ e)
+		{
+			MessageBox::Show(e->ToString());
+		}
+	}
+	
 }
 };
 }
