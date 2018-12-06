@@ -111,6 +111,8 @@ MySqlConnection^ SQLConnect::getConnection() {
 	return connection;
 }
 
+
+
 /*MySqlDataReader^ SQLConnect::fillEmployee() {
 	std::auto_ptr<MySqlDataReader^>dataset;
 	try {
@@ -127,6 +129,7 @@ MySqlConnection^ SQLConnect::getConnection() {
 	closeConnection();
 	return dataset;
 }*/
+
 
 bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage)
 {
@@ -149,6 +152,29 @@ bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ a
 		closeConnection();
 		return false;
 	}
+}
+//(employeeFK, healthInsFK, dentInsFK, optInsFK, totalCost, iddeductables) values('{0}', '{1}'), '{2}', '{3}', '{4}', LAST_INSERT_ID()
+bool SQLConnect::createDeductable(String^ employeeID, String^ selectedMedicalID, String^ selectedDentalID, String^ selectedOpticalID, String^ totalCostOfInsurance)
+{
+	SQLConnect^ db = gcnew SQLConnect();
+	try
+	{
+		openConnection();
+		String^ sql;
+		sql = sql->Format("UPDATE deductables SET healthInsFK = '{0}', dentInsFK = '{1}', optInsFK = '{2}', totalCost = '{3}' WHERE employeeFK = '{4}'",
+			selectedMedicalID, selectedDentalID, selectedOpticalID, totalCostOfInsurance, employeeID);
+		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
+		cmd->ExecuteNonQuery();
+		MessageBox::Show("Employee's benefit settings saved ", "", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+		closeConnection();
+		return true;
+	}
+	catch (MySqlException^ err) {
+		MessageBox::Show(err->ToString());
+		closeConnection();
+		return false;
+	}
+	db->closeConnection();
 }
 
 String^ SQLConnect::getName(String^ user) {

@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Payroll_DB/resource.h
+/Payroll_DB/Payroll_DB.rc
+/Payroll_DB/BenefitsForm.h
+/Payroll_DB/BenefitsForm.cpp
