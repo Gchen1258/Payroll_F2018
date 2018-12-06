@@ -183,6 +183,9 @@ namespace PayrollDB {
 				 this->Medical_Cost_Label = (gcnew System::Windows::Forms::Label());
 				 this->SelectionMenu = (gcnew System::Windows::Forms::ComboBox());
 				 this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+				 this->label10 = (gcnew System::Windows::Forms::Label());
+				 this->label9 = (gcnew System::Windows::Forms::Label());
+				 this->label8 = (gcnew System::Windows::Forms::Label());
 				 this->optInsLabel = (gcnew System::Windows::Forms::Label());
 				 this->OptInsComboBox = (gcnew System::Windows::Forms::ComboBox());
 				 this->label6 = (gcnew System::Windows::Forms::Label());
@@ -193,9 +196,6 @@ namespace PayrollDB {
 				 this->label7 = (gcnew System::Windows::Forms::Label());
 				 this->panel1 = (gcnew System::Windows::Forms::Panel());
 				 this->closePage = (gcnew System::Windows::Forms::PictureBox());
-				 this->label8 = (gcnew System::Windows::Forms::Label());
-				 this->label9 = (gcnew System::Windows::Forms::Label());
-				 this->label10 = (gcnew System::Windows::Forms::Label());
 				 this->groupBox1->SuspendLayout();
 				 this->panel1->SuspendLayout();
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
@@ -251,9 +251,9 @@ namespace PayrollDB {
 				 // OK_Button
 				 // 
 				 this->OK_Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-				 this->OK_Button->Location = System::Drawing::Point(27, 275);
+				 this->OK_Button->Location = System::Drawing::Point(124, 275);
 				 this->OK_Button->Name = L"OK_Button";
-				 this->OK_Button->Size = System::Drawing::Size(75, 23);
+				 this->OK_Button->Size = System::Drawing::Size(87, 23);
 				 this->OK_Button->TabIndex = 6;
 				 this->OK_Button->Text = L"OK";
 				 this->OK_Button->UseVisualStyleBackColor = true;
@@ -262,7 +262,7 @@ namespace PayrollDB {
 				 // Cancel_Button
 				 // 
 				 this->Cancel_Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-				 this->Cancel_Button->Location = System::Drawing::Point(108, 275);
+				 this->Cancel_Button->Location = System::Drawing::Point(217, 275);
 				 this->Cancel_Button->Name = L"Cancel_Button";
 				 this->Cancel_Button->Size = System::Drawing::Size(75, 23);
 				 this->Cancel_Button->TabIndex = 7;
@@ -273,7 +273,7 @@ namespace PayrollDB {
 				 // Apply_Button
 				 // 
 				 this->Apply_Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-				 this->Apply_Button->Location = System::Drawing::Point(189, 275);
+				 this->Apply_Button->Location = System::Drawing::Point(298, 275);
 				 this->Apply_Button->Name = L"Apply_Button";
 				 this->Apply_Button->Size = System::Drawing::Size(75, 23);
 				 this->Apply_Button->TabIndex = 8;
@@ -345,6 +345,33 @@ namespace PayrollDB {
 				 this->groupBox1->TabIndex = 16;
 				 this->groupBox1->TabStop = false;
 				 this->groupBox1->Text = L"Info";
+				 // 
+				 // label10
+				 // 
+				 this->label10->AutoSize = true;
+				 this->label10->Location = System::Drawing::Point(282, 123);
+				 this->label10->Name = L"label10";
+				 this->label10->Size = System::Drawing::Size(13, 13);
+				 this->label10->TabIndex = 21;
+				 this->label10->Text = L"$";
+				 // 
+				 // label9
+				 // 
+				 this->label9->AutoSize = true;
+				 this->label9->Location = System::Drawing::Point(282, 99);
+				 this->label9->Name = L"label9";
+				 this->label9->Size = System::Drawing::Size(13, 13);
+				 this->label9->TabIndex = 20;
+				 this->label9->Text = L"$";
+				 // 
+				 // label8
+				 // 
+				 this->label8->AutoSize = true;
+				 this->label8->Location = System::Drawing::Point(282, 75);
+				 this->label8->Name = L"label8";
+				 this->label8->Size = System::Drawing::Size(13, 13);
+				 this->label8->TabIndex = 19;
+				 this->label8->Text = L"$";
 				 // 
 				 // optInsLabel
 				 // 
@@ -449,33 +476,6 @@ namespace PayrollDB {
 				 this->closePage->TabStop = false;
 				 this->closePage->Click += gcnew System::EventHandler(this, &BenefitsForm::closePage_Click);
 				 // 
-				 // label8
-				 // 
-				 this->label8->AutoSize = true;
-				 this->label8->Location = System::Drawing::Point(282, 75);
-				 this->label8->Name = L"label8";
-				 this->label8->Size = System::Drawing::Size(13, 13);
-				 this->label8->TabIndex = 19;
-				 this->label8->Text = L"$";
-				 // 
-				 // label9
-				 // 
-				 this->label9->AutoSize = true;
-				 this->label9->Location = System::Drawing::Point(282, 99);
-				 this->label9->Name = L"label9";
-				 this->label9->Size = System::Drawing::Size(13, 13);
-				 this->label9->TabIndex = 20;
-				 this->label9->Text = L"$";
-				 // 
-				 // label10
-				 // 
-				 this->label10->AutoSize = true;
-				 this->label10->Location = System::Drawing::Point(282, 123);
-				 this->label10->Name = L"label10";
-				 this->label10->Size = System::Drawing::Size(13, 13);
-				 this->label10->TabIndex = 21;
-				 this->label10->Text = L"$";
-				 // 
 				 // BenefitsForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -500,20 +500,32 @@ namespace PayrollDB {
 #pragma endregion
 
 	private: System::Void OK_Button_Click(System::Object^  sender, System::EventArgs^  e) {
-		//DATABASE PLACEHOLDER: Query to commit changes to cost of benefits 
-		BenefitsForm::Hide();
+		//Call calcTotalCost to ensure that we have the most current insurance selections
+		this->calcTotalCost();
+		//Make sure that the employee's current insurance selections do not exceed their income
+		if (Convert::ToDouble(this->Gross_Income_Label->Text) < Convert::ToDouble(this->totalCostOfInsurance))
+			MessageBox::Show("The cost of the currently selected insurance benefits exceeds this employee's income. Changes cannot be saved!", "", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+		else
+		{
+			SQLConnect^ db = gcnew SQLConnect();
+			db->createDeductable(employeeID, selectedMedicalID, selectedDentalID, selectedOpticalID, totalCostOfInsurance);
+			BenefitsForm::Hide();
+		}
 	}
 	private: System::Void Cancel_Button_Click(System::Object^  sender, System::EventArgs^  e) {
 		BenefitsForm::Hide();
 	}
 	private: System::Void Apply_Button_Click(System::Object^  sender, System::EventArgs^  e) {
-		//DATABASE PLACEHOLDER: Query to commit changes to cost of benefits / gross income
-		//UPDATE deductables SET healthInsFK = selectedMedicalID, dentInsFK = selectedDentID, optInsFK = selectedOptID WHERE employeeFK = currentEmpID
-
+		//Call calcTotalCost to ensure that we have the most current insurance selections
 		this->calcTotalCost();
-		SQLConnect^ db = gcnew SQLConnect();
-		db->createDeductable(employeeID, selectedMedicalID, selectedDentalID, selectedOpticalID, totalCostOfInsurance);
-
+		//Make sure that the employee's current insurance selections do not exceed their income
+		if (Convert::ToDouble(this->Gross_Income_Label->Text) < Convert::ToDouble(this->totalCostOfInsurance))
+			MessageBox::Show("The cost of the currently selected insurance benefits exceeds this employee's income. Changes cannot be saved!", "", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+		else
+		{
+			SQLConnect^ db = gcnew SQLConnect();
+			db->createDeductable(employeeID, selectedMedicalID, selectedDentalID, selectedOpticalID, totalCostOfInsurance);
+		}
 		
 	}
 	private: System::Void SelectionMenu_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -525,6 +537,7 @@ namespace PayrollDB {
 		employeeID = names[0];
 		name = name->Substring(name->IndexOf(":") + 1);	//Trims the id off the name
 		Name_Label->Text = name;
+		setInsurance(employeeID);
 
 		//Query our data from the database
 		SQLConnect^ db = gcnew SQLConnect();
@@ -635,11 +648,50 @@ namespace PayrollDB {
 		//Display result
 		this->Medical_Cost_Label->Text = "$" + Convert::ToString(totalCostOfInsurance);
 	}
-	private: void setInsurance(const String^ empID) {
+	private: void setInsurance(String^ empID) {
 		//Takes an employee's ID and queries their currently selected insurance,
 		//then sets the insurance combo boxes and cost labels to match
 		//Query to use: SELECT healthInsFK, dentInsFK, optInsFK FROM deductables WHERE employeeFK = empID
+		SQLConnect^ db = gcnew SQLConnect();
+		//First query selected employee's saved insurance selections from the database
+		try {
+			db->openConnection();
+			String^ query = query->Format("SELECT healthInsFK, dentInsFK, optInsFK FROM deductables WHERE employeeFK = '{0}'", Convert::ToString(empID));
+			MySqlCommand^ cmd = gcnew MySqlCommand(query, db->getConnection());
+			MySqlDataReader^ reader = cmd->ExecuteReader();
+			while (reader->Read()) {
+				this->selectedMedicalID = reader[0]->ToString();
+				this->selectedDentalID = reader[1]->ToString();
+				this->selectedOpticalID = reader[2]->ToString();
+			}
+		}
+		catch (MySqlException^ err) {
+			MessageBox::Show(err->ToString());
+		}
+		db->closeConnection();
 
+		//Then set the text in the combo boxes and their corresponding labels to the correct values
+		try {
+			db->openConnection();
+			String^ query = query->Format("SELECT i1.insuranceName, i1.baseCost, i2.insuranceName, i2.baseCost, i3.insuranceName, i3.baseCost FROM insurance AS i1, insurance as i2, insurance as i3 WHERE i1.idinsurance = '{0}' AND i2.idinsurance = '{1}' AND i3.idinsurance = '{2}'",
+				this->selectedMedicalID->ToString(), this->selectedDentalID->ToString(), this->selectedOpticalID->ToString());
+			MySqlCommand^ cmd = gcnew MySqlCommand(query, db->getConnection());
+			MySqlDataReader^ reader = cmd->ExecuteReader();
+			while (reader->Read()) {
+				this->MedInsComboBox->Text = reader[0]->ToString();
+				this->medInsLabel->Text = reader[1]->ToString();
+				this->DentInsComboBox->Text = reader[2]->ToString();
+				this->dentInsLabel->Text = reader[3]->ToString();
+				this->OptInsComboBox->Text = reader[4]->ToString();
+				this->optInsLabel->Text = reader[5]->ToString();
+			}
+		}
+		catch (MySqlException^ err) {
+			MessageBox::Show(err->ToString());
+		}
+		db->closeConnection();
+
+		this->calcTotalCost();
 	}
 
 
