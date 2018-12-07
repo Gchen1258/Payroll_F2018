@@ -158,6 +158,7 @@ namespace PayrollDB {
 	private: System::Windows::Forms::Label^  label10;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::Label^  label8;
+private: System::Windows::Forms::Label^  label11;
 
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
@@ -196,6 +197,7 @@ namespace PayrollDB {
 				 this->label7 = (gcnew System::Windows::Forms::Label());
 				 this->panel1 = (gcnew System::Windows::Forms::Panel());
 				 this->closePage = (gcnew System::Windows::Forms::PictureBox());
+				 this->label11 = (gcnew System::Windows::Forms::Label());
 				 this->groupBox1->SuspendLayout();
 				 this->panel1->SuspendLayout();
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
@@ -215,9 +217,9 @@ namespace PayrollDB {
 				 this->label2->AutoSize = true;
 				 this->label2->Location = System::Drawing::Point(33, 52);
 				 this->label2->Name = L"label2";
-				 this->label2->Size = System::Drawing::Size(78, 13);
+				 this->label2->Size = System::Drawing::Size(153, 13);
 				 this->label2->TabIndex = 1;
-				 this->label2->Text = L"Gross Income: ";
+				 this->label2->Text = L"Gross Income per Paycheck: $";
 				 // 
 				 // label3
 				 // 
@@ -244,9 +246,9 @@ namespace PayrollDB {
 				 this->label4->AutoSize = true;
 				 this->label4->Location = System::Drawing::Point(33, 164);
 				 this->label4->Name = L"label4";
-				 this->label4->Size = System::Drawing::Size(159, 13);
+				 this->label4->Size = System::Drawing::Size(237, 13);
 				 this->label4->TabIndex = 4;
-				 this->label4->Text = L"Total Cost of Medical Coverage:";
+				 this->label4->Text = L"Total Cost of Medical Coverage per Paycheck: $";
 				 // 
 				 // OK_Button
 				 // 
@@ -293,7 +295,7 @@ namespace PayrollDB {
 				 // Gross_Income_Label
 				 // 
 				 this->Gross_Income_Label->AutoSize = true;
-				 this->Gross_Income_Label->Location = System::Drawing::Point(127, 52);
+				 this->Gross_Income_Label->Location = System::Drawing::Point(192, 52);
 				 this->Gross_Income_Label->Name = L"Gross_Income_Label";
 				 this->Gross_Income_Label->Size = System::Drawing::Size(34, 13);
 				 this->Gross_Income_Label->TabIndex = 10;
@@ -302,7 +304,7 @@ namespace PayrollDB {
 				 // Medical_Cost_Label
 				 // 
 				 this->Medical_Cost_Label->AutoSize = true;
-				 this->Medical_Cost_Label->Location = System::Drawing::Point(199, 164);
+				 this->Medical_Cost_Label->Location = System::Drawing::Point(276, 164);
 				 this->Medical_Cost_Label->Name = L"Medical_Cost_Label";
 				 this->Medical_Cost_Label->Size = System::Drawing::Size(78, 13);
 				 this->Medical_Cost_Label->TabIndex = 11;
@@ -321,6 +323,7 @@ namespace PayrollDB {
 				 // 
 				 // groupBox1
 				 // 
+				 this->groupBox1->Controls->Add(this->label11);
 				 this->groupBox1->Controls->Add(this->label10);
 				 this->groupBox1->Controls->Add(this->label9);
 				 this->groupBox1->Controls->Add(this->label8);
@@ -476,6 +479,14 @@ namespace PayrollDB {
 				 this->closePage->TabStop = false;
 				 this->closePage->Click += gcnew System::EventHandler(this, &BenefitsForm::closePage_Click);
 				 // 
+				 // label11
+				 // 
+				 this->label11->AutoSize = true;
+				 this->label11->Location = System::Drawing::Point(156, 86);
+				 this->label11->Name = L"label11";
+				 this->label11->Size = System::Drawing::Size(0, 13);
+				 this->label11->TabIndex = 22;
+				 // 
 				 // BenefitsForm
 				 // 
 				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -548,6 +559,7 @@ namespace PayrollDB {
 			MySqlDataReader^ reader = cmd->ExecuteReader();
 			while (reader->Read()) {
 				Gross_Income_Label->Text = reader[0]->ToString();
+				Gross_Income_Label->Text = Convert::ToString(Convert::ToDouble(Gross_Income_Label->Text) * 80);
 			}
 		}
 		catch (MySqlException^ err) {
