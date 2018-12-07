@@ -40,9 +40,12 @@ namespace PayrollDB {
 		User_Login(void)
 		{
 			InitializeComponent();
+			/*
 			this->TransparencyKey = Color::LightCoral;
 			fadeCounter = 0;
 			animTimer->Start();
+			*/
+			//Add check for admin
 		}
 
 	protected:
@@ -324,6 +327,7 @@ private: System::Void LoginButton_Click(System::Object^  sender, System::EventAr
 	SQLConnect^ sql = gcnew SQLConnect();
 	int check = sql->login(UserField->Text, passField->Text);
 	name = sql->getName(UserField->Text);
+
 	username = UserField->Text;
 	if (check != -1)
 	{

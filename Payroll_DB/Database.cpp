@@ -83,6 +83,14 @@ void SQLConnect::backup(String^ path)
 	}
 }
 
+void SQLConnect::initializeDeductibles(String^ userid) {
+	openConnection();
+	String^ q = q->Format("Insert into deductables (employeefk,healthInsFK,dentInsFK,optInsFK, totalCost) values('8','0','0','0','0');");
+	MySqlCommand^ cmd = gcnew MySqlCommand(q, connection);
+	cmd->ExecuteNonQuery();
+	closeConnection();
+}
+
 bool SQLConnect::createUser(String^ user,String^ pass, String^ position)
 {
 	try {
@@ -97,21 +105,20 @@ bool SQLConnect::createUser(String^ user,String^ pass, String^ position)
 		String^ msg;
 		msg = msg->Format("New user created!");
 		MessageBox::Show(msg);
-
+		closeConnection();
 	}
 	catch(MySqlException^ err){
+		closeConnection();
 		MessageBox::Show(err->ToString());
 		return false;
 	}
-	closeConnection();
+	
 	return true;
 }
 
 MySqlConnection^ SQLConnect::getConnection() {
 	return connection;
 }
-
-
 
 /*MySqlDataReader^ SQLConnect::fillEmployee() {
 	std::auto_ptr<MySqlDataReader^>dataset;
@@ -130,16 +137,14 @@ MySqlConnection^ SQLConnect::getConnection() {
 	return dataset;
 }*/
 
-
-bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage)
+bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage, String^ married)
 {
 	try {
 		openConnection();
 		String^ sql;
-		sql = sql->Format("Insert into employee(first_name, last_name, address, wages) values('{0}','{1}','{2}','{3}')",
-			first_name, last_name, address, wage);
+		sql = sql->Format("Insert into employee(first_name, last_name, address, wages, marriage_status, clockedin) values('{0}','{1}','{2}','{3}','{4}','0')",
+			first_name, last_name, address, wage, married);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
-		//MessageBox::Show(sql);
 		cmd->ExecuteNonQuery();
 		String^ msg;
 		msg = msg->Format("{0} {1} has been added!", first_name, last_name);
@@ -153,7 +158,31 @@ bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ a
 		return false;
 	}
 }
-//(employeeFK, healthInsFK, dentInsFK, optInsFK, totalCost, iddeductables) values('{0}', '{1}'), '{2}', '{3}', '{4}', LAST_INSERT_ID()
+
+String^ SQLConnect::getName(String^ user) {
+	String^ name;
+	try {
+		openConnection();	
+		String^ sql = sql->Format("SELECT first_name, last_name FROM employee INNER JOIN users ON employee.idEmployee=users.idEmployee WHERE users.username='{0}';", user);
+		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
+		MySqlDataReader^ reader = cmd->ExecuteReader();
+		while (reader->Read())
+		{
+			String^ first = reader[0]->ToString();
+			String^ last = reader[1]->ToString();
+			name = name->Format("{0} {1}", first,last);
+		}
+	}
+	catch (MySqlException^ err)
+	{
+		MessageBox::Show("Error querying database");
+		closeConnection();
+	}
+	closeConnection();
+	return name;
+	
+}
+
 bool SQLConnect::createDeductable(String^ employeeID, String^ selectedMedicalID, String^ selectedDentalID, String^ selectedOpticalID, String^ totalCostOfInsurance)
 {
 	SQLConnect^ db = gcnew SQLConnect();
@@ -176,19 +205,16 @@ bool SQLConnect::createDeductable(String^ employeeID, String^ selectedMedicalID,
 	}
 	db->closeConnection();
 }
-
-String^ SQLConnect::getName(String^ user) {
-	String^ name;
+String^ SQLConnect::getID(String^ user) {
+	String^ empid;
 	try {
-		openConnection();	
-		String^ sql = sql->Format("SELECT first_name, last_name FROM employee INNER JOIN users ON employee.idEmployee=users.idEmployee WHERE users.username='{0}';", user);
+		openConnection();
+		String^ sql = sql->Format("SELECT idEmployee FROM users WHERE username='{0}';", user);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		MySqlDataReader^ reader = cmd->ExecuteReader();
 		while (reader->Read())
 		{
-			String^ first = reader[0]->ToString();
-			String^ last = reader[1]->ToString();
-			name = name->Format("{0} {1}", first,last);
+			empid = reader[0]->ToString();
 		}
 	}
 	catch (MySqlException^ err)
@@ -196,10 +222,30 @@ String^ SQLConnect::getName(String^ user) {
 		MessageBox::Show(err->ToString());
 	}
 	closeConnection();
-	return name;
-	
-}
+	return empid;
 
+}
+String^ SQLConnect::getLastID() {
+	String^ empid;
+	try {
+		openConnection();
+		String^ sql = sql->Format("SELECT LAST_INSERT_ID() FROM users;");
+		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
+		MySqlDataReader^ reader = cmd->ExecuteReader();
+		while (reader->Read())
+		{
+			empid = reader[0]->ToString();
+		}
+	}
+	catch (MySqlException^ err)
+	{
+		MessageBox::Show("Error querying database");
+		closeConnection();
+	}
+	closeConnection();
+	return empid;
+
+}
 int SQLConnect::login(String^ user, String^ pass)
 {
 	String^ userCheck;
@@ -223,7 +269,7 @@ int SQLConnect::login(String^ user, String^ pass)
 	}
 	catch (MySqlException^ err)
 	{
-		MessageBox::Show(err->ToString());
+		MessageBox::Show("Error querying database");
 		closeConnection();
 		return -1;
 	}

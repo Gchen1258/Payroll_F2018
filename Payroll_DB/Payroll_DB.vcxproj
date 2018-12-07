@@ -156,12 +156,14 @@
     <ClInclude Include="BenefitsForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="D:\Downloads - HDD\Deductibles.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="DbTest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EmployeeMenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ModifyEmployee.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Payroll.h" />
@@ -185,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="User_Access.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="User_Login.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -197,6 +202,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="EmployeeMenu.cpp" />
+    <ClCompile Include="ModifyEmployee.cpp" />
     <ClCompile Include="Payroll.cpp" />
     <ClCompile Include="payroll_form.cpp" />
     <ClCompile Include="payroll_manage.cpp" />
@@ -207,6 +213,7 @@
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="User_Access.cpp" />
     <ClCompile Include="User_Login.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +227,9 @@
       <DependentUpon>DbTest.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeMenu.resx" />
+    <EmbeddedResource Include="ModifyEmployee.resx">
+      <DependentUpon>ModifyEmployee.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="payroll_form.resx" />
     <EmbeddedResource Include="payroll_manage.resx" />
     <EmbeddedResource Include="SearchForm.resx">
@@ -233,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewEmployee.resx">
       <DependentUpon>NewEmployee.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_Access.resx">
+      <DependentUpon>User_Access.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User_Login.resx">
       <DependentUpon>User_Login.h</DependentUpon>

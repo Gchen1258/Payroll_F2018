@@ -35,9 +35,12 @@ public:
 
 	int login(String^ user, String^ pass);
 	bool createUser(String^ user, String^ pass, String^ position);
-	bool createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage);
-	bool createDeductable(String^ employeeID, String^ selectedMedicalID, String^ selectedDentalID, String^ selectedOpticalID, String^ totalCostOfInsurance);
+	bool createEmployee(String^ first_name, String^ last_name, String^ address, String^ wage, String^ married);
+	String^ getID(String^ user);
+	String^ getLastID();
 	String^ getName(String^ user);
+	void initializeDeductibles(String^ userid);
+	bool createDeductable(String^ employeeID, String^ selectedMedicalID, String^ selectedDentalID, String^ selectedOpticalID, String^ totalCostOfInsurance);
 	MySqlConnection^ getConnection();
 	bool openConnection();
 	bool closeConnection();
