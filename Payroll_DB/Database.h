@@ -17,7 +17,7 @@ private:
 	//Change these to match your MySQL configurations
 
 	String^ user = "root";
-	String^	pass = "8391";
+	String^	pass = "strongbad";
 	String^ database = "payroll";
 	String^	server = "localhost";
 	String^ port = "3306";
@@ -40,6 +40,7 @@ public:
 	String^ getLastID();
 	String^ getName(String^ user);
 	void initializeDeductibles(String^ userid);
+	bool createDeductable(String^ employeeID, String^ selectedMedicalID, String^ selectedDentalID, String^ selectedOpticalID, String^ totalCostOfInsurance);
 	MySqlConnection^ getConnection();
 	bool openConnection();
 	bool closeConnection();

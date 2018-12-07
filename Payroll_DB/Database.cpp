@@ -105,13 +105,14 @@ bool SQLConnect::createUser(String^ user,String^ pass, String^ position)
 		String^ msg;
 		msg = msg->Format("New user created!");
 		MessageBox::Show(msg);
-
+		closeConnection();
 	}
 	catch(MySqlException^ err){
+		closeConnection();
 		MessageBox::Show(err->ToString());
 		return false;
 	}
-	closeConnection();
+	
 	return true;
 }
 
@@ -141,7 +142,7 @@ bool SQLConnect::createEmployee(String^ first_name, String^ last_name, String^ a
 	try {
 		openConnection();
 		String^ sql;
-		sql = sql->Format("Insert into employee(first_name, last_name, address, wages, marriage_status) values('{0}','{1}','{2}','{3}','{4}')",
+		sql = sql->Format("Insert into employee(first_name, last_name, address, wages, marriage_status, clockedin) values('{0}','{1}','{2}','{3}','{4}','0')",
 			first_name, last_name, address, wage, married);
 		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
 		cmd->ExecuteNonQuery();
@@ -174,11 +175,35 @@ String^ SQLConnect::getName(String^ user) {
 	}
 	catch (MySqlException^ err)
 	{
-		MessageBox::Show(err->ToString());
+		MessageBox::Show("Error querying database");
+		closeConnection();
 	}
 	closeConnection();
 	return name;
 	
+}
+
+bool SQLConnect::createDeductable(String^ employeeID, String^ selectedMedicalID, String^ selectedDentalID, String^ selectedOpticalID, String^ totalCostOfInsurance)
+{
+	SQLConnect^ db = gcnew SQLConnect();
+	try
+	{
+		openConnection();
+		String^ sql;
+		sql = sql->Format("UPDATE deductables SET healthInsFK = '{0}', dentInsFK = '{1}', optInsFK = '{2}', totalCost = '{3}' WHERE employeeFK = '{4}'",
+			selectedMedicalID, selectedDentalID, selectedOpticalID, totalCostOfInsurance, employeeID);
+		MySqlCommand^ cmd = gcnew MySqlCommand(sql, connection);
+		cmd->ExecuteNonQuery();
+		MessageBox::Show("Employee's benefit settings saved ", "", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+		closeConnection();
+		return true;
+	}
+	catch (MySqlException^ err) {
+		MessageBox::Show(err->ToString());
+		closeConnection();
+		return false;
+	}
+	db->closeConnection();
 }
 String^ SQLConnect::getID(String^ user) {
 	String^ empid;
@@ -214,7 +239,8 @@ String^ SQLConnect::getLastID() {
 	}
 	catch (MySqlException^ err)
 	{
-		MessageBox::Show(err->ToString());
+		MessageBox::Show("Error querying database");
+		closeConnection();
 	}
 	closeConnection();
 	return empid;
@@ -243,7 +269,7 @@ int SQLConnect::login(String^ user, String^ pass)
 	}
 	catch (MySqlException^ err)
 	{
-		MessageBox::Show(err->ToString());
+		MessageBox::Show("Error querying database");
 		closeConnection();
 		return -1;
 	}

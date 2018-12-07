@@ -618,11 +618,11 @@ namespace PayrollDB {
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		
-		String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+		String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 		MySqlConnection^ condatabase = gcnew MySqlConnection(constring);
 		
-		MySqlCommand^ cmddatabase = gcnew MySqlCommand("SELECT * FROM payroll.employee;", condatabase);
+		MySqlCommand^ cmddatabase = gcnew MySqlCommand("SELECT idEmployee, first_name, last_name, address, wages FROM payroll.employee;", condatabase);
 
 
 		try {
@@ -665,7 +665,7 @@ namespace PayrollDB {
 
 		// modify employee data using textboxes
 
-		String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+		String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 		MySqlConnection^ condatabase = gcnew MySqlConnection(constring);
 
@@ -693,7 +693,7 @@ namespace PayrollDB {
 
 		// Delete employee from Database while adding to deleted database
 
-		String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+		String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 		MySqlConnection^ condatabase = gcnew MySqlConnection(constring);
 
@@ -727,11 +727,11 @@ namespace PayrollDB {
 
 		// search database by employee id
 
-		String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+		String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 		MySqlConnection^ condatabase = gcnew MySqlConnection(constring);
 		int id = Int32::Parse(idEmployee_textBox->Text);
-		MySqlCommand^ cmddatabase = gcnew MySqlCommand("SELECT * FROM payroll.employee  WHERE idEmployee=" + id + "", condatabase);
+		MySqlCommand^ cmddatabase = gcnew MySqlCommand("SELECT idEmployee, first_name, last_name, address, wages FROM payroll.employee  WHERE idEmployee=" + id + "", condatabase);
 
 
 		try {
@@ -772,12 +772,12 @@ namespace PayrollDB {
 		// Search the data base using employee first name
 
 
-		String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+		String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 		MySqlConnection^ condatabase = gcnew MySqlConnection(constring);
 		//int id = Int32::Parse(idEmployee_textBox->Text);
 		String^ key = first_name_textBox->Text;
-		MySqlCommand^ cmddatabase = gcnew MySqlCommand("SELECT * FROM payroll.employee  WHERE first_name='" + key + "'", condatabase);
+		MySqlCommand^ cmddatabase = gcnew MySqlCommand("SELECT idEmployee, first_name, last_name, address, wages FROM payroll.employee  WHERE first_name='" + key + "'", condatabase);
 		//MySqlDataReader ^ myReader;
 
 		try {
@@ -804,11 +804,11 @@ namespace PayrollDB {
 	private: System::Void display_deleted_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		// show deleted employee list
-		String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+		String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 		MySqlConnection^ condatabase = gcnew MySqlConnection(constring);
 
-		MySqlCommand^ cmddatabase = gcnew MySqlCommand("SELECT * FROM payroll.deleted;", condatabase);
+		MySqlCommand^ cmddatabase = gcnew MySqlCommand("SELECT idEmployee, first_name, last_name, address, wages FROM payroll.deleted;", condatabase);
 
 
 		try {

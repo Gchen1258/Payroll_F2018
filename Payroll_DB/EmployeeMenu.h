@@ -296,7 +296,8 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		}
 		catch (MySqlException^ e)
 		{
-			MessageBox::Show(e->ToString());
+			MessageBox::Show("Error querying database");
+			sql->closeConnection();
 		}
 	}
 	else if (isclocked == "1") {
@@ -305,14 +306,15 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		//Get hours elapsed and insert into employee time
 		try {
 			sql->openConnection();
-			String^ q2 = q2->Format("UPDATE paycheck SET hours=(Select timestampdiff(Hour, NOW(), time) FROM employee WHERE idemployee = '{0}') where idemployee='{0}'");
+			String^ q2 = q2->Format("UPDATE paycheck SET hours=(Select timestampdiff(Hour, NOW(), time) FROM employee WHERE idemployee = '{0}') where idemployee='{0}'",id);
 			MySqlCommand^ cmd = gcnew MySqlCommand(q2, conn);
 			cmd->ExecuteNonQuery();
 			sql->closeConnection();
 		}
 		catch (MySqlException^ e)
 		{
-			MessageBox::Show(e->ToString());
+			MessageBox::Show("Error querying database");
+			sql->closeConnection();
 		}
 		
 		try {
@@ -326,7 +328,8 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 		}
 		catch (MySqlException^ e)
 		{
-			MessageBox::Show(e->ToString());
+			MessageBox::Show("Error querying database");
+			sql->closeConnection();
 		}
 	}
 	

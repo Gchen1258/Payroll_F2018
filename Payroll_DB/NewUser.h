@@ -555,7 +555,6 @@ private: System::Void NewUser_MouseUp(System::Object^  sender, System::Windows::
 private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 	System::String ^ state = StateCBox->Text;
 	state = state->Substring(state->Length - 3);
-	MessageBox::Show(state);
 	String^ address = AddrField->Text + ", " + CityField->Text + ", " + state + ", " + ZipField->Text;
 	if (check)
 	{

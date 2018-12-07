@@ -44,7 +44,7 @@ namespace PayrollDB {
 			
 			this->username = username;
 
-			String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+			String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 
 
@@ -495,7 +495,7 @@ private: System::Void label8_Click(System::Object^  sender, System::EventArgs^  
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+	String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 	
 
@@ -547,7 +547,7 @@ private: System::Void dataGridView1_CellContentClick(System::Object^  sender, Sy
 	textBox4->Text = row->Cells[0]->Value->ToString();
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+	String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 	MySqlConnection^ condatabase = gcnew MySqlConnection(constring);
 
@@ -569,7 +569,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	condatabase->Close();
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ constring = "datasource=localhost;port=3306;username=root;password=8391";
+	String^ constring = "datasource=localhost;port=3306;username=root;password=strongbad";
 
 	MySqlConnection^ condatabase = gcnew MySqlConnection(constring);
 
