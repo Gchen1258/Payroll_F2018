@@ -1,5 +1,7 @@
 #pragma once
 #include "Database.h"
+#include "ManageBenefits.h"
+
 namespace PayrollDB {
 
 	using namespace System;
@@ -28,7 +30,7 @@ namespace PayrollDB {
 				{
 					String^ field = field->Format("{0}: {1} {2}", reader[0]->ToString(), reader[1]->ToString(), reader[2]->ToString());
 					SelectionMenu->Items->Add(field);
-				}	
+				}
 			}
 			catch (MySqlException^ err) {
 				MessageBox::Show(err->ToString());
@@ -85,8 +87,8 @@ namespace PayrollDB {
 
 
 		BenefitsForm(String^ ID)
-		{ 
-			
+		{
+
 			InitializeComponent();
 			//Pass employee's ID to query their data from the database. Unsure if String^ or int is correct for a primary key
 			//employeeID = ID;
@@ -158,7 +160,8 @@ namespace PayrollDB {
 	private: System::Windows::Forms::Label^  label10;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::Label^  label8;
-private: System::Windows::Forms::Label^  label11;
+	private: System::Windows::Forms::Label^  label11;
+private: System::Windows::Forms::Button^  createDeductButton;
 
 			 /// </summary>
 			 System::ComponentModel::Container ^components;
@@ -184,6 +187,7 @@ private: System::Windows::Forms::Label^  label11;
 				 this->Medical_Cost_Label = (gcnew System::Windows::Forms::Label());
 				 this->SelectionMenu = (gcnew System::Windows::Forms::ComboBox());
 				 this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+				 this->label11 = (gcnew System::Windows::Forms::Label());
 				 this->label10 = (gcnew System::Windows::Forms::Label());
 				 this->label9 = (gcnew System::Windows::Forms::Label());
 				 this->label8 = (gcnew System::Windows::Forms::Label());
@@ -197,7 +201,7 @@ private: System::Windows::Forms::Label^  label11;
 				 this->label7 = (gcnew System::Windows::Forms::Label());
 				 this->panel1 = (gcnew System::Windows::Forms::Panel());
 				 this->closePage = (gcnew System::Windows::Forms::PictureBox());
-				 this->label11 = (gcnew System::Windows::Forms::Label());
+				 this->createDeductButton = (gcnew System::Windows::Forms::Button());
 				 this->groupBox1->SuspendLayout();
 				 this->panel1->SuspendLayout();
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->closePage))->BeginInit();
@@ -253,9 +257,9 @@ private: System::Windows::Forms::Label^  label11;
 				 // OK_Button
 				 // 
 				 this->OK_Button->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-				 this->OK_Button->Location = System::Drawing::Point(124, 275);
+				 this->OK_Button->Location = System::Drawing::Point(134, 275);
 				 this->OK_Button->Name = L"OK_Button";
-				 this->OK_Button->Size = System::Drawing::Size(87, 23);
+				 this->OK_Button->Size = System::Drawing::Size(75, 23);
 				 this->OK_Button->TabIndex = 6;
 				 this->OK_Button->Text = L"OK";
 				 this->OK_Button->UseVisualStyleBackColor = true;
@@ -348,6 +352,14 @@ private: System::Windows::Forms::Label^  label11;
 				 this->groupBox1->TabIndex = 16;
 				 this->groupBox1->TabStop = false;
 				 this->groupBox1->Text = L"Info";
+				 // 
+				 // label11
+				 // 
+				 this->label11->AutoSize = true;
+				 this->label11->Location = System::Drawing::Point(156, 86);
+				 this->label11->Name = L"label11";
+				 this->label11->Size = System::Drawing::Size(0, 13);
+				 this->label11->TabIndex = 22;
 				 // 
 				 // label10
 				 // 
@@ -456,6 +468,7 @@ private: System::Windows::Forms::Label^  label11;
 				 // 
 				 this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
 					 static_cast<System::Int32>(static_cast<System::Byte>(64)));
+				 this->panel1->Controls->Add(this->createDeductButton);
 				 this->panel1->Controls->Add(this->groupBox1);
 				 this->panel1->Controls->Add(this->label7);
 				 this->panel1->Controls->Add(this->OK_Button);
@@ -479,13 +492,16 @@ private: System::Windows::Forms::Label^  label11;
 				 this->closePage->TabStop = false;
 				 this->closePage->Click += gcnew System::EventHandler(this, &BenefitsForm::closePage_Click);
 				 // 
-				 // label11
+				 // createDeductButton
 				 // 
-				 this->label11->AutoSize = true;
-				 this->label11->Location = System::Drawing::Point(156, 86);
-				 this->label11->Name = L"label11";
-				 this->label11->Size = System::Drawing::Size(0, 13);
-				 this->label11->TabIndex = 22;
+				 this->createDeductButton->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+				 this->createDeductButton->Location = System::Drawing::Point(71, 16);
+				 this->createDeductButton->Name = L"createDeductButton";
+				 this->createDeductButton->Size = System::Drawing::Size(100, 23);
+				 this->createDeductButton->TabIndex = 18;
+				 this->createDeductButton->Text = L"Manage Benefits";
+				 this->createDeductButton->UseVisualStyleBackColor = true;
+				 this->createDeductButton->Click += gcnew System::EventHandler(this, &BenefitsForm::createDeductButton_Click);
 				 // 
 				 // BenefitsForm
 				 // 
@@ -537,7 +553,7 @@ private: System::Windows::Forms::Label^  label11;
 			SQLConnect^ db = gcnew SQLConnect();
 			db->createDeductable(employeeID, selectedMedicalID, selectedDentalID, selectedOpticalID, totalCostOfInsurance);
 		}
-		
+
 	}
 	private: System::Void SelectionMenu_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		//Pulls our name from the ComboBox and formats it for our statement
@@ -710,8 +726,8 @@ private: System::Windows::Forms::Label^  label11;
 	private: System::Void BenefitsForm_Load(System::Object^  sender, System::EventArgs^  e) {
 		totalCostOfInsurance = "0";
 		this->Name_Label->Text = "Name";
-		this->Gross_Income_Label->Text = "Gross";
-		this->Medical_Cost_Label->Text = "Med Cost";
+		this->Gross_Income_Label->Text = "0";
+		this->Medical_Cost_Label->Text = "0";
 	}
 
 	private: System::Void closePage_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -719,6 +735,9 @@ private: System::Windows::Forms::Label^  label11;
 	}
 
 
+	private: System::Void createDeductButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		ManageBenefits^ mf = gcnew ManageBenefits();
+		mf->ShowDialog();
+	}
 };
 }
-
